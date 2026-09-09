@@ -289,6 +289,68 @@ def check_baseline(m, path, tol):
     return True
 
 
+# ── device ───────────────────────────────────────────────────────────────────
+
+def from_device(path, tol):
+    """results.json de DeviceParityTest: el .so arm64 real + Kotlin real.
+    Compara (1) Kotlin en device vs la réplica Python sobre el MISMO JSON,
+    (2) el JSON del device vs el del CLI de host (misma foto, mismo código,
+    otra CPU), (3) acierto contra GT y contra baseline.native_e2e."""
+    res = json.load(open(path))
+    boxes = {b["key"]: b for b in json.load(open(os.path.join(D2, "boxes.json")))}
+    gt_song = json.load(open(os.path.join(D2, "gt_song.json")))
+    gt_lvl = json.load(open(os.path.join(D2, "gt_level.json")))
+    catalog = Catalog(os.path.join(D2, "catalog.json"))
+    build_cli()
+    print(f"device: {res.get('device')} [{res.get('abi')}]  carga {res.get('load_ms', 0):.0f} ms")
+
+    rows, kt_diff, host_diff, ms = [], [], [], []
+    for stem, r in sorted(res["rows"].items()):
+        key = stem.split("_")[0]
+        if key not in boxes or not gt_song.get(key):
+            continue
+        ct, lvl = (gt_lvl.get(key) or [None, None])
+        gt = {"song": gt_song[key], "chart_type": ct, "level": lvl}
+        replica = interpret(r["native"], catalog)
+        rows.append({"key": key, "gt": gt, "native": replica})
+        ms.append(r["ms"])
+        for f in ("song", "level", "chart_type", "raw"):
+            if r.get(f) != replica.get(f):
+                kt_diff.append(f"  {key} {f}: device={r.get(f)!r} replica={replica.get(f)!r}")
+        host = run_native(os.path.join(PHOTOS, boxes[key]["file"]), None)["result"]
+        hr = interpret(host, catalog)
+        d = [f for f in ("song", "level", "chart_type", "raw") if hr.get(f) != replica.get(f)]
+        if d:
+            host_diff.append(f"  {key}: " + "; ".join(
+                f"{f} device={replica.get(f)!r} host={hr.get(f)!r}" for f in d))
+
+    eq_song = lambda v, g: normalize(v) == normalize(g)
+    m = {f: field_metrics(rows, "native", f, f, eq_song if f == "song" else (lambda v, g: v == g))
+         for f in ("song", "level", "chart_type")}
+    print(f"{len(rows)} fotos, latencia device media {sum(ms) / len(ms):.0f} ms, max {max(ms):.0f} ms")
+    print("device end-to-end contra GT:")
+    for f, d in m.items():
+        print(f"  {f:12s} n={d['n']:3d}  cob {d['coverage']:.3f}  prec {d['precision']:.3f}  acierto {d['accuracy']:.3f}")
+    print(f"Kotlin en device vs réplica Python: {len(kt_diff)} diferencias")
+    print("\n".join(kt_diff))
+    print(f".so arm64 vs CLI de host (mismo código, otra CPU): {len(host_diff)} fotos difieren")
+    print("\n".join(host_diff))
+
+    bp = os.path.join(HERE, "baseline.json")
+    ok = True
+    if os.path.exists(bp):
+        base = json.load(open(bp)).get("native_e2e", {})
+        for f, d in m.items():
+            for k in ("coverage", "precision", "accuracy"):
+                b = base.get(f, {}).get(k)
+                if b is not None and d[k] < b - tol - 0.03:   # 0.03 = 1 foto de 45
+                    print(f"REGRESIÓN device vs baseline host: {f}.{k} {b:.3f} -> {d[k]:.3f}")
+                    ok = False
+        if ok:
+            print("device dentro de baseline host (±1 foto)")
+    return ok and not kt_diff
+
+
 # ── main ─────────────────────────────────────────────────────────────────────
 
 def main():
@@ -304,9 +366,13 @@ def main():
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--diff", action="store_true", help="listar fotos donde difieren")
     ap.add_argument("--augs", help='pasadas TTA del detector, ej. "1,0.83,1f" (default del .so)')
+    ap.add_argument("--from-device", metavar="RESULTS_JSON",
+                    help="comparar results.json bajado del teléfono (tools/parity/device.sh)")
     a = ap.parse_args()
     global AUGS
     AUGS = a.augs
+    if a.from_device:
+        sys.exit(0 if from_device(a.from_device, a.tol) else 1)
 
     build_cli()
     boxes = {b["key"]: b for b in json.load(open(os.path.join(D2, "boxes.json")))}

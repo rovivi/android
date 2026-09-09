@@ -14,6 +14,7 @@ android {
         // Reglas que viajan al consumidor: R8 no debe renombrar PiuOcr ni sus
         // métodos native, el .so los busca por nombre (Java_com_piu_ocr_PiuOcr_*).
         consumerProguardFiles("consumer-rules.pro")
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         // Solo arm64: agregar armeabi-v7a duplica el .so por un parque de
         // dispositivos que ya no importa.
         ndk { abiFilters += "arm64-v8a" }
@@ -38,6 +39,9 @@ dependencies {
     // android.jar es un stub.
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.json:json:20240303")
+    // Test en device (src/androidTest): tools/parity/device.sh
+    androidTestImplementation("androidx.test:runner:1.6.2")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
 }
 
 // kotlinOptions está deprecado en Kotlin 2.x.

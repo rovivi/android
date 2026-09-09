@@ -40,3 +40,20 @@ Diferencias que quedan **a propósito** (nativo ≠ Python, medidas contra GT):
 - texto crudo: ~29 % de las fotos difieren en un carácter (empates en el
   producto punto con float32 en orden distinto). El match al catálogo lo absorbe:
   acuerdo de canción 0.978.
+
+## En device
+
+```bash
+tools/parity/device.sh        # teléfono arm64 por adb; JAVA_HOME/ANDROID_HOME como para assembleRelease
+```
+
+Instala `piu-ocr-debug-androidTest.apk`, empuja las 45 fotos con GT a
+`/sdcard/Android/data/com.piu.ocr.test/files/piu_parity/`, corre
+`DeviceParityTest` (el `PiuOcr` real: `.so` arm64 + Kotlin) y baja
+`results.json` a `build/device_results.json`. `parity.py --from-device` reporta:
+
+- acierto end-to-end contra GT, comparado con `baseline.native_e2e` (±1 foto);
+- Kotlin en device vs réplica Python sobre el mismo JSON (debe ser 0);
+- `.so` arm64 vs CLI de host foto por foto (misma lógica, otra CPU: lo que
+  difiera es fp16/orden de flotantes, no un bug — salvo que sea mucho);
+- latencia real por foto.

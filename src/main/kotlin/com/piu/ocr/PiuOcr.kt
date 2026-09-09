@@ -35,7 +35,7 @@ data class Reading(
 
 class PiuOcr private constructor(
     handle: Long,
-    private val matcher: SongMatcher,
+    internal val matcher: SongMatcher,
 ) : AutoCloseable {
 
     @Volatile private var handle = handle
@@ -45,9 +45,16 @@ class PiuOcr private constructor(
         // El .so solo lee ARGB_8888 con píxeles bloqueables. Un HARDWARE bitmap
         // (lo que devuelve ImageDecoder por defecto en API 28+) o un RGB_565
         // fallaban en lockPixels y volvían vacíos en silencio.
+        return interpret(readRaw(bitmap), matcher)
+    }
+
+    /** JSON crudo del .so. Lo usa el test en device (tools/parity/device.sh)
+     *  para comparar contra el CLI de host foto por foto. */
+    internal fun readRaw(bitmap: Bitmap): String {
+        check(handle != 0L) { "PiuOcr ya está cerrado" }
         val bmp = if (bitmap.config == Bitmap.Config.ARGB_8888 && !isHardware(bitmap)) bitmap
                   else bitmap.copy(Bitmap.Config.ARGB_8888, false)
-        return interpret(nativeRead(handle, bmp), matcher)
+        return nativeRead(handle, bmp)
     }
 
     /** Idempotente: un segundo close() era un double free en el .so. */
