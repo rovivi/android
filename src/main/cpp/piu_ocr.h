@@ -68,9 +68,13 @@ class Templates {
   // Similitud por clase sin colapsar: la necesita el cruce con el catálogo,
   // que reordena niveles enteros y no solo acepta o rechaza el argmax.
   void scores(const std::vector<Glyph>&, std::vector<std::vector<float>>*) const;
+  bool empty() const { return t_.empty(); }
  private:
+  cv::Mat perClass(const std::vector<Glyph>&) const;
   cv::Mat t_;                 // (K, GLYPH_H*GLYPH_W) float32 L2-normalizadas
-  std::vector<int> classes_;
+  std::vector<int> classes_;  // etiqueta por plantilla
+  std::vector<int> uniq_;     // etiquetas distintas, ordenadas
+  std::vector<int> clsIdx_;   // índice en uniq_ por plantilla (precalculado)
 };
 
 }  // namespace piu

@@ -4,6 +4,7 @@
 // 0.685) a 24x menos tamaño, y en int8 quedan en 0.41 MB: eso es lo que se
 // embarca. La cuantización se hace en build_mobile.py, acá solo se lee.
 #include "piu_ocr.h"
+#include <cstdint>
 #include <cstdio>
 #include <cstring>
 #include <cmath>
@@ -20,39 +21,60 @@ Templates Templates::load(const std::string& path) {
   FILE* f = std::fopen(path.c_str(), "rb");
   if (!f) return t;
   Header h{};
-  if (std::fread(&h, sizeof(h), 1, f) != 1 || std::memcmp(h.magic, "PIUT", 4)) {
-    std::fclose(f); return t;
+  // Cada fread se verifica: un archivo truncado antes devolvía plantillas
+  // llenas de basura y predict seguía respondiendo, solo que cualquier cosa.
+  bool ok = std::fread(&h, sizeof(h), 1, f) == 1 && !std::memcmp(h.magic, "PIUT", 4)
+            && h.k > 0 && h.k < (1 << 20) && h.dim == GLYPH_W * GLYPH_H;
+  std::vector<int32_t> cls;
+  cv::Mat m;
+  if (ok) {
+    cls.resize(h.k);
+    ok = std::fread(cls.data(), sizeof(int32_t), h.k, f) == size_t(h.k);
   }
-  std::vector<int32_t> cls(h.k);
-  std::fread(cls.data(), sizeof(int32_t), h.k, f);
-  t.classes_.assign(cls.begin(), cls.end());
-  t.t_ = cv::Mat(h.k, h.dim, CV_32F);
-  if (h.quantized) {
-    std::vector<int8_t> q(size_t(h.k) * h.dim);
-    std::fread(q.data(), 1, q.size(), f);
-    for (int i = 0; i < h.k; ++i) {
-      float* row = t.t_.ptr<float>(i);
-      double n = 0.0;
-      for (int j = 0; j < h.dim; ++j) {
-        row[j] = q[size_t(i) * h.dim + j] * (h.scale / 127.f);
-        n += double(row[j]) * row[j];
+  if (ok) {
+    m.create(h.k, h.dim, CV_32F);
+    if (h.quantized) {
+      std::vector<int8_t> q(size_t(h.k) * h.dim);
+      ok = std::fread(q.data(), 1, q.size(), f) == q.size();
+      const float s = h.scale / 127.f;
+      for (int i = 0; ok && i < h.k; ++i) {
+        float* row = m.ptr<float>(i);
+        double n = 0.0;
+        for (int j = 0; j < h.dim; ++j) {
+          row[j] = q[size_t(i) * h.dim + j] * s;
+          n += double(row[j]) * row[j];
+        }
+        // Renormalizar: la cuantización corre cada plantilla de la esfera
+        // unidad y predict compara productos punto crudos.
+        n = std::sqrt(n);
+        if (n > 0) for (int j = 0; j < h.dim; ++j) row[j] /= float(n);
       }
-      // Renormalizar: la cuantización corre cada plantilla de la esfera unidad
-      // y predict compara productos punto crudos.
-      n = std::sqrt(n);
-      if (n > 0) for (int j = 0; j < h.dim; ++j) row[j] /= float(n);
+    } else {
+      const size_t cnt = size_t(h.k) * h.dim;
+      ok = std::fread(m.data, sizeof(float), cnt, f) == cnt;
     }
-  } else {
-    std::fread(t.t_.data, sizeof(float), size_t(h.k) * h.dim, f);
   }
   std::fclose(f);
+  if (!ok) return t;
+
+  t.t_ = m;
+  t.classes_.assign(cls.begin(), cls.end());
+  // Clases distintas y el índice de cada plantilla en esa lista, una sola vez:
+  // antes se recalculaba por llamada con un triple loop K x C x N.
+  t.uniq_ = t.classes_;
+  std::sort(t.uniq_.begin(), t.uniq_.end());
+  t.uniq_.erase(std::unique(t.uniq_.begin(), t.uniq_.end()), t.uniq_.end());
+  t.clsIdx_.resize(t.classes_.size());
+  for (size_t k = 0; k < t.classes_.size(); ++k)
+    t.clsIdx_[k] = int(std::lower_bound(t.uniq_.begin(), t.uniq_.end(),
+                                        t.classes_[k]) - t.uniq_.begin());
   return t;
 }
 
-// Similitud coseno de cada glifo contra cada plantilla, colapsada por clase.
-static cv::Mat perClass(const cv::Mat& t, const std::vector<int>& classes,
-                        const std::vector<Glyph>& gs, std::vector<int>* uniq) {
-  const int dim = t.cols;
+// Similitud coseno de cada glifo contra cada plantilla, colapsada por clase
+// (máximo). Sale (N, C).
+cv::Mat Templates::perClass(const std::vector<Glyph>& gs) const {
+  const int dim = t_.cols;
   cv::Mat X(int(gs.size()), dim, CV_32F);
   for (size_t i = 0; i < gs.size(); ++i) {
     float* row = X.ptr<float>(int(i));
@@ -61,17 +83,19 @@ static cv::Mat perClass(const cv::Mat& t, const std::vector<int>& classes,
     n = std::sqrt(n);
     if (n > 0) for (int j = 0; j < dim; ++j) row[j] /= float(n);
   }
-  cv::Mat sims = X * t.t();
+  // GEMM_2_T evita materializar t_.t() (2346 x 768 floats, 7 MB) por llamada.
+  cv::Mat sims;
+  cv::gemm(X, t_, 1.0, cv::noArray(), 0.0, sims, cv::GEMM_2_T);
 
-  *uniq = classes;
-  std::sort(uniq->begin(), uniq->end());
-  uniq->erase(std::unique(uniq->begin(), uniq->end()), uniq->end());
-  cv::Mat out(sims.rows, int(uniq->size()), CV_32F, cv::Scalar(-1.f));
-  for (int c = 0; c < int(uniq->size()); ++c)
-    for (int k = 0; k < t.rows; ++k)
-      if (classes[k] == (*uniq)[c])
-        for (int i = 0; i < sims.rows; ++i)
-          out.at<float>(i, c) = std::max(out.at<float>(i, c), sims.at<float>(i, k));
+  cv::Mat out(sims.rows, int(uniq_.size()), CV_32F, cv::Scalar(-1.f));
+  for (int i = 0; i < sims.rows; ++i) {
+    const float* s = sims.ptr<float>(i);
+    float* o = out.ptr<float>(i);
+    for (int k = 0; k < sims.cols; ++k) {
+      const int c = clsIdx_[k];
+      if (s[k] > o[c]) o[c] = s[k];
+    }
+  }
   return out;
 }
 
@@ -79,8 +103,8 @@ void Templates::predict(const std::vector<Glyph>& gs, std::vector<int>* labels,
                         std::vector<float>* margins) const {
   labels->clear(); margins->clear();
   if (gs.empty() || t_.empty()) return;
-  std::vector<int> uniq;
-  cv::Mat pc = perClass(t_, classes_, gs, &uniq);
+  const std::vector<int>& uniq = uniq_;
+  cv::Mat pc = perClass(gs);
   for (int i = 0; i < pc.rows; ++i) {
     // El margen se toma sobre el mejor POR CLASE: con ejemplares el segundo
     // vecino suele ser de la misma clase, así que un margen sobre vecinos
@@ -100,8 +124,8 @@ void Templates::scores(const std::vector<Glyph>& gs,
                        std::vector<std::vector<float>>* out) const {
   out->clear();
   if (gs.empty() || t_.empty()) return;
-  std::vector<int> uniq;
-  cv::Mat pc = perClass(t_, classes_, gs, &uniq);
+  const std::vector<int>& uniq = uniq_;
+  cv::Mat pc = perClass(gs);
   for (int i = 0; i < pc.rows; ++i) {
     // Indexado por dígito 0..9; las clases ausentes quedan en -1 para que nunca
     // ganen. Lo necesita el cruce con el catálogo, que reordena niveles enteros

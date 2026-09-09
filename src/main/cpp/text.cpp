@@ -2,6 +2,10 @@
 #include "piu_ocr.h"
 #include <opencv2/imgproc.hpp>
 #include <algorithm>
+#include <climits>
+#include <cmath>
+#include <cstring>
+#include <iterator>
 #include <numeric>
 
 namespace piu {
@@ -107,11 +111,26 @@ static void variants(const cv::Mat& gray, std::vector<cv::Mat>* out) {
   out->push_back(th);
 }
 
-static float percentile(const cv::Mat& m, float p) {
-  std::vector<uchar> v(m.begin<uchar>(), m.end<uchar>());
-  const size_t i = std::min(v.size() - 1, size_t(p / 100.f * (v.size() - 1)));
-  std::nth_element(v.begin(), v.begin() + i, v.end());
-  return float(v[i]);
+// Percentil sobre un histograma de 256 bins: O(n) una sola vez por fuente en
+// vez de copiar la imagen entera a un vector y hacer nth_element 6 veces.
+// Mismo resultado que nth_element sobre el índice p/100*(n-1).
+static void histogram(const cv::Mat& m, int (&h)[256]) {
+  std::fill(std::begin(h), std::end(h), 0);
+  for (int y = 0; y < m.rows; ++y) {
+    const uchar* row = m.ptr<uchar>(y);
+    for (int x = 0; x < m.cols; ++x) ++h[row[x]];
+  }
+}
+
+static float percentile(const int (&h)[256], size_t n, float p) {
+  if (n == 0) return 0.f;
+  const size_t target = std::min(n - 1, size_t(p / 100.f * (n - 1)));
+  size_t acc = 0;
+  for (int v = 0; v < 256; ++v) {
+    acc += size_t(h[v]);
+    if (acc > target) return float(v);
+  }
+  return 255.f;
 }
 
 static Glyph normInLine(const cv::Mat& bin, const cv::Rect& r, int y0, int lineH) {
@@ -152,8 +171,10 @@ std::vector<Glyph> segmentChars(const cv::Mat& roi, int wantN) {
   cv::Mat bestBin;
   float bestScoreA = -1e9f, bestScoreB = -1e9f;
   for (const cv::Mat& src : srcs) {
+    int hist[256];
+    histogram(src, hist);
     for (int p : PCTS) {
-      cv::Mat bin = src > percentile(src, float(p));
+      cv::Mat bin = src > percentile(hist, src.total(), float(p));
       cv::Mat labels, stats, cent;
       const int n = cv::connectedComponentsWithStats(bin, labels, stats, cent, 8);
       if (n <= 1) continue;

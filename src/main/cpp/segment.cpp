@@ -3,6 +3,10 @@
 #include "piu_ocr.h"
 #include <opencv2/imgproc.hpp>
 #include <algorithm>
+#include <climits>
+#include <cmath>
+#include <cstdint>
+#include <cstring>
 #include <numeric>
 
 namespace piu {

@@ -11,6 +11,7 @@
 // Cuesta 3 pasadas. El detector ya es el 93 % del tiempo, así que esto es la
 // decisión de latencia más cara del módulo — está tomada a conciencia.
 #include "piu_ocr.h"
+#include <cpu.h>
 #include <net.h>
 #include <opencv2/imgproc.hpp>
 #include <algorithm>
@@ -43,8 +44,17 @@ bool Detector::load(const std::string& param, const std::string& bin) {
   delete net_;
   net_ = new ncnn::Net();
   net_->opt.use_vulkan_compute = false;   // arm64 CPU: predecible y sin drivers
-  net_->opt.num_threads = 4;
-  return net_->load_param(param.c_str()) == 0 && net_->load_model(bin.c_str()) == 0;
+  // Solo los cores grandes: un 4 fijo en un big.LITTLE 2+6 mete dos hilos en
+  // cores chicos y el paso lo marca el más lento.
+  ncnn::set_cpu_powersave(2);
+  net_->opt.num_threads = std::max(1, std::min(4, ncnn::get_big_cpu_count()));
+  net_->opt.lightmode = true;
+  if (net_->load_param(param.c_str()) != 0 || net_->load_model(bin.c_str()) != 0) {
+    delete net_;
+    net_ = nullptr;
+    return false;
+  }
+  return true;
 }
 
 std::vector<Box> Detector::detectOnce(const cv::Mat& bgr, int imgsz,
@@ -94,23 +104,28 @@ std::vector<Box> Detector::detectOnce(const cv::Mat& bgr, int imgsz,
 
 std::vector<Box> Detector::detect(const cv::Mat& bgr, int imgsz, bool tta) const {
   std::vector<Box> all;
+  if (!net_ || bgr.empty()) return all;
   for (const Aug& a : kAugs) {
     auto v = detectOnce(bgr, imgsz, a.scale, a.flip);
     all.insert(all.end(), v.begin(), v.end());
     if (!tta) break;
   }
-  // NMS por clase sobre la unión de las pasadas.
-  std::sort(all.begin(), all.end(),
-            [](const Box& a, const Box& b) { return a.conf > b.conf; });
+  // NMS por clase sobre la unión de las pasadas. Con umbral 0.005 las tres
+  // pasadas juntan cientos de cajas: ordenar por (clase, conf) deja cada clase
+  // contigua y el loop interno corta al cambiar de clase.
+  std::sort(all.begin(), all.end(), [](const Box& a, const Box& b) {
+    return a.cls != b.cls ? a.cls < b.cls : a.conf > b.conf;
+  });
   std::vector<Box> keep;
   std::vector<bool> dead(all.size(), false);
   for (size_t i = 0; i < all.size(); ++i) {
     if (dead[i]) continue;
     keep.push_back(all[i]);
-    for (size_t j = i + 1; j < all.size(); ++j)
-      if (!dead[j] && all[j].cls == all[i].cls && iou(all[i], all[j]) > 0.45f)
-        dead[j] = true;
+    for (size_t j = i + 1; j < all.size() && all[j].cls == all[i].cls; ++j)
+      if (!dead[j] && iou(all[i], all[j]) > 0.45f) dead[j] = true;
   }
+  std::sort(keep.begin(), keep.end(),
+            [](const Box& a, const Box& b) { return a.conf > b.conf; });
   return keep;
 }
 

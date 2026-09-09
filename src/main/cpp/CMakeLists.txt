@@ -13,8 +13,19 @@ find_package(OpenCV REQUIRED COMPONENTS core imgproc)
 # glslang+SPIRV+MachineIndependent (5.3 MB de .a) eran peso muerto.
 set(ncnn_DIR ${TP}/ncnn-20240820-android/${ANDROID_ABI}/lib/cmake/ncnn)
 find_package(ncnn REQUIRED)
+# ncnn.cmake propaga -fno-exceptions a quien lo linkea (INTERFACE) y pisa
+# nuestro -fexceptions. Se quita: solo afecta a cómo se compila este .so,
+# libncnn.a ya está compilado.
+set_target_properties(ncnn PROPERTIES INTERFACE_COMPILE_OPTIONS "")
 
 add_library(piuocr SHARED
     jni_bridge.cpp detector.cpp segment.cpp text.cpp badge.cpp recognize.cpp)
 target_link_libraries(piuocr ${OpenCV_LIBS} ncnn jnigraphics log)
-target_compile_options(piuocr PRIVATE -O3 -ffast-math)
+# -fexceptions: AGP compila con -fno-exceptions; sin esto una cv::Exception
+# cruza el JNI y aborta el proceso en vez de caer en el catch de nativeRead.
+target_compile_options(piuocr PRIVATE -O3 -ffast-math -fexceptions -fvisibility=hidden
+    -fvisibility-inlines-hidden -ffunction-sections -fdata-sections)
+# Solo se exportan los Java_* (JNIEXPORT). Sin --exclude-libs el .so exporta
+# todo opencv+ncnn estático y --gc-sections no puede tirar nada.
+target_link_options(piuocr PRIVATE -Wl,--gc-sections -Wl,--exclude-libs,ALL
+    -Wl,--as-needed)

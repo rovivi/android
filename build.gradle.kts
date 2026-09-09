@@ -11,6 +11,9 @@ android {
     ndkVersion = "29.0.14206865"
     defaultConfig {
         minSdk = 24
+        // Reglas que viajan al consumidor: R8 no debe renombrar PiuOcr ni sus
+        // métodos native, el .so los busca por nombre (Java_com_piu_ocr_PiuOcr_*).
+        consumerProguardFiles("consumer-rules.pro")
         // Solo arm64: agregar armeabi-v7a duplica el .so por un parque de
         // dispositivos que ya no importa.
         ndk { abiFilters += "arm64-v8a" }
@@ -27,5 +30,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions { jvmTarget = "17" }
 }
+
+// kotlinOptions está deprecado en Kotlin 2.x.
+kotlin { compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17) } }

@@ -2,8 +2,10 @@ package com.piu.ocr
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.os.Build
 import org.json.JSONObject
 import java.io.File
+import kotlin.math.sqrt
 
 /**
  * Lectura de una pantalla de resultado de PIU, sin LLM.
@@ -32,12 +34,20 @@ data class Reading(
 }
 
 class PiuOcr private constructor(
-    private val handle: Long,
+    handle: Long,
     private val matcher: SongMatcher,
 ) : AutoCloseable {
 
+    @Volatile private var handle = handle
+
     fun read(bitmap: Bitmap): Reading {
-        val j = JSONObject(nativeRead(handle, bitmap))
+        check(handle != 0L) { "PiuOcr ya está cerrado" }
+        // El .so solo lee ARGB_8888 con píxeles bloqueables. Un HARDWARE bitmap
+        // (lo que devuelve ImageDecoder por defecto en API 28+) o un RGB_565
+        // fallaban en lockPixels y volvían vacíos en silencio.
+        val bmp = if (bitmap.config == Bitmap.Config.ARGB_8888 && !isHardware(bitmap)) bitmap
+                  else bitmap.copy(Bitmap.Config.ARGB_8888, false)
+        val j = JSONObject(nativeRead(handle, bmp))
 
         // chart_type primero: acota qué canciones son posibles.
         val ctRaw = j.optString("chart_type").ifEmpty { null }
@@ -49,7 +59,7 @@ class PiuOcr private constructor(
         // Una pantalla 2P imprime el título dos veces y los dos recortes fallan
         // distinto (reflejo, recorte), así que se juntan los puntajes: una
         // lectura limpia le gana a una colapsada. Vale +7 pts, medido.
-        val titles = j.getJSONArray("titles")
+        val titles = j.optJSONArray("titles") ?: org.json.JSONArray()
         val pooled = HashMap<String, Double>()
         val raws = ArrayList<String>()
         for (i in 0 until minOf(titles.length(), MAX_SONG_BOXES)) {
@@ -59,7 +69,7 @@ class PiuOcr private constructor(
             raws += raw
             // Ponderar por la confianza de la caja: una caja de 0.005 puede ser
             // la respuesta cuando es la única, sin ganarle a una de 0.5.
-            val w = Math.sqrt(maxOf(t.optDouble("conf", 1.0), 0.02))
+            val w = sqrt(maxOf(t.optDouble("conf", 1.0), 0.02))
             for (c in matcher.match(raw, chart.value, topK = 8)) {
                 val e = pooled[c.name] ?: 0.0
                 pooled[c.name] = maxOf(e, c.score * w) + 0.15 * minOf(e, c.score * w)
@@ -98,7 +108,14 @@ class PiuOcr private constructor(
         return Field(scored[0].first, m.toFloat(), null)
     }
 
-    override fun close() = nativeDestroy(handle)
+    /** Idempotente: un segundo close() era un double free en el .so. */
+    @Synchronized
+    override fun close() {
+        if (handle != 0L) { nativeDestroy(handle); handle = 0L }
+    }
+
+    private fun isHardware(b: Bitmap) =
+        Build.VERSION.SDK_INT >= 26 && b.config == Bitmap.Config.HARDWARE
 
     companion object {
         private var loaded = false
@@ -140,19 +157,46 @@ class PiuOcr private constructor(
         const val MIN_BADGE_CONF = 0.15f
         const val MAX_SONG_BOXES = 3
 
+        private val ASSETS = listOf("chars.bin", "level.bin", "catalog.json",
+                                    "piu_yolo.param", "piu_yolo.bin")
+
+        /**
+         * Copia los assets a filesDir y crea el lector. Falla con
+         * [IllegalStateException] si el .so no pudo cargar los modelos: antes
+         * devolvía un handle a medias que leía vacío para siempre.
+         *
+         * La copia se hace una vez POR VERSIÓN de la app: si solo se mira
+         * `exists()`, una actualización del APK con modelos nuevos sigue usando
+         * los viejos. Y cada archivo se escribe a `.tmp` y se renombra, para que
+         * un crash a mitad de copia no deje un `.bin` truncado que "existe".
+         */
         @JvmStatic
         fun create(context: Context): PiuOcr {
             val dir = File(context.filesDir, "piu_ocr").apply { mkdirs() }
-            for (n in listOf("chars.bin", "level.bin", "catalog.json",
-                             "piu_yolo.param", "piu_yolo.bin")) {
-                val f = File(dir, n)
-                if (!f.exists()) context.assets.open("piu_ocr/$n").use { i ->
-                    f.outputStream().use { o -> i.copyTo(o) }
+            val stamp = File(dir, ".version")
+            val want = appVersion(context)
+            if (stamp.takeIf { it.exists() }?.readText() != want) {
+                for (n in ASSETS) {
+                    val tmp = File(dir, "$n.tmp")
+                    context.assets.open("piu_ocr/$n").use { i ->
+                        tmp.outputStream().use { o -> i.copyTo(o) }
+                    }
+                    val dst = File(dir, n)
+                    if (!tmp.renameTo(dst)) { dst.delete(); check(tmp.renameTo(dst)) }
                 }
+                stamp.writeText(want)
             }
             ensureLoaded(context)
-            return PiuOcr(nativeCreate(dir.absolutePath),
-                          SongMatcher(File(dir, "catalog.json").readText()))
+            val h = nativeCreate(dir.absolutePath)
+            check(h != 0L) { "piuocr: no se pudieron cargar los modelos de ${dir.absolutePath}" }
+            return PiuOcr(h, SongMatcher(File(dir, "catalog.json").readText()))
+        }
+
+        private fun appVersion(context: Context): String {
+            val pi = context.packageManager.getPackageInfo(context.packageName, 0)
+            val code = if (Build.VERSION.SDK_INT >= 28) pi.longVersionCode
+                       else @Suppress("DEPRECATION") pi.versionCode.toLong()
+            return "$code:${pi.lastUpdateTime}"
         }
 
         @JvmStatic private external fun nativeCreate(assetDir: String): Long

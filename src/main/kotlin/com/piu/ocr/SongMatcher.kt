@@ -50,10 +50,7 @@ class SongMatcher(catalogJson: String) {
         val qt = trigramsOf(q)
         val qc = q.replace(" ", "")
 
-        val want = when (chartType) {
-            "single" -> "s"; "double" -> "d"; "halfdouble" -> "hd"; "coop" -> "c"
-            else -> null
-        }
+        val want = chartKey(chartType)
         var pool = songs.filter { s ->
             want == null || s.charts.isEmpty() ||
                 s.charts.any { it.first == want || it.first.isEmpty() }
@@ -83,23 +80,30 @@ class SongMatcher(catalogJson: String) {
     fun levelsFor(name: String, chartType: String?): List<Int> {
         val s = songs.firstOrNull { it.name == name || it.norm == normalize(name) }
             ?: return emptyList()
-        val want = when (chartType) {
-            "single" -> "s"; "double" -> "d"; "halfdouble" -> "hd"; "coop" -> "c"
-            else -> null
-        }
+        val want = chartKey(chartType)
         val lv = s.charts.filter { want == null || it.first == want || it.first.isEmpty() }
             .map { it.second }.distinct().sorted()
         return lv.ifEmpty { s.charts.map { it.second }.distinct().sorted() }
     }
 
     companion object {
+        private fun chartKey(chartType: String?) = when (chartType) {
+            "single" -> "s"; "double" -> "d"; "halfdouble" -> "hd"; "coop" -> "c"
+            else -> null
+        }
+
         /** Holgado respecto de los 60 que ya bastaban: el margen del gate
          *  depende del segundo candidato, no solo del primero. */
         const val PREFILTER = 120
 
+        // Precompiladas: normalize corre 675 veces al cargar el catálogo y en
+        // cada match; Regex(...) inline compilaba el patrón cada vez.
+        private val NON_ALNUM = Regex("[^a-z0-9\\s]")
+        private val SPACES = Regex("\\s+")
+
         fun normalize(s: String): String = s.lowercase()
-            .replace(Regex("[^a-z0-9\\s]"), " ")
-            .replace(Regex("\\s+"), " ").trim()
+            .replace(NON_ALNUM, " ")
+            .replace(SPACES, " ").trim()
 
         fun trigramsOf(n: String): Set<String> {
             val s = "  ${n.replace(" ", "")}  "
@@ -108,7 +112,8 @@ class SongMatcher(catalogJson: String) {
         }
 
         private fun jaccard(a: Set<String>, b: Set<String>): Double {
-            val inter = a.count { it in b }
+            // Iterar el chico y buscar en el grande.
+            val inter = if (a.size <= b.size) a.count { it in b } else b.count { it in a }
             val union = a.size + b.size - inter
             return if (union > 0) inter.toDouble() / union else 0.0
         }

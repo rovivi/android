@@ -136,6 +136,7 @@ Tres cosas que costaron y quedan anotadas:
 | `FAILURE: 27-ea` | AGP no soporta el JDK 27 | `JAVA_HOME` a un 17 o 21 |
 | `undefined symbol: __kmpc_dispatch_deinit` | opencv-mobile linkea `-static-openmp` y el libomp del NDK 27 no lo trae | `ndkVersion = "29.0.14206865"` |
 | `Multiple projects have project directory` | `include(":piu-ocr")` apuntando a la raíz | sacarlo del `settings.gradle.kts` |
+| `cannot use 'try' with exceptions disabled` | `ncnn.cmake` propaga `-fno-exceptions` por INTERFACE y pisa el `-fexceptions` propio | `set_target_properties(ncnn PROPERTIES INTERFACE_COMPILE_OPTIONS "")` en el CMakeLists |
 
 ## 8. Lo que quedó adentro
 
