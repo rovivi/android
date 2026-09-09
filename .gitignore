@@ -1,0 +1,22 @@
+# Gradle
+.gradle/
+build/
+local.properties
+
+# CMake
+.cxx/
+
+# Kotlin
+.kotlin/
+
+# Android Studio
+*.iml
+.idea/
+*.apk
+*.aab
+*.aar
+!src/**/*.aar
+
+# OS
+.DS_Store
+Thumbs.db

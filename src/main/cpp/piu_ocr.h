@@ -1,0 +1,76 @@
+// Puerto a C++ de la cadena de inferencia. Nada de ML: umbralizar, componentes
+// conexas, morfología y producto punto. Solo core+imgproc de opencv-mobile.
+//
+// Las constantes son el resultado de mediciones, varias contraintuitivas.
+// Cambiarlas degrada el sistema EN SILENCIO: sigue respondiendo, solo que peor.
+// Ver android/MODULO_ANDROID.md §3 antes de tocar cualquiera.
+#pragma once
+#include <opencv2/core.hpp>
+
+namespace ncnn { class Net; }
+#include <string>
+#include <vector>
+
+namespace piu {
+
+constexpr int   GLYPH_W = 24, GLYPH_H = 32;
+constexpr int   TARGET_H = 160;      // altura de trabajo del título
+constexpr float MIN_SCALE = 0.15f;
+constexpr float BADGE_INNER_R = 0.66f;   // máscara del disco para los dígitos
+constexpr float DISC_R = 0.80f;          // máscara del disco para el color
+constexpr int   PCTS[] = {55, 65, 75, 82, 88, 93};
+constexpr float DOM_H_TOL = 0.42f, DOM_GAP_MULT = 2.6f;
+constexpr int   BADGE_S_MAX = 90, BADGE_V_MIN = 150, BADGE_SCALE = 6;
+
+struct Box { int x1, y1, x2, y2; float conf; int cls = -1; };
+struct Glyph { unsigned char px[GLYPH_H * GLYPH_W]; };
+
+// --- detector.cpp ------------------------------------------------------
+// clases: 0 difficulty, 1 fullscore, 2 rank, 3 score, 4 song_name
+class Detector {
+ public:
+  ~Detector();
+  bool load(const std::string& param, const std::string& bin);
+  // tta=true corre 3 pasadas y las une con NMS. Sin TTA se pierde un tercio de
+  // los song_name (43 -> 29 de 58, medido); ncnn no lo trae, va a mano.
+  std::vector<Box> detect(const cv::Mat& bgr, int imgsz = 1280,
+                          bool tta = true) const;
+ private:
+  std::vector<Box> detectOnce(const cv::Mat&, int, float, bool) const;
+  ncnn::Net* net_ = nullptr;
+};
+
+// --- segment.cpp -------------------------------------------------------
+cv::Mat cropBox(const cv::Mat& img, const Box& b, float pad = 0.06f,
+                float padX = -1.f);
+// Dígitos de la bolita. wantN>0 fuerza esa cantidad (el catálogo sabe cuántos).
+std::vector<Glyph> segmentBadge(const cv::Mat& roi, int wantN = 0);
+
+// --- text.cpp ----------------------------------------------------------
+// Reencuentra la banda del título dentro de un recorte flojo.
+cv::Mat focusBand(const cv::Mat& roi);
+// Corrida de glifos de altura y separación coherentes: descarta BPM,
+// "FREE PLAY" y el nombre del jugador. Vale 15 puntos de acierto.
+std::vector<cv::Rect> dominantLine(std::vector<cv::Rect> boxes);
+std::vector<Glyph> segmentChars(const cv::Mat& roi, int wantN = 0);
+
+// --- badge.cpp ---------------------------------------------------------
+// naranja/rojo=single, verde=double, azul=halfdouble, amarillo=coop
+bool classifyChartType(const cv::Mat& roi, std::string* out, float* conf);
+
+// --- recognize.cpp -----------------------------------------------------
+class Templates {
+ public:
+  static Templates load(const std::string& path);   // chars.bin / level.bin
+  // Similitud coseno por clase. margin = mejor - segunda.
+  void predict(const std::vector<Glyph>&, std::vector<int>* labels,
+               std::vector<float>* margins) const;
+  // Similitud por clase sin colapsar: la necesita el cruce con el catálogo,
+  // que reordena niveles enteros y no solo acepta o rechaza el argmax.
+  void scores(const std::vector<Glyph>&, std::vector<std::vector<float>>*) const;
+ private:
+  cv::Mat t_;                 // (K, GLYPH_H*GLYPH_W) float32 L2-normalizadas
+  std::vector<int> classes_;
+};
+
+}  // namespace piu
