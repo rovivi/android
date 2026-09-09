@@ -1,0 +1,5229 @@
+{
+ "_note": "generado por tools/parity/parity.py --fixture. 'expected' es la réplica Python de PiuOcr.interpret; ParityTest.kt exige igualdad.",
+ "rows": [
+  {
+   "key": "748265092",
+   "native": {
+    "titles": [
+     {
+      "raw": "\"*?*sllx,,6QO",
+      "conf": 0.700139
+     },
+     {
+      "raw": "\"\"kuz,.QL",
+      "conf": 0.283678
+     },
+     {
+      "raw": "\"\"?*Glxx6N6QO",
+      "conf": 0.136158
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.840369,
+    "level_digits": [
+     2,
+     6
+    ],
+    "level_scores": [
+     [
+      0.845046,
+      0.759752,
+      0.960953,
+      0.844268,
+      0.76516,
+      0.853776,
+      0.841649,
+      0.69767,
+      0.880855,
+      0.885305
+     ],
+     [
+      0.300613,
+      0.762166,
+      0.709416,
+      0.623309,
+      0.517635,
+      0.597176,
+      0.964146,
+      0.568345,
+      0.601499,
+      0.740402
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Kokugen Kairou Labyrinth",
+    "chart_type": "double",
+    "level": 26
+   },
+   "expected": {
+    "song": null,
+    "level": 26,
+    "chart_type": "double",
+    "raw": "\"*?*sllx,,6QO | \"\"kuz,.QL | \"\"?*Glxx6N6QO"
+   }
+  },
+  {
+   "key": "750493418",
+   "native": {
+    "titles": [
+     {
+      "raw": "P~MDrur'.Z",
+      "conf": 0.820136
+     },
+     {
+      "raw": "PuinT-r'Nx",
+      "conf": 0.484836
+     },
+     {
+      "raw": "\"9!ntOroax",
+      "conf": 0.120299
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.846541,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.838031,
+      0.733549,
+      0.963076,
+      0.864616,
+      0.69526,
+      0.823586,
+      0.836653,
+      0.661203,
+      0.889122,
+      0.854739
+     ],
+     [
+      0.75951,
+      0.649419,
+      0.75583,
+      0.797151,
+      0.682231,
+      0.703315,
+      0.641719,
+      0.51541,
+      0.701263,
+      0.73987
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Point Break",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": null,
+    "level": 23,
+    "chart_type": "double",
+    "raw": "P~MDrur'.Z | PuinT-r'Nx | \"9!ntOroax"
+   }
+  },
+  {
+   "key": "753298391",
+   "native": {
+    "titles": [
+     {
+      "raw": "MioriCeIesta",
+      "conf": 0.247643
+     },
+     {
+      "raw": "MioriCeSesta",
+      "conf": 0.179829
+     },
+     {
+      "raw": "lwmioIiKelesto)",
+      "conf": 0.143663
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.648821,
+    "level_digits": [
+     2,
+     2
+    ],
+    "level_scores": [
+     [
+      0.807999,
+      0.677059,
+      0.938289,
+      0.848836,
+      0.675888,
+      0.811233,
+      0.811303,
+      0.593025,
+      0.865337,
+      0.806194
+     ],
+     [
+      0.744116,
+      0.517087,
+      0.746088,
+      0.658123,
+      0.574904,
+      0.683393,
+      0.724731,
+      0.448204,
+      0.722486,
+      0.67708
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Rise Up (feat. Miori Celesta)",
+    "chart_type": "single",
+    "level": 22
+   },
+   "expected": {
+    "song": "Rise Up (feat. Miori Celesta)",
+    "level": 22,
+    "chart_type": "single",
+    "raw": "MioriCeIesta | MioriCeSesta | lwmioIiKelesto)"
+   }
+  },
+  {
+   "key": "756525554",
+   "native": {
+    "titles": [
+     {
+      "raw": "!NFiNiTEENERZyoyedozo",
+      "conf": 0.214585
+     },
+     {
+      "raw": "lNF!NiTEENERzyoyedozo",
+      "conf": 0.160913
+     },
+     {
+      "raw": "!NFiNiTEENERzyovedozo",
+      "conf": 0.04542
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.511882,
+    "level_digits": [
+     2,
+     5
+    ],
+    "level_scores": [
+     [
+      0.862006,
+      0.751772,
+      0.992023,
+      0.906109,
+      0.727789,
+      0.852749,
+      0.854796,
+      0.672731,
+      0.917702,
+      0.873412
+     ],
+     [
+      0.854746,
+      0.720954,
+      0.867579,
+      0.901495,
+      0.751335,
+      0.986459,
+      0.91619,
+      0.635329,
+      0.909478,
+      0.915833
+     ]
+    ]
+   },
+   "gt": {
+    "song": "INFiNiTE ENERZY -Overdoze-",
+    "chart_type": "double",
+    "level": 25
+   },
+   "expected": {
+    "song": "INFiNiTE ENERZY -Overdoze-",
+    "level": 25,
+    "chart_type": "double",
+    "raw": "!NFiNiTEENERZyoyedozo | lNF!NiTEENERzyoyedozo | !NFiNiTEENERzyovedozo"
+   }
+  },
+  {
+   "key": "759642534",
+   "native": {
+    "titles": [
+     {
+      "raw": "OSS",
+      "conf": 0.024007
+     },
+     {
+      "raw": "B3",
+      "conf": 0.017247
+     },
+     {
+      "raw": "..B",
+      "conf": 0.015277
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.355811,
+    "level_digits": [
+     1,
+     8
+    ],
+    "level_scores": [
+     [
+      0.595223,
+      0.997301,
+      0.767208,
+      0.78254,
+      0.74074,
+      0.787743,
+      0.777182,
+      0.718351,
+      0.861346,
+      0.850092
+     ],
+     [
+      0.748822,
+      0.807559,
+      0.840931,
+      0.840559,
+      0.770661,
+      0.800506,
+      0.805169,
+      0.756172,
+      0.888147,
+      0.849028
+     ]
+    ]
+   },
+   "gt": {
+    "song": "B3",
+    "chart_type": "single",
+    "level": 18
+   },
+   "expected": {
+    "song": "B3",
+    "level": 18,
+    "chart_type": "single",
+    "raw": "OSS | B3 | ..B"
+   }
+  },
+  {
+   "key": "759932387",
+   "native": {
+    "titles": [
+     {
+      "raw": "TheLastRebeIIio-",
+      "conf": 0.107414
+     },
+     {
+      "raw": "TheLastRebeIIion",
+      "conf": 0.098414
+     },
+     {
+      "raw": "TheLastRebeIIion",
+      "conf": 0.052028
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.815577,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.889758,
+      0.756468,
+      0.991228,
+      0.926221,
+      0.743448,
+      0.868656,
+      0.877532,
+      0.699974,
+      0.936561,
+      0.89929
+     ],
+     [
+      0.799897,
+      0.843195,
+      0.880584,
+      0.969346,
+      0.79748,
+      0.817591,
+      0.783784,
+      0.762554,
+      0.847105,
+      0.903842
+     ]
+    ]
+   },
+   "gt": {
+    "song": "The Last Rebellion",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": "The Last Rebellion",
+    "level": 23,
+    "chart_type": "double",
+    "raw": "TheLastRebeIIio- | TheLastRebeIIion | TheLastRebeIIion"
+   }
+  },
+  {
+   "key": "760620783",
+   "native": {
+    "titles": [
+     {
+      "raw": "Ansu1SEBeFpm'kinN",
+      "conf": 0.203687
+     },
+     {
+      "raw": "A*sliS-eGUnm'kpng",
+      "conf": 0.159045
+     },
+     {
+      "raw": "A\"slisOe-Unmxkp'g",
+      "conf": 0.069537
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.791425,
+    "level_digits": [
+     2,
+     2
+    ],
+    "level_scores": [
+     [
+      0.893324,
+      0.748273,
+      0.985722,
+      0.921401,
+      0.758005,
+      0.854951,
+      0.86835,
+      0.705163,
+      0.926763,
+      0.888192
+     ],
+     [
+      0.876143,
+      0.765141,
+      0.961772,
+      0.919349,
+      0.739111,
+      0.85176,
+      0.862299,
+      0.724333,
+      0.939069,
+      0.89045
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Anguished Unmaking",
+    "chart_type": "double",
+    "level": 22
+   },
+   "expected": {
+    "song": null,
+    "level": 22,
+    "chart_type": "double",
+    "raw": "Ansu1SEBeFpm'kinN | A*sliS-eGUnm'kpng | A\"slisOe-Unmxkp'g"
+   }
+  },
+  {
+   "key": "761729756",
+   "native": {
+    "titles": [
+     {
+      "raw": "kI80Upf0attlCrrCelesta",
+      "conf": 0.196641
+     },
+     {
+      "raw": "L0YcU0f0a.tlOriC,lestg",
+      "conf": 0.144305
+     },
+     {
+      "raw": "UHoo",
+      "conf": 0.10208
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.586537,
+    "level_digits": [
+     2,
+     4
+    ],
+    "level_scores": [
+     [
+      0.795006,
+      0.880066,
+      0.99991,
+      0.87147,
+      0.815608,
+      0.766505,
+      0.778963,
+      0.77127,
+      0.84411,
+      0.861588
+     ],
+     [
+      0.662836,
+      0.648038,
+      0.713825,
+      0.676443,
+      0.998834,
+      0.651691,
+      0.632078,
+      0.575511,
+      0.694229,
+      0.737663
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Rise Up (feat. Miori Celesta)",
+    "chart_type": "double",
+    "level": 24
+   },
+   "expected": {
+    "song": "Rise Up (feat. Miori Celesta)",
+    "level": 24,
+    "chart_type": "double",
+    "raw": "kI80Upf0attlCrrCelesta | L0YcU0f0a.tlOriC,lestg | UHoo"
+   }
+  },
+  {
+   "key": "763137594",
+   "native": {
+    "titles": [
+     {
+      "raw": "BEsnNEP",
+      "conf": 0.062727
+     },
+     {
+      "raw": "\"Rs",
+      "conf": 0.057231
+     },
+     {
+      "raw": "So5",
+      "conf": 0.055476
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.211428,
+    "level_digits": [
+     2,
+     1
+    ],
+    "level_scores": [
+     [
+      0.093205,
+      0.197896,
+      0.292517,
+      0.137752,
+      0.0872937,
+      0.0867971,
+      0.123273,
+      0.0955044,
+      0.112792,
+      0.105994
+     ],
+     [
+      0.227474,
+      0.815135,
+      0.67587,
+      0.504433,
+      0.446094,
+      0.441455,
+      0.574747,
+      0.47303,
+      0.5339,
+      0.574844
+     ]
+    ]
+   },
+   "gt": {
+    "song": "B3",
+    "chart_type": "single",
+    "level": 18
+   },
+   "expected": {
+    "song": null,
+    "level": 21,
+    "chart_type": "single",
+    "raw": "BEsnNEP | \"Rs | So5"
+   }
+  },
+  {
+   "key": "763762395",
+   "native": {
+    "titles": [
+     {
+      "raw": "Extremea4usiccchool2nd",
+      "conf": 0.449887
+     },
+     {
+      "raw": ",~Nfb\"\"",
+      "conf": 0.176721
+     },
+     {
+      "raw": "B.b\"w",
+      "conf": 0.157855
+     }
+    ],
+    "chart_type": "",
+    "chart_conf": 0,
+    "level_digits": [],
+    "level_scores": []
+   },
+   "gt": {
+    "song": "Extreme Music School 2nd period feat. Nanahira",
+    "chart_type": null,
+    "level": null
+   },
+   "expected": {
+    "song": "Extreme Music School 2nd period feat. Nanahira",
+    "level": null,
+    "chart_type": null,
+    "raw": "Extremea4usiccchool2nd | ,~Nfb\"\" | B.b\"w"
+   }
+  },
+  {
+   "key": "766241603",
+   "native": {
+    "titles": [
+     {
+      "raw": "TheLastRebellion",
+      "conf": 0.307149
+     },
+     {
+      "raw": "LLU\"H9",
+      "conf": 0.078337
+     },
+     {
+      "raw": "zbV,DX",
+      "conf": 0.059255
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.618305,
+    "level_digits": [],
+    "level_scores": []
+   },
+   "gt": {
+    "song": "The Last Rebellion",
+    "chart_type": "single",
+    "level": 21
+   },
+   "expected": {
+    "song": "The Last Rebellion",
+    "level": null,
+    "chart_type": "halfdouble",
+    "raw": "TheLastRebellion | LLU\"H9 | zbV,DX"
+   }
+  },
+  {
+   "key": "768962990",
+   "native": {
+    "titles": [
+     {
+      "raw": "LOeLas.Reh-ii)or",
+      "conf": 0.274287
+     },
+     {
+      "raw": "Th-L.s'Pebeiitoo",
+      "conf": 0.167228
+     },
+     {
+      "raw": "Th-LeL'Pebeiiioo",
+      "conf": 0.059607
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.672016,
+    "level_digits": [
+     3,
+     3
+    ],
+    "level_scores": [
+     [
+      0.870252,
+      0.763921,
+      0.871908,
+      0.919333,
+      0.749259,
+      0.791745,
+      0.799175,
+      0.67852,
+      0.843021,
+      0.862518
+     ],
+     [
+      0.774013,
+      0.653349,
+      0.779718,
+      0.948934,
+      0.635991,
+      0.721533,
+      0.715116,
+      0.741373,
+      0.785918,
+      0.784178
+     ]
+    ]
+   },
+   "gt": {
+    "song": "The Last Rebellion",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": "The Last Rebellion",
+    "level": 23,
+    "chart_type": "double",
+    "raw": "LOeLas.Reh-ii)or | Th-L.s'Pebeiitoo | Th-LeL'Pebeiiioo"
+   }
+  },
+  {
+   "key": "768963130",
+   "native": {
+    "titles": [
+     {
+      "raw": ".bN?o\"\"",
+      "conf": 0.115423
+     },
+     {
+      "raw": "FREEDOMDiVE",
+      "conf": 0.096974
+     },
+     {
+      "raw": ".\"Nbb\"\"",
+      "conf": 0.095292
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.561374,
+    "level_digits": [
+     2,
+     2
+    ],
+    "level_scores": [
+     [
+      0.859655,
+      0.77289,
+      0.980229,
+      0.897481,
+      0.723667,
+      0.83998,
+      0.860758,
+      0.676112,
+      0.91856,
+      0.870126
+     ],
+     [
+      0.850471,
+      0.727772,
+      0.962694,
+      0.9017,
+      0.689351,
+      0.819633,
+      0.832512,
+      0.707724,
+      0.909173,
+      0.852624
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Freedom Dive",
+    "chart_type": "single",
+    "level": 22
+   },
+   "expected": {
+    "song": "Freedom Dive",
+    "level": 22,
+    "chart_type": "single",
+    "raw": ".bN?o\"\" | FREEDOMDiVE | .\"Nbb\"\""
+   }
+  },
+  {
+   "key": "769131804",
+   "native": {
+    "titles": [
+     {
+      "raw": "Digitalis",
+      "conf": 0.326299
+     },
+     {
+      "raw": "Digitalis",
+      "conf": 0.225708
+     },
+     {
+      "raw": "Digitalis",
+      "conf": 0.20047
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.722733,
+    "level_digits": [
+     2,
+     1
+    ],
+    "level_scores": [
+     [
+      0.868699,
+      0.750146,
+      0.995515,
+      0.912875,
+      0.728293,
+      0.857008,
+      0.860021,
+      0.666578,
+      0.920436,
+      0.871789
+     ],
+     [
+      0.60109,
+      0.98379,
+      0.745378,
+      0.7647,
+      0.716928,
+      0.765159,
+      0.76172,
+      0.688349,
+      0.835887,
+      0.826276
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Digitalis",
+    "chart_type": "double",
+    "level": 21
+   },
+   "expected": {
+    "song": "Digitalis",
+    "level": 21,
+    "chart_type": "double",
+    "raw": "Digitalis | Digitalis | Digitalis"
+   }
+  },
+  {
+   "key": "769313055",
+   "native": {
+    "titles": [
+     {
+      "raw": "LegenCary0ominion",
+      "conf": 0.321526
+     },
+     {
+      "raw": "FMni((ohie",
+      "conf": 0.02451
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.253198,
+    "level_digits": [
+     2,
+     0
+    ],
+    "level_scores": [
+     [
+      0.855313,
+      0.820264,
+      0.964412,
+      0.887592,
+      0.754001,
+      0.808545,
+      0.813731,
+      0.745286,
+      0.886344,
+      0.865794
+     ],
+     [
+      0.981667,
+      0.680782,
+      0.861681,
+      0.833689,
+      0.695147,
+      0.814165,
+      0.833612,
+      0.643998,
+      0.907208,
+      0.885596
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Legendary Dominion",
+    "chart_type": "single",
+    "level": 20
+   },
+   "expected": {
+    "song": "Legendary Dominion",
+    "level": 20,
+    "chart_type": "halfdouble",
+    "raw": "LegenCary0ominion | FMni((ohie"
+   }
+  },
+  {
+   "key": "782890740",
+   "native": {
+    "titles": [
+     {
+      "raw": "CHAoSAGAiN",
+      "conf": 0.351859
+     },
+     {
+      "raw": "CHAOSAGA!N",
+      "conf": 0.192848
+     },
+     {
+      "raw": "CHAOSAGA!N",
+      "conf": 0.131994
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.392887,
+    "level_digits": [
+     2,
+     4
+    ],
+    "level_scores": [
+     [
+      0.874691,
+      0.750751,
+      0.994713,
+      0.916998,
+      0.731201,
+      0.863178,
+      0.864178,
+      0.674194,
+      0.924515,
+      0.881624
+     ],
+     [
+      0.756135,
+      0.759297,
+      0.809419,
+      0.710249,
+      0.994174,
+      0.721599,
+      0.719809,
+      0.443204,
+      0.767662,
+      0.805278
+     ]
+    ]
+   },
+   "gt": {
+    "song": "CHAOS AGAIN",
+    "chart_type": "single",
+    "level": 24
+   },
+   "expected": {
+    "song": "CHAOS AGAIN",
+    "level": 24,
+    "chart_type": "single",
+    "raw": "CHAoSAGAiN | CHAOSAGA!N | CHAOSAGA!N"
+   }
+  },
+  {
+   "key": "783857709",
+   "native": {
+    "titles": [
+     {
+      "raw": "QUATTuoRux",
+      "conf": 0.145437
+     },
+     {
+      "raw": "Svl",
+      "conf": 0.081774
+     },
+     {
+      "raw": "\"Qw",
+      "conf": 0.024257
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.397585,
+    "level_digits": [
+     2,
+     4
+    ],
+    "level_scores": [
+     [
+      0.86189,
+      0.758119,
+      0.987516,
+      0.906258,
+      0.725371,
+      0.846798,
+      0.857556,
+      0.681411,
+      0.920116,
+      0.872641
+     ],
+     [
+      0.74277,
+      0.738422,
+      0.801734,
+      0.70852,
+      0.982191,
+      0.74496,
+      0.729877,
+      0.474284,
+      0.784826,
+      0.814968
+     ]
+    ]
+   },
+   "gt": {
+    "song": "QUATTUORUX",
+    "chart_type": "single",
+    "level": 24
+   },
+   "expected": {
+    "song": "QUATTUORUX",
+    "level": 24,
+    "chart_type": "single",
+    "raw": "QUATTuoRux | Svl | \"Qw"
+   }
+  },
+  {
+   "key": "784003336",
+   "native": {
+    "titles": [
+     {
+      "raw": "BtokenKarmalPlUEDl1)",
+      "conf": 0.469311
+     },
+     {
+      "raw": "sooKEBKarma(PIUE0lT",
+      "conf": 0.435556
+     },
+     {
+      "raw": "BrokehKarma(PlUEDll)",
+      "conf": 0.110385
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.268152,
+    "level_digits": [
+     1,
+     9
+    ],
+    "level_scores": [
+     [
+      0.545571,
+      0.999536,
+      0.768117,
+      0.7562,
+      0.750795,
+      0.778595,
+      0.806397,
+      0.75932,
+      0.858872,
+      0.855817
+     ],
+     [
+      0.789932,
+      0.824343,
+      0.859092,
+      0.879374,
+      0.772997,
+      0.862969,
+      0.846255,
+      0.750679,
+      0.839475,
+      0.944845
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Broken Karma (PIU EDIT)",
+    "chart_type": "single",
+    "level": 19
+   },
+   "expected": {
+    "song": "Broken Karma (PIU EDIT)",
+    "level": 19,
+    "chart_type": "single",
+    "raw": "BtokenKarmalPlUEDl1) | sooKEBKarma(PIUE0lT | BrokehKarma(PlUEDll)"
+   }
+  },
+  {
+   "key": "784233147",
+   "native": {
+    "titles": [
+     {
+      "raw": "wU8tuM",
+      "conf": 0.072902
+     },
+     {
+      "raw": "*N'BZ\"Lm",
+      "conf": 0.027364
+     },
+     {
+      "raw": "l.hcUoyeYourSteP",
+      "conf": 0.018038
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.985699,
+    "level_digits": [
+     2,
+     2
+    ],
+    "level_scores": [
+     [
+      0.815596,
+      0.723386,
+      0.875893,
+      0.791899,
+      0.768781,
+      0.799762,
+      0.841902,
+      0.631126,
+      0.861458,
+      0.849446
+     ],
+     [
+      0.318219,
+      0.738297,
+      0.821566,
+      0.675306,
+      0.578959,
+      0.589736,
+      0.652561,
+      0.625065,
+      0.688901,
+      0.757535
+     ]
+    ]
+   },
+   "gt": {
+    "song": "We Love Your Step",
+    "chart_type": "single",
+    "level": 22
+   },
+   "expected": {
+    "song": "Ultimatum",
+    "level": 21,
+    "chart_type": "single",
+    "raw": "wU8tuM | *N'BZ\"Lm | l.hcUoyeYourSteP"
+   }
+  },
+  {
+   "key": "784242732",
+   "native": {
+    "titles": [
+     {
+      "raw": "AfterLegend",
+      "conf": 0.19217
+     },
+     {
+      "raw": "AfterLegend",
+      "conf": 0.115659
+     },
+     {
+      "raw": "AfterLegend",
+      "conf": 0.10994
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.47141,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.843356,
+      0.740906,
+      0.961882,
+      0.872018,
+      0.73071,
+      0.807434,
+      0.839999,
+      0.64261,
+      0.893519,
+      0.846322
+     ],
+     [
+      0.833437,
+      0.73602,
+      0.896645,
+      0.999819,
+      0.695094,
+      0.872767,
+      0.841591,
+      0.630212,
+      0.906734,
+      0.882291
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Dement ~After Legend~",
+    "chart_type": "single",
+    "level": 23
+   },
+   "expected": {
+    "song": "Dement ~After Legend~",
+    "level": 23,
+    "chart_type": "halfdouble",
+    "raw": "AfterLegend | AfterLegend | AfterLegend"
+   }
+  },
+  {
+   "key": "785282278",
+   "native": {
+    "titles": [
+     {
+      "raw": "BLAZOR",
+      "conf": 0.111773
+     },
+     {
+      "raw": "BLAZ:R",
+      "conf": 0.084987
+     },
+     {
+      "raw": "BUOR",
+      "conf": 0.043821
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.223657,
+    "level_digits": [
+     1,
+     8
+    ],
+    "level_scores": [
+     [
+      0.598469,
+      0.996259,
+      0.775376,
+      0.791698,
+      0.741917,
+      0.79839,
+      0.779771,
+      0.720773,
+      0.860735,
+      0.853629
+     ],
+     [
+      0.884334,
+      0.770266,
+      0.904533,
+      0.880609,
+      0.720981,
+      0.846887,
+      0.872956,
+      0.729306,
+      0.947518,
+      0.930329
+     ]
+    ]
+   },
+   "gt": {
+    "song": "BLAZOR",
+    "chart_type": "single",
+    "level": 18
+   },
+   "expected": {
+    "song": "BLAZOR",
+    "level": 18,
+    "chart_type": "single",
+    "raw": "BLAZOR | BLAZ:R | BUOR"
+   }
+  },
+  {
+   "key": "787574282",
+   "native": {
+    "titles": [
+     {
+      "raw": "Ultimatum",
+      "conf": 0.235946
+     },
+     {
+      "raw": "UItimatum",
+      "conf": 0.039844
+     },
+     {
+      "raw": "Ultt",
+      "conf": 0.01906
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.0505466,
+    "level_digits": [
+     2,
+     1
+    ],
+    "level_scores": [
+     [
+      0.427286,
+      0.874727,
+      0.978993,
+      0.706546,
+      0.654936,
+      0.763453,
+      0.793105,
+      0.691467,
+      0.753199,
+      0.8532
+     ],
+     [
+      0.632301,
+      0.988965,
+      0.830767,
+      0.850693,
+      0.901625,
+      0.841957,
+      0.876089,
+      0.926498,
+      0.92983,
+      0.884751
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Ultimatum",
+    "chart_type": "single",
+    "level": 21
+   },
+   "expected": {
+    "song": "Ultimatum",
+    "level": 21,
+    "chart_type": null,
+    "raw": "Ultimatum | UItimatum | Ultt"
+   }
+  },
+  {
+   "key": "788562783",
+   "native": {
+    "titles": [
+     {
+      "raw": "oVEkNiGBTFLDWE8",
+      "conf": 0.116272
+     },
+     {
+      "raw": "OVERNiGBTFLDWEP",
+      "conf": 0.085931
+     },
+     {
+      "raw": "OVERNiGHTFLDWLP",
+      "conf": 0.069571
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.368964,
+    "level_digits": [
+     1,
+     9
+    ],
+    "level_scores": [
+     [
+      0.56479,
+      0.999906,
+      0.775551,
+      0.754385,
+      0.753342,
+      0.761985,
+      0.777797,
+      0.737345,
+      0.843016,
+      0.830729
+     ],
+     [
+      0.737476,
+      0.858601,
+      0.830988,
+      0.851258,
+      0.808084,
+      0.899164,
+      0.883223,
+      0.762535,
+      0.857992,
+      0.910076
+     ]
+    ]
+   },
+   "gt": {
+    "song": "OVERNIGHT FLOWER",
+    "chart_type": "single",
+    "level": 19
+   },
+   "expected": {
+    "song": "OVERNIGHT FLOWER",
+    "level": 19,
+    "chart_type": "single",
+    "raw": "oVEkNiGBTFLDWE8 | OVERNiGBTFLDWEP | OVERNiGHTFLDWLP"
+   }
+  },
+  {
+   "key": "790434555",
+   "native": {
+    "titles": [
+     {
+      "raw": "iassionata",
+      "conf": 0.010754
+     },
+     {
+      "raw": "eggo",
+      "conf": 0.009091
+     },
+     {
+      "raw": "\"%,",
+      "conf": 0.008382
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.977363,
+    "level_digits": [],
+    "level_scores": []
+   },
+   "gt": {
+    "song": "Appassionata",
+    "chart_type": "single",
+    "level": 22
+   },
+   "expected": {
+    "song": "Appassionata",
+    "level": null,
+    "chart_type": "single",
+    "raw": "iassionata | eggo | \"%,"
+   }
+  },
+  {
+   "key": "791465596",
+   "native": {
+    "titles": [
+     {
+      "raw": "'H'-OlnSZIzedcitv",
+      "conf": 0.5289
+     },
+     {
+      "raw": "'H'aOlRSrIzTdCpty",
+      "conf": 0.321854
+     },
+     {
+      "raw": "'fw2-",
+      "conf": 0.068333
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.535355,
+    "level_digits": [
+     1,
+     9
+    ],
+    "level_scores": [
+     [
+      0.584707,
+      0.983535,
+      0.738254,
+      0.693127,
+      0.598516,
+      0.711723,
+      0.711436,
+      0.59771,
+      0.739287,
+      0.730395
+     ],
+     [
+      0.677567,
+      0.748989,
+      0.788489,
+      0.772011,
+      0.694966,
+      0.861745,
+      0.846628,
+      0.707405,
+      0.809879,
+      0.921802
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Imaginarized City",
+    "chart_type": "single",
+    "level": 19
+   },
+   "expected": {
+    "song": "Imaginarized City",
+    "level": 19,
+    "chart_type": "halfdouble",
+    "raw": "'H'-OlnSZIzedcitv | 'H'aOlRSrIzTdCpty | 'fw2-"
+   }
+  },
+  {
+   "key": "791942785",
+   "native": {
+    "titles": [
+     {
+      "raw": "beadEnd",
+      "conf": 0.378554
+     },
+     {
+      "raw": "DRRdEnd",
+      "conf": 0.349934
+     },
+     {
+      "raw": "OadEnd",
+      "conf": 0.112232
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.283058,
+    "level_digits": [
+     2,
+     1
+    ],
+    "level_scores": [
+     [
+      0.466652,
+      0.892391,
+      0.962449,
+      0.704348,
+      0.688424,
+      0.808886,
+      0.822664,
+      0.716584,
+      0.788154,
+      0.845004
+     ],
+     [
+      0.625899,
+      0.98982,
+      0.836397,
+      0.832736,
+      0.921284,
+      0.834715,
+      0.844152,
+      0.934317,
+      0.931373,
+      0.894436
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Dead End",
+    "chart_type": "single",
+    "level": 21
+   },
+   "expected": {
+    "song": "Dead End",
+    "level": 21,
+    "chart_type": "single",
+    "raw": "beadEnd | DRRdEnd | OadEnd"
+   }
+  },
+  {
+   "key": "791974941",
+   "native": {
+    "titles": [
+     {
+      "raw": "BLAZ1R",
+      "conf": 0.136969
+     },
+     {
+      "raw": "BLAZ:R",
+      "conf": 0.026053
+     },
+     {
+      "raw": "Re",
+      "conf": 0.014192
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.194207,
+    "level_digits": [
+     2,
+     0
+    ],
+    "level_scores": [
+     [
+      0.879015,
+      0.805631,
+      0.992719,
+      0.91411,
+      0.747581,
+      0.841948,
+      0.848556,
+      0.74048,
+      0.917158,
+      0.89647
+     ],
+     [
+      0.999919,
+      0.677895,
+      0.872473,
+      0.859848,
+      0.740979,
+      0.843152,
+      0.864393,
+      0.596257,
+      0.91816,
+      0.899239
+     ]
+    ]
+   },
+   "gt": {
+    "song": "BLAZOR",
+    "chart_type": "single",
+    "level": 20
+   },
+   "expected": {
+    "song": "BLAZOR",
+    "level": 20,
+    "chart_type": "single",
+    "raw": "BLAZ1R | BLAZ:R | Re"
+   }
+  },
+  {
+   "key": "792441257",
+   "native": {
+    "titles": [
+     {
+      "raw": "W-UzDM",
+      "conf": 0.124815
+     },
+     {
+      "raw": "WDSDSPowerExplosdO",
+      "conf": 0.020317
+     },
+     {
+      "raw": ":EAAsTFR",
+      "conf": 0.018995
+     }
+    ],
+    "chart_type": "coop",
+    "chart_conf": 0.774142,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.492388,
+      0.91562,
+      0.94543,
+      0.724825,
+      0.704749,
+      0.814205,
+      0.829625,
+      0.733532,
+      0.799122,
+      0.861778
+     ],
+     [
+      0.504333,
+      0.886482,
+      0.803061,
+      0.895584,
+      0.807602,
+      0.780238,
+      0.818503,
+      0.859853,
+      0.830854,
+      0.834693
+     ]
+    ]
+   },
+   "gt": {
+    "song": "BSPower Explosion",
+    "chart_type": "coop",
+    "level": null
+   },
+   "expected": {
+    "song": null,
+    "level": 23,
+    "chart_type": "coop",
+    "raw": "W-UzDM | WDSDSPowerExplosdO | :EAAsTFR"
+   }
+  },
+  {
+   "key": "793212531",
+   "native": {
+    "titles": [
+     {
+      "raw": "rJaM",
+      "conf": 0.009579
+     },
+     {
+      "raw": "canonD",
+      "conf": 0.007231
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 1,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.869635,
+      0.765786,
+      0.995433,
+      0.916254,
+      0.725911,
+      0.855926,
+      0.858344,
+      0.68991,
+      0.924743,
+      0.886087
+     ],
+     [
+      0.791395,
+      0.82472,
+      0.865412,
+      0.947704,
+      0.78063,
+      0.814319,
+      0.782973,
+      0.728218,
+      0.841773,
+      0.877829
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Canon D",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": "Canon D",
+    "level": 23,
+    "chart_type": "double",
+    "raw": "rJaM | canonD"
+   }
+  },
+  {
+   "key": "793212617",
+   "native": {
+    "titles": [
+     {
+      "raw": "cROssRAY",
+      "conf": 0.041422
+     },
+     {
+      "raw": ",,*",
+      "conf": 0.006543
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 1,
+    "level_digits": [
+     2,
+     4
+    ],
+    "level_scores": [
+     [
+      0.871324,
+      0.756423,
+      0.997018,
+      0.911703,
+      0.726514,
+      0.849832,
+      0.859036,
+      0.68046,
+      0.923046,
+      0.877818
+     ],
+     [
+      0.753765,
+      0.775255,
+      0.807483,
+      0.712925,
+      0.994045,
+      0.715099,
+      0.717164,
+      0.443011,
+      0.770204,
+      0.806085
+     ]
+    ]
+   },
+   "gt": {
+    "song": "CROSS RAY (feat. 月下Lia)",
+    "chart_type": "double",
+    "level": 24
+   },
+   "expected": {
+    "song": "CROSS RAY (feat. 月下Lia)",
+    "level": 24,
+    "chart_type": "double",
+    "raw": "cROssRAY | ,,*"
+   }
+  },
+  {
+   "key": "793867723",
+   "native": {
+    "titles": [
+     {
+      "raw": "GhostBloodyTrain",
+      "conf": 0.248295
+     },
+     {
+      "raw": "GhostBloodyTrain",
+      "conf": 0.247382
+     },
+     {
+      "raw": "w",
+      "conf": 0.073398
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.257984,
+    "level_digits": [
+     1,
+     8
+    ],
+    "level_scores": [
+     [
+      0.604357,
+      0.984158,
+      0.766192,
+      0.792156,
+      0.762145,
+      0.792764,
+      0.784641,
+      0.729265,
+      0.866957,
+      0.854706
+     ],
+     [
+      0.927199,
+      0.741455,
+      0.932386,
+      0.921038,
+      0.777868,
+      0.901262,
+      0.939965,
+      0.668473,
+      0.986564,
+      0.938697
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Ghost Bloody Train",
+    "chart_type": "single",
+    "level": 18
+   },
+   "expected": {
+    "song": "Ghost Bloody Train",
+    "level": 18,
+    "chart_type": "halfdouble",
+    "raw": "GhostBloodyTrain | GhostBloodyTrain | w"
+   }
+  },
+  {
+   "key": "794385429",
+   "native": {
+    "titles": [
+     {
+      "raw": "Paradoxx",
+      "conf": 0.285443
+     },
+     {
+      "raw": "\"*mLeBF",
+      "conf": 0.265647
+     },
+     {
+      "raw": "PPHeeO",
+      "conf": 0.116102
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.350542,
+    "level_digits": [],
+    "level_scores": []
+   },
+   "gt": {
+    "song": "Paradoxx",
+    "chart_type": "single",
+    "level": 21
+   },
+   "expected": {
+    "song": "Paradoxx",
+    "level": null,
+    "chart_type": "halfdouble",
+    "raw": "Paradoxx | \"*mLeBF | PPHeeO"
+   }
+  },
+  {
+   "key": "798263716",
+   "native": {
+    "titles": [
+     {
+      "raw": "BhontBIoddyTraIN",
+      "conf": 0.36074
+     },
+     {
+      "raw": "GhostBloodvTrRln",
+      "conf": 0.29991
+     },
+     {
+      "raw": "abontBUoddyTraIN",
+      "conf": 0.136084
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.738847,
+    "level_digits": [
+     9,
+     2
+    ],
+    "level_scores": [
+     [
+      0.712764,
+      0.863475,
+      0.856767,
+      0.853314,
+      0.812171,
+      0.82803,
+      0.864876,
+      0.794682,
+      0.88537,
+      0.892834
+     ],
+     [
+      0.784767,
+      0.714449,
+      0.831851,
+      0.781693,
+      0.758376,
+      0.765932,
+      0.769686,
+      0.591715,
+      0.817712,
+      0.8194
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Ghost Bloody Train",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": "Ghost Bloody Train",
+    "level": 20,
+    "chart_type": "double",
+    "raw": "BhontBIoddyTraIN | GhostBloodvTrRln | abontBUoddyTraIN"
+   }
+  },
+  {
+   "key": "798894701",
+   "native": {
+    "titles": [
+     {
+      "raw": "iliriSirScSmool1stoeriOdfeBt",
+      "conf": 0.082893
+     },
+     {
+      "raw": "ExtreTneMusicSchOQlIBtperl",
+      "conf": 0.010897
+     },
+     {
+      "raw": "4AXCot8mD",
+      "conf": 0.009901
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.798617,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.889862,
+      0.754068,
+      0.991772,
+      0.931097,
+      0.745711,
+      0.868802,
+      0.875746,
+      0.697482,
+      0.933404,
+      0.895813
+     ],
+     [
+      0.869119,
+      0.773015,
+      0.926099,
+      0.999841,
+      0.724563,
+      0.898865,
+      0.865843,
+      0.679777,
+      0.931024,
+      0.905704
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Extreme Music School 1st period feat. Nanahira",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": "Extreme Music School 1st period feat. Nanahira",
+    "level": 23,
+    "chart_type": "double",
+    "raw": "iliriSirScSmool1stoeriOdfeBt | ExtreTneMusicSchOQlIBtperl | 4AXCot8mD"
+   }
+  },
+  {
+   "key": "799143935",
+   "native": {
+    "titles": [
+     {
+      "raw": "EnjoyTheShow",
+      "conf": 0.134692
+     },
+     {
+      "raw": "m\"n?",
+      "conf": 0.011131
+     },
+     {
+      "raw": "EnjoyTheShow",
+      "conf": 0.010778
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.823458,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.887378,
+      0.759628,
+      0.994172,
+      0.925813,
+      0.74529,
+      0.863439,
+      0.869314,
+      0.692939,
+      0.93282,
+      0.890737
+     ],
+     [
+      0.799501,
+      0.826426,
+      0.89519,
+      0.941347,
+      0.777834,
+      0.824489,
+      0.78803,
+      0.749588,
+      0.858031,
+      0.904336
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Enjoy The Show",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": "Enjoy The Show",
+    "level": 23,
+    "chart_type": "double",
+    "raw": "EnjoyTheShow | m\"n? | EnjoyTheShow"
+   }
+  },
+  {
+   "key": "799202570",
+   "native": {
+    "titles": [
+     {
+      "raw": "Blaztmg",
+      "conf": 0.073516
+     },
+     {
+      "raw": "BA2V)",
+      "conf": 0.041985
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.999874,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.884565,
+      0.772731,
+      0.993219,
+      0.929642,
+      0.740302,
+      0.857718,
+      0.865276,
+      0.712228,
+      0.935052,
+      0.905562
+     ],
+     [
+      0.859966,
+      0.791521,
+      0.922365,
+      0.999896,
+      0.742849,
+      0.898656,
+      0.855924,
+      0.687194,
+      0.928268,
+      0.918606
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Blazing",
+    "chart_type": "halfdouble",
+    "level": 23
+   },
+   "expected": {
+    "song": null,
+    "level": 23,
+    "chart_type": "halfdouble",
+    "raw": "Blaztmg | BA2V)"
+   }
+  },
+  {
+   "key": "799264471",
+   "native": {
+    "titles": [
+     {
+      "raw": "MnBsnosPossibl",
+      "conf": 0.042231
+     },
+     {
+      "raw": "YUMkR",
+      "conf": 0.03378
+     },
+     {
+      "raw": "uissionPossibl",
+      "conf": 0.012255
+     }
+    ],
+    "chart_type": "",
+    "chart_conf": 0,
+    "level_digits": [],
+    "level_scores": []
+   },
+   "gt": {
+    "song": "Mission Possible",
+    "chart_type": null,
+    "level": null
+   },
+   "expected": {
+    "song": "Mission Possible",
+    "level": null,
+    "chart_type": null,
+    "raw": "MnBsnosPossibl | YUMkR | uissionPossibl"
+   }
+  },
+  {
+   "key": "799603098",
+   "native": {
+    "titles": [
+     {
+      "raw": "gAzQR",
+      "conf": 0.463232
+     },
+     {
+      "raw": "bAAUB",
+      "conf": 0.419676
+     },
+     {
+      "raw": "DASVGS",
+      "conf": 0.183735
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.947565,
+    "level_digits": [
+     2,
+     4
+    ],
+    "level_scores": [
+     [
+      0.870704,
+      0.804161,
+      0.990039,
+      0.929518,
+      0.751818,
+      0.853568,
+      0.850704,
+      0.737613,
+      0.914034,
+      0.911855
+     ],
+     [
+      0.720792,
+      0.784669,
+      0.805443,
+      0.723182,
+      0.999144,
+      0.74307,
+      0.722753,
+      0.509033,
+      0.775968,
+      0.817217
+     ]
+    ]
+   },
+   "gt": {
+    "song": "BLAZOR",
+    "chart_type": "double",
+    "level": 24
+   },
+   "expected": {
+    "song": null,
+    "level": 24,
+    "chart_type": "double",
+    "raw": "gAzQR | bAAUB | DASVGS"
+   }
+  },
+  {
+   "key": "799676852",
+   "native": {
+    "titles": [
+     {
+      "raw": "Ghos.BloodyTrain",
+      "conf": 0.446423
+     },
+     {
+      "raw": "GhostBIoodyTrain",
+      "conf": 0.170812
+     },
+     {
+      "raw": "GhCs.BloodyTrain",
+      "conf": 0.019722
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.968912,
+    "level_digits": [
+     2,
+     1
+    ],
+    "level_scores": [
+     [
+      0.867777,
+      0.788735,
+      0.988487,
+      0.917538,
+      0.737376,
+      0.85683,
+      0.860764,
+      0.717,
+      0.923585,
+      0.903808
+     ],
+     [
+      0.540176,
+      0.999373,
+      0.762554,
+      0.750141,
+      0.746136,
+      0.771117,
+      0.799129,
+      0.756486,
+      0.855173,
+      0.852802
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Ghost Bloody Train",
+    "chart_type": "single",
+    "level": 21
+   },
+   "expected": {
+    "song": "Ghost Bloody Train",
+    "level": 21,
+    "chart_type": "single",
+    "raw": "Ghos.BloodyTrain | GhostBIoodyTrain | GhCs.BloodyTrain"
+   }
+  },
+  {
+   "key": "799724591",
+   "native": {
+    "titles": [
+     {
+      "raw": "P\"\"'!O-B'",
+      "conf": 0.374708
+     },
+     {
+      "raw": "An0StBlon",
+      "conf": 0.083677
+     },
+     {
+      "raw": "PPNd\"",
+      "conf": 0.047571
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.998461,
+    "level_digits": [
+     2,
+     1
+    ],
+    "level_scores": [
+     [
+      0.834453,
+      0.776951,
+      0.983621,
+      0.881871,
+      0.736945,
+      0.833837,
+      0.854779,
+      0.722475,
+      0.885697,
+      0.883478
+     ],
+     [
+      0.441186,
+      0.923365,
+      0.767895,
+      0.75027,
+      0.67653,
+      0.725032,
+      0.744766,
+      0.716583,
+      0.761229,
+      0.782451
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Ghost Bloody Train",
+    "chart_type": "single",
+    "level": 21
+   },
+   "expected": {
+    "song": "Point Break",
+    "level": 13,
+    "chart_type": "single",
+    "raw": "P\"\"'!O-B' | An0StBlon | PPNd\""
+   }
+  },
+  {
+   "key": "799770527",
+   "native": {
+    "titles": [
+     {
+      "raw": "imaginarizedCity",
+      "conf": 0.282136
+     },
+     {
+      "raw": "lnnaRlnarIzeGLlt",
+      "conf": 0.262555
+     },
+     {
+      "raw": "ImaginZ'izedCity",
+      "conf": 0.092443
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.90363,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.868807,
+      0.792564,
+      0.991376,
+      0.928594,
+      0.73991,
+      0.863458,
+      0.865137,
+      0.722456,
+      0.928269,
+      0.911236
+     ],
+     [
+      0.852691,
+      0.805158,
+      0.928295,
+      0.99992,
+      0.754589,
+      0.887,
+      0.847549,
+      0.697439,
+      0.912475,
+      0.92474
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Imaginarized City",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": "Imaginarized City",
+    "level": 23,
+    "chart_type": "double",
+    "raw": "imaginarizedCity | lnnaRlnarIzeGLlt | ImaginZ'izedCity"
+   }
+  },
+  {
+   "key": "799972293",
+   "native": {
+    "titles": [
+     {
+      "raw": "!e0Pf-B!MlTr!c'iagfN)",
+      "conf": 0.107455
+     },
+     {
+      "raw": "!oPPfRB2Mlzr!c'IagtN",
+      "conf": 0.073815
+     },
+     {
+      "raw": "*'!zRrjsPY",
+      "conf": 0.039662
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.987273,
+    "level_digits": [
+     2,
+     2
+    ],
+    "level_scores": [
+     [
+      0.865066,
+      0.77979,
+      0.995929,
+      0.897693,
+      0.723573,
+      0.83799,
+      0.848591,
+      0.711766,
+      0.911586,
+      0.87196
+     ],
+     [
+      0.266687,
+      0.673419,
+      0.838181,
+      0.617728,
+      0.546939,
+      0.528815,
+      0.585671,
+      0.586705,
+      0.61891,
+      0.68796
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Rise Up (feat. Miori Celesta)",
+    "chart_type": "single",
+    "level": 22
+   },
+   "expected": {
+    "song": null,
+    "level": 22,
+    "chart_type": "single",
+    "raw": "!e0Pf-B!MlTr!c'iagfN) | !oPPfRB2Mlzr!c'IagtN | *'!zRrjsPY"
+   }
+  },
+  {
+   "key": "800259601",
+   "native": {
+    "titles": [
+     {
+      "raw": "weddingCrashers",
+      "conf": 0.504482
+     },
+     {
+      "raw": "weddingCrashers",
+      "conf": 0.375651
+     },
+     {
+      "raw": "weddingCrashers",
+      "conf": 0.099046
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.915082,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.828178,
+      0.794458,
+      0.942875,
+      0.890302,
+      0.774366,
+      0.815783,
+      0.804905,
+      0.696489,
+      0.870421,
+      0.880547
+     ],
+     [
+      0.86108,
+      0.787638,
+      0.925472,
+      0.999883,
+      0.737668,
+      0.899881,
+      0.857136,
+      0.682253,
+      0.929813,
+      0.914592
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Wedding Crashers",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": "Wedding Crashers",
+    "level": 23,
+    "chart_type": "double",
+    "raw": "weddingCrashers | weddingCrashers | weddingCrashers"
+   }
+  },
+  {
+   "key": "800945526",
+   "native": {
+    "titles": [
+     {
+      "raw": "TheLastRebel-ion",
+      "conf": 0.154588
+     },
+     {
+      "raw": "TheLastRebeN!zon",
+      "conf": 0.025026
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.629198,
+    "level_digits": [
+     2,
+     1
+    ],
+    "level_scores": [
+     [
+      0.856223,
+      0.76003,
+      0.965862,
+      0.889418,
+      0.778517,
+      0.831706,
+      0.842335,
+      0.675222,
+      0.90307,
+      0.871514
+     ],
+     [
+      0.601404,
+      0.995697,
+      0.772779,
+      0.787598,
+      0.741961,
+      0.795751,
+      0.777942,
+      0.721142,
+      0.857211,
+      0.848496
+     ]
+    ]
+   },
+   "gt": {
+    "song": "The Last Rebellion",
+    "chart_type": "single",
+    "level": 21
+   },
+   "expected": {
+    "song": "The Last Rebellion",
+    "level": 21,
+    "chart_type": "single",
+    "raw": "TheLastRebel-ion | TheLastRebeN!zon"
+   }
+  },
+  {
+   "key": "image",
+   "native": {
+    "titles": [
+     {
+      "raw": "P\"\"'!O-B'",
+      "conf": 0.374708
+     },
+     {
+      "raw": "An0StBlon",
+      "conf": 0.083677
+     },
+     {
+      "raw": "PPNd\"",
+      "conf": 0.047571
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.998463,
+    "level_digits": [
+     2,
+     1
+    ],
+    "level_scores": [
+     [
+      0.834997,
+      0.776623,
+      0.982992,
+      0.882509,
+      0.736277,
+      0.834351,
+      0.855095,
+      0.722877,
+      0.886195,
+      0.883874
+     ],
+     [
+      0.440984,
+      0.920922,
+      0.765483,
+      0.748641,
+      0.675502,
+      0.723864,
+      0.743116,
+      0.715305,
+      0.759831,
+      0.782143
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Ghost Bloody Train",
+    "chart_type": "single",
+    "level": 21
+   },
+   "expected": {
+    "song": "Point Break",
+    "level": 13,
+    "chart_type": "single",
+    "raw": "P\"\"'!O-B' | An0StBlon | PPNd\""
+   }
+  },
+  {
+   "key": "748265092",
+   "native": {
+    "titles": [
+     {
+      "raw": "\"eePkxi(,64OO",
+      "conf": 0.685481
+     },
+     {
+      "raw": "'\"'scb6B",
+      "conf": 0.19636
+     },
+     {
+      "raw": "]\"\")LPl,,466B",
+      "conf": 0.0179572
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.888347,
+    "level_digits": [
+     2,
+     6
+    ],
+    "level_scores": [
+     [
+      0.843023,
+      0.760242,
+      0.963664,
+      0.841794,
+      0.765616,
+      0.852321,
+      0.840232,
+      0.693064,
+      0.879263,
+      0.882462
+     ],
+     [
+      0.287234,
+      0.750923,
+      0.692532,
+      0.611111,
+      0.508301,
+      0.582254,
+      0.945955,
+      0.558113,
+      0.589508,
+      0.726099
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Kokugen Kairou Labyrinth",
+    "chart_type": "double",
+    "level": 26
+   },
+   "expected": {
+    "song": "Keep On!",
+    "level": 21,
+    "chart_type": "double",
+    "raw": "\"eePkxi(,64OO | '\"'scb6B | ]\"\")LPl,,466B"
+   }
+  },
+  {
+   "key": "750493418",
+   "native": {
+    "titles": [
+     {
+      "raw": "P-Dn'BbN",
+      "conf": 0.792096
+     },
+     {
+      "raw": "PERPear",
+      "conf": 0.232956
+     },
+     {
+      "raw": "'bBkTC",
+      "conf": 0.0243249
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.895179,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.83522,
+      0.743642,
+      0.952619,
+      0.854053,
+      0.704827,
+      0.814324,
+      0.829669,
+      0.669577,
+      0.881302,
+      0.856326
+     ],
+     [
+      0.791932,
+      0.68887,
+      0.832881,
+      0.991023,
+      0.644423,
+      0.756285,
+      0.754697,
+      0.65083,
+      0.817994,
+      0.788187
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Point Break",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": "N",
+    "level": 16,
+    "chart_type": "double",
+    "raw": "P-Dn'BbN | PERPear | 'bBkTC"
+   }
+  },
+  {
+   "key": "753298391",
+   "native": {
+    "titles": [
+     {
+      "raw": "RseUp(fea.AorceIesta)",
+      "conf": 0.125033
+     },
+     {
+      "raw": "P!BUa",
+      "conf": 0.0860583
+     },
+     {
+      "raw": "*(P)mL",
+      "conf": 0.0840738
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.516797,
+    "level_digits": [
+     2,
+     2
+    ],
+    "level_scores": [
+     [
+      0.747242,
+      0.751467,
+      0.845329,
+      0.802049,
+      0.703763,
+      0.750585,
+      0.728355,
+      0.674074,
+      0.806095,
+      0.788369
+     ],
+     [
+      0.736964,
+      0.616845,
+      0.852494,
+      0.783681,
+      0.611144,
+      0.763247,
+      0.770765,
+      0.539491,
+      0.802423,
+      0.759896
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Rise Up (feat. Miori Celesta)",
+    "chart_type": "single",
+    "level": 22
+   },
+   "expected": {
+    "song": "Rise Up (feat. Miori Celesta)",
+    "level": 22,
+    "chart_type": "halfdouble",
+    "raw": "RseUp(fea.AorceIesta) | P!BUa | *(P)mL"
+   }
+  },
+  {
+   "key": "756525554",
+   "native": {
+    "titles": [
+     {
+      "raw": "lNFNiTEENERnovRrdozo",
+      "conf": 0.162747
+     },
+     {
+      "raw": "*\"o",
+      "conf": 0.00748808
+     },
+     {
+      "raw": "%",
+      "conf": 0.00697452
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.518041,
+    "level_digits": [
+     2,
+     5
+    ],
+    "level_scores": [
+     [
+      0.862006,
+      0.751772,
+      0.992023,
+      0.906109,
+      0.727789,
+      0.852749,
+      0.854796,
+      0.672731,
+      0.917702,
+      0.873412
+     ],
+     [
+      0.854883,
+      0.720246,
+      0.873286,
+      0.906404,
+      0.758502,
+      0.994972,
+      0.911856,
+      0.633698,
+      0.913303,
+      0.920588
+     ]
+    ]
+   },
+   "gt": {
+    "song": "INFiNiTE ENERZY -Overdoze-",
+    "chart_type": "double",
+    "level": 25
+   },
+   "expected": {
+    "song": "INFiNiTE ENERZY -Overdoze-",
+    "level": 25,
+    "chart_type": "double",
+    "raw": "lNFNiTEENERnovRrdozo | *\"o | %"
+   }
+  },
+  {
+   "key": "759642534",
+   "native": {
+    "titles": [
+     {
+      "raw": "Um",
+      "conf": 0.0183394
+     },
+     {
+      "raw": "B3",
+      "conf": 0.0163609
+     },
+     {
+      "raw": "'O\"**",
+      "conf": 0.0159944
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.307477,
+    "level_digits": [
+     1,
+     2
+    ],
+    "level_scores": [
+     [
+      0.595223,
+      0.997301,
+      0.767208,
+      0.78254,
+      0.74074,
+      0.787743,
+      0.777182,
+      0.718351,
+      0.861346,
+      0.850092
+     ],
+     [
+      0.653716,
+      0.843273,
+      0.855547,
+      0.824303,
+      0.7957,
+      0.841922,
+      0.845399,
+      0.79443,
+      0.820582,
+      0.837213
+     ]
+    ]
+   },
+   "gt": {
+    "song": "B3",
+    "chart_type": "single",
+    "level": 18
+   },
+   "expected": {
+    "song": "B3",
+    "level": 16,
+    "chart_type": "single",
+    "raw": "Um | B3 | 'O\"**"
+   }
+  },
+  {
+   "key": "759932387",
+   "native": {
+    "titles": [
+     {
+      "raw": "TheLastRebeIlio-",
+      "conf": 0.267454
+     },
+     {
+      "raw": "TheLastRebelSion",
+      "conf": 0.0656025
+     },
+     {
+      "raw": "1.",
+      "conf": 0.0294308
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.930486,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.890284,
+      0.769704,
+      0.986819,
+      0.911745,
+      0.750158,
+      0.864516,
+      0.880732,
+      0.711901,
+      0.936256,
+      0.900151
+     ],
+     [
+      0.869581,
+      0.780547,
+      0.930416,
+      0.995098,
+      0.732642,
+      0.907609,
+      0.863334,
+      0.67971,
+      0.932582,
+      0.911214
+     ]
+    ]
+   },
+   "gt": {
+    "song": "The Last Rebellion",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": "The Last Rebellion",
+    "level": 23,
+    "chart_type": "double",
+    "raw": "TheLastRebeIlio- | TheLastRebelSion | 1."
+   }
+  },
+  {
+   "key": "760620783",
+   "native": {
+    "titles": [
+     {
+      "raw": "AbOuiSOeSUnm'kpng",
+      "conf": 0.244244
+     },
+     {
+      "raw": "2",
+      "conf": 0.0287479
+     },
+     {
+      "raw": "A",
+      "conf": 0.0242447
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.78591,
+    "level_digits": [
+     2,
+     2
+    ],
+    "level_scores": [
+     [
+      0.893324,
+      0.748273,
+      0.985722,
+      0.921401,
+      0.758005,
+      0.854951,
+      0.86835,
+      0.705163,
+      0.926763,
+      0.888192
+     ],
+     [
+      0.885106,
+      0.77161,
+      0.946308,
+      0.909029,
+      0.728809,
+      0.846773,
+      0.854126,
+      0.738271,
+      0.926587,
+      0.891133
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Anguished Unmaking",
+    "chart_type": "double",
+    "level": 22
+   },
+   "expected": {
+    "song": "Anguished Unmaking",
+    "level": 22,
+    "chart_type": "double",
+    "raw": "AbOuiSOeSUnm'kpng | 2 | A"
+   }
+  },
+  {
+   "key": "761729756",
+   "native": {
+    "titles": [
+     {
+      "raw": "kIY0U0f0O.ClOriCelesta",
+      "conf": 0.0956226
+     },
+     {
+      "raw": "*1SdvpTp",
+      "conf": 0.0596935
+     },
+     {
+      "raw": "\".z,4",
+      "conf": 0.0393577
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.576452,
+    "level_digits": [
+     2,
+     4
+    ],
+    "level_scores": [
+     [
+      0.795006,
+      0.880066,
+      0.99991,
+      0.87147,
+      0.815608,
+      0.766505,
+      0.778963,
+      0.77127,
+      0.84411,
+      0.861588
+     ],
+     [
+      0.662836,
+      0.648038,
+      0.713825,
+      0.676443,
+      0.998834,
+      0.651691,
+      0.632078,
+      0.575511,
+      0.694229,
+      0.737663
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Rise Up (feat. Miori Celesta)",
+    "chart_type": "double",
+    "level": 24
+   },
+   "expected": {
+    "song": "Rise Up (feat. Miori Celesta)",
+    "level": 24,
+    "chart_type": "double",
+    "raw": "kIY0U0f0O.ClOriCelesta | *1SdvpTp | \".z,4"
+   }
+  },
+  {
+   "key": "763137594",
+   "native": {
+    "titles": [
+     {
+      "raw": ")KQL",
+      "conf": 0.130729
+     },
+     {
+      "raw": "J(jLDL3LT3",
+      "conf": 0.0584617
+     },
+     {
+      "raw": "Z\"mz",
+      "conf": 0.0394683
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.244761,
+    "level_digits": [
+     1,
+     8
+    ],
+    "level_scores": [
+     [
+      0.502801,
+      0.975713,
+      0.818027,
+      0.735208,
+      0.734695,
+      0.760027,
+      0.788455,
+      0.749969,
+      0.844606,
+      0.842028
+     ],
+     [
+      0.916223,
+      0.745021,
+      0.923947,
+      0.921663,
+      0.763679,
+      0.897585,
+      0.920379,
+      0.665584,
+      0.993541,
+      0.945046
+     ]
+    ]
+   },
+   "gt": {
+    "song": "B3",
+    "chart_type": "single",
+    "level": 18
+   },
+   "expected": {
+    "song": null,
+    "level": 18,
+    "chart_type": "single",
+    "raw": ")KQL | J(jLDL3LT3 | Z\"mz"
+   }
+  },
+  {
+   "key": "763762395",
+   "native": {
+    "titles": [
+     {
+      "raw": "\"O5A",
+      "conf": 0.319721
+     },
+     {
+      "raw": "BVw6\"\"w",
+      "conf": 0.175373
+     },
+     {
+      "raw": "omnwMmW",
+      "conf": 0.174344
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.910133,
+    "level_digits": [],
+    "level_scores": []
+   },
+   "gt": {
+    "song": "Extreme Music School 2nd period feat. Nanahira",
+    "chart_type": null,
+    "level": null
+   },
+   "expected": {
+    "song": null,
+    "level": null,
+    "chart_type": "halfdouble",
+    "raw": "\"O5A | BVw6\"\"w | omnwMmW"
+   }
+  },
+  {
+   "key": "766241603",
+   "native": {
+    "titles": [
+     {
+      "raw": "ThRLBstRBbebbion",
+      "conf": 0.0751864
+     },
+     {
+      "raw": "GdssBs",
+      "conf": 0.0184697
+     },
+     {
+      "raw": "F\"m(w",
+      "conf": 0.0147013
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.525309,
+    "level_digits": [],
+    "level_scores": []
+   },
+   "gt": {
+    "song": "The Last Rebellion",
+    "chart_type": "single",
+    "level": 21
+   },
+   "expected": {
+    "song": null,
+    "level": null,
+    "chart_type": "halfdouble",
+    "raw": "ThRLBstRBbebbion | GdssBs | F\"m(w"
+   }
+  },
+  {
+   "key": "768962990",
+   "native": {
+    "titles": [
+     {
+      "raw": "Th-LeL'Pebeiiiao",
+      "conf": 0.173147
+     },
+     {
+      "raw": "PPP1eM",
+      "conf": 0.00615969
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.703404,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.88672,
+      0.753584,
+      0.990096,
+      0.922225,
+      0.740121,
+      0.85829,
+      0.867439,
+      0.689243,
+      0.929634,
+      0.884747
+     ],
+     [
+      0.814527,
+      0.724842,
+      0.847993,
+      0.999894,
+      0.693307,
+      0.780996,
+      0.804523,
+      0.70392,
+      0.850077,
+      0.829137
+     ]
+    ]
+   },
+   "gt": {
+    "song": "The Last Rebellion",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": "The Last Rebellion",
+    "level": 23,
+    "chart_type": "double",
+    "raw": "Th-LeL'Pebeiiiao | PPP1eM"
+   }
+  },
+  {
+   "key": "768963130",
+   "native": {
+    "titles": [
+     {
+      "raw": "FREEDOMDiVE",
+      "conf": 0.296803
+     },
+     {
+      "raw": ".bN?o\"\"",
+      "conf": 0.11551
+     },
+     {
+      "raw": "-?aswrM1",
+      "conf": 0.0281287
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.560059,
+    "level_digits": [
+     2,
+     2
+    ],
+    "level_scores": [
+     [
+      0.85361,
+      0.768181,
+      0.973462,
+      0.890523,
+      0.729904,
+      0.832125,
+      0.853396,
+      0.672514,
+      0.912838,
+      0.864944
+     ],
+     [
+      0.840788,
+      0.716338,
+      0.952368,
+      0.891227,
+      0.685349,
+      0.806027,
+      0.820233,
+      0.712361,
+      0.899858,
+      0.840666
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Freedom Dive",
+    "chart_type": "single",
+    "level": 22
+   },
+   "expected": {
+    "song": "Freedom Dive",
+    "level": 22,
+    "chart_type": "single",
+    "raw": "FREEDOMDiVE | .bN?o\"\" | -?aswrM1"
+   }
+  },
+  {
+   "key": "769131804",
+   "native": {
+    "titles": [
+     {
+      "raw": "Digitalis",
+      "conf": 0.136739
+     },
+     {
+      "raw": "RAlSv2",
+      "conf": 0.049388
+     },
+     {
+      "raw": "?a2me",
+      "conf": 0.00869753
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.673489,
+    "level_digits": [
+     2,
+     4
+    ],
+    "level_scores": [
+     [
+      0.801273,
+      0.711504,
+      0.878914,
+      0.822985,
+      0.655673,
+      0.770202,
+      0.763249,
+      0.660712,
+      0.816958,
+      0.845865
+     ],
+     [
+      0.644216,
+      0.549906,
+      0.609814,
+      0.59582,
+      0.723985,
+      0.584779,
+      0.597704,
+      0.281868,
+      0.626615,
+      0.617015
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Digitalis",
+    "chart_type": "double",
+    "level": 21
+   },
+   "expected": {
+    "song": "Digitalis",
+    "level": 24,
+    "chart_type": "double",
+    "raw": "Digitalis | RAlSv2 | ?a2me"
+   }
+  },
+  {
+   "key": "769313055",
+   "native": {
+    "titles": [
+     {
+      "raw": "LegeadZnBomihioh",
+      "conf": 0.336009
+     },
+     {
+      "raw": "I)I.Bu",
+      "conf": 0.0755654
+     },
+     {
+      "raw": "hEGthR",
+      "conf": 0.0237463
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.370482,
+    "level_digits": [
+     2,
+     0
+    ],
+    "level_scores": [
+     [
+      0.848687,
+      0.739485,
+      0.915948,
+      0.879392,
+      0.757752,
+      0.833566,
+      0.823048,
+      0.746103,
+      0.884523,
+      0.899238
+     ],
+     [
+      0.75057,
+      0.645065,
+      0.695867,
+      0.748651,
+      0.623655,
+      0.649691,
+      0.653701,
+      0.728364,
+      0.698083,
+      0.723372
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Legendary Dominion",
+    "chart_type": "single",
+    "level": 20
+   },
+   "expected": {
+    "song": "Legendary Dominion",
+    "level": 20,
+    "chart_type": "halfdouble",
+    "raw": "LegeadZnBomihioh | I)I.Bu | hEGthR"
+   }
+  },
+  {
+   "key": "782890740",
+   "native": {
+    "titles": [
+     {
+      "raw": "CHAOSAGA!N",
+      "conf": 0.136176
+     },
+     {
+      "raw": "CHAOsAGAN",
+      "conf": 0.0205787
+     },
+     {
+      "raw": ",\"\"\"\"**",
+      "conf": 0.0173496
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.392989,
+    "level_digits": [
+     2,
+     4
+    ],
+    "level_scores": [
+     [
+      0.874691,
+      0.750751,
+      0.994713,
+      0.916998,
+      0.731201,
+      0.863178,
+      0.864178,
+      0.674194,
+      0.924515,
+      0.881624
+     ],
+     [
+      0.756091,
+      0.759248,
+      0.809368,
+      0.710203,
+      0.994244,
+      0.721671,
+      0.719817,
+      0.443176,
+      0.767621,
+      0.805236
+     ]
+    ]
+   },
+   "gt": {
+    "song": "CHAOS AGAIN",
+    "chart_type": "single",
+    "level": 24
+   },
+   "expected": {
+    "song": "CHAOS AGAIN",
+    "level": 24,
+    "chart_type": "single",
+    "raw": "CHAOSAGA!N | CHAOsAGAN | ,\"\"\"\"**"
+   }
+  },
+  {
+   "key": "783857709",
+   "native": {
+    "titles": [
+     {
+      "raw": "QUATTu1Rux",
+      "conf": 0.209998
+     },
+     {
+      "raw": "S>f",
+      "conf": 0.077693
+     },
+     {
+      "raw": "\".'",
+      "conf": 0.0173621
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.405499,
+    "level_digits": [
+     2,
+     4
+    ],
+    "level_scores": [
+     [
+      0.86189,
+      0.758119,
+      0.987516,
+      0.906258,
+      0.725371,
+      0.846798,
+      0.857556,
+      0.681411,
+      0.920116,
+      0.872641
+     ],
+     [
+      0.728868,
+      0.717657,
+      0.808159,
+      0.721446,
+      0.942054,
+      0.699878,
+      0.69711,
+      0.498465,
+      0.773965,
+      0.786389
+     ]
+    ]
+   },
+   "gt": {
+    "song": "QUATTUORUX",
+    "chart_type": "single",
+    "level": 24
+   },
+   "expected": {
+    "song": "QUATTUORUX",
+    "level": 24,
+    "chart_type": "halfdouble",
+    "raw": "QUATTu1Rux | S>f | \".'"
+   }
+  },
+  {
+   "key": "784003336",
+   "native": {
+    "titles": [
+     {
+      "raw": "B.OkBnKarma(Pli!EDlT)",
+      "conf": 0.468515
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.256704,
+    "level_digits": [
+     1,
+     9
+    ],
+    "level_scores": [
+     [
+      0.545571,
+      0.999536,
+      0.768117,
+      0.7562,
+      0.750795,
+      0.778595,
+      0.806397,
+      0.75932,
+      0.858872,
+      0.855817
+     ],
+     [
+      0.835927,
+      0.756933,
+      0.846124,
+      0.800245,
+      0.730769,
+      0.792469,
+      0.785416,
+      0.733788,
+      0.846222,
+      0.846427
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Broken Karma (PIU EDIT)",
+    "chart_type": "single",
+    "level": 19
+   },
+   "expected": {
+    "song": "Broken Karma (PIU EDIT)",
+    "level": 19,
+    "chart_type": "single",
+    "raw": "B.OkBnKarma(Pli!EDlT)"
+   }
+  },
+  {
+   "key": "784233147",
+   "native": {
+    "titles": [
+     {
+      "raw": "thcLoveYourSteP",
+      "conf": 0.0987502
+     },
+     {
+      "raw": "\"N'O'''m",
+      "conf": 0.016745
+     },
+     {
+      "raw": "t)cUoveYourSteP",
+      "conf": 0.0112137
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.9856,
+    "level_digits": [
+     2,
+     2
+    ],
+    "level_scores": [
+     [
+      0.806387,
+      0.731925,
+      0.865097,
+      0.783996,
+      0.777674,
+      0.795694,
+      0.82961,
+      0.623438,
+      0.850105,
+      0.846383
+     ],
+     [
+      0.361687,
+      0.764767,
+      0.865507,
+      0.60838,
+      0.553734,
+      0.560281,
+      0.596524,
+      0.58204,
+      0.674795,
+      0.670675
+     ]
+    ]
+   },
+   "gt": {
+    "song": "We Love Your Step",
+    "chart_type": "single",
+    "level": 22
+   },
+   "expected": {
+    "song": "We Love Your Step",
+    "level": 22,
+    "chart_type": "single",
+    "raw": "thcLoveYourSteP | \"N'O'''m | t)cUoveYourSteP"
+   }
+  },
+  {
+   "key": "784242732",
+   "native": {
+    "titles": [
+     {
+      "raw": "Af.erLegend",
+      "conf": 0.284795
+     },
+     {
+      "raw": "Lweww-zMV",
+      "conf": 0.0352957
+     },
+     {
+      "raw": "AfterLegend",
+      "conf": 0.0336639
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.414844,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.863409,
+      0.730208,
+      0.985859,
+      0.902812,
+      0.701438,
+      0.837982,
+      0.861678,
+      0.653044,
+      0.915151,
+      0.864561
+     ],
+     [
+      0.833437,
+      0.73602,
+      0.896645,
+      0.999819,
+      0.695094,
+      0.872767,
+      0.841591,
+      0.630212,
+      0.906734,
+      0.882291
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Dement ~After Legend~",
+    "chart_type": "single",
+    "level": 23
+   },
+   "expected": {
+    "song": "Dement ~After Legend~",
+    "level": 23,
+    "chart_type": "halfdouble",
+    "raw": "Af.erLegend | Lweww-zMV | AfterLegend"
+   }
+  },
+  {
+   "key": "785282278",
+   "native": {
+    "titles": [
+     {
+      "raw": "BAZOR",
+      "conf": 0.0445532
+     },
+     {
+      "raw": "IR",
+      "conf": 0.0303911
+     },
+     {
+      "raw": "R",
+      "conf": 0.0268107
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.150804,
+    "level_digits": [
+     1,
+     1
+    ],
+    "level_scores": [
+     [
+      0.598469,
+      0.996259,
+      0.775376,
+      0.791698,
+      0.741917,
+      0.79839,
+      0.779771,
+      0.720773,
+      0.860735,
+      0.853629
+     ],
+     [
+      0.629914,
+      0.841794,
+      0.838394,
+      0.820544,
+      0.780351,
+      0.829528,
+      0.835195,
+      0.804514,
+      0.813471,
+      0.825013
+     ]
+    ]
+   },
+   "gt": {
+    "song": "BLAZOR",
+    "chart_type": "single",
+    "level": 18
+   },
+   "expected": {
+    "song": "BLAZOR",
+    "level": 11,
+    "chart_type": "halfdouble",
+    "raw": "BAZOR | IR | R"
+   }
+  },
+  {
+   "key": "787574282",
+   "native": {
+    "titles": [
+     {
+      "raw": "Ultimatum",
+      "conf": 0.159311
+     },
+     {
+      "raw": "Ubtimatum",
+      "conf": 0.0111706
+     },
+     {
+      "raw": "\"L\"O*",
+      "conf": 0.00938085
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.0667453,
+    "level_digits": [
+     2,
+     1
+    ],
+    "level_scores": [
+     [
+      0.427286,
+      0.874727,
+      0.978993,
+      0.706546,
+      0.654936,
+      0.763453,
+      0.793105,
+      0.691467,
+      0.753199,
+      0.8532
+     ],
+     [
+      0.632301,
+      0.988965,
+      0.830767,
+      0.850693,
+      0.901625,
+      0.841957,
+      0.876089,
+      0.926498,
+      0.92983,
+      0.884751
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Ultimatum",
+    "chart_type": "single",
+    "level": 21
+   },
+   "expected": {
+    "song": "Ultimatum",
+    "level": 21,
+    "chart_type": null,
+    "raw": "Ultimatum | Ubtimatum | \"L\"O*"
+   }
+  },
+  {
+   "key": "788562783",
+   "native": {
+    "titles": [
+     {
+      "raw": "OVERNisHTFLDW88",
+      "conf": 0.219684
+     },
+     {
+      "raw": "U\"",
+      "conf": 0.0441279
+     },
+     {
+      "raw": "M1AXnnNznn",
+      "conf": 0.0241306
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.404784,
+    "level_digits": [
+     1,
+     9
+    ],
+    "level_scores": [
+     [
+      0.56479,
+      0.999906,
+      0.775551,
+      0.754385,
+      0.753342,
+      0.761985,
+      0.777797,
+      0.737345,
+      0.843016,
+      0.830729
+     ],
+     [
+      0.770467,
+      0.838388,
+      0.846632,
+      0.880757,
+      0.785352,
+      0.877123,
+      0.862583,
+      0.741584,
+      0.848903,
+      0.938772
+     ]
+    ]
+   },
+   "gt": {
+    "song": "OVERNIGHT FLOWER",
+    "chart_type": "single",
+    "level": 19
+   },
+   "expected": {
+    "song": "OVERNIGHT FLOWER",
+    "level": 19,
+    "chart_type": "single",
+    "raw": "OVERNisHTFLDW88 | U\" | M1AXnnNznn"
+   }
+  },
+  {
+   "key": "790434555",
+   "native": {
+    "titles": [
+     {
+      "raw": "peeo",
+      "conf": 0.00916508
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.979886,
+    "level_digits": [],
+    "level_scores": []
+   },
+   "gt": {
+    "song": "Appassionata",
+    "chart_type": "single",
+    "level": 22
+   },
+   "expected": {
+    "song": null,
+    "level": null,
+    "chart_type": "single",
+    "raw": "peeo"
+   }
+  },
+  {
+   "key": "791465596",
+   "native": {
+    "titles": [
+     {
+      "raw": "'Dnaglnad0:Rdci\"v",
+      "conf": 0.302154
+     },
+     {
+      "raw": "jC)PN!Bi",
+      "conf": 0.068952
+     },
+     {
+      "raw": "F>s.-",
+      "conf": 0.0569362
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.616209,
+    "level_digits": [
+     1,
+     2
+    ],
+    "level_scores": [
+     [
+      0.458849,
+      0.875677,
+      0.64401,
+      0.687554,
+      0.589539,
+      0.664252,
+      0.681209,
+      0.531544,
+      0.697312,
+      0.659451
+     ],
+     [
+      0.723848,
+      0.577562,
+      0.739229,
+      0.664571,
+      0.577888,
+      0.62554,
+      0.664024,
+      0.515806,
+      0.724463,
+      0.728306
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Imaginarized City",
+    "chart_type": "single",
+    "level": 19
+   },
+   "expected": {
+    "song": "D",
+    "level": 12,
+    "chart_type": "halfdouble",
+    "raw": "'Dnaglnad0:Rdci\"v | jC)PN!Bi | F>s.-"
+   }
+  },
+  {
+   "key": "791942785",
+   "native": {
+    "titles": [
+     {
+      "raw": ":RadEnd",
+      "conf": 0.266104
+     },
+     {
+      "raw": "MIEAmUi",
+      "conf": 0.00932169
+     },
+     {
+      "raw": "Z6?1**",
+      "conf": 0.00808993
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.8833,
+    "level_digits": [],
+    "level_scores": []
+   },
+   "gt": {
+    "song": "Dead End",
+    "chart_type": "single",
+    "level": 21
+   },
+   "expected": {
+    "song": "Dead End",
+    "level": null,
+    "chart_type": "single",
+    "raw": ":RadEnd | MIEAmUi | Z6?1**"
+   }
+  },
+  {
+   "key": "791974941",
+   "native": {
+    "titles": [
+     {
+      "raw": "'''\"NwN",
+      "conf": 0.0416248
+     },
+     {
+      "raw": "BLAZ:R",
+      "conf": 0.0175601
+     },
+     {
+      "raw": "D))(mV)",
+      "conf": 0.0105594
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.213748,
+    "level_digits": [
+     2,
+     0
+    ],
+    "level_scores": [
+     [
+      0.879015,
+      0.805631,
+      0.992719,
+      0.91411,
+      0.747581,
+      0.841948,
+      0.848556,
+      0.74048,
+      0.917158,
+      0.89647
+     ],
+     [
+      0.73173,
+      0.642162,
+      0.702983,
+      0.694888,
+      0.618967,
+      0.650952,
+      0.647928,
+      0.719053,
+      0.679195,
+      0.720029
+     ]
+    ]
+   },
+   "gt": {
+    "song": "BLAZOR",
+    "chart_type": "single",
+    "level": 20
+   },
+   "expected": {
+    "song": null,
+    "level": 20,
+    "chart_type": "halfdouble",
+    "raw": "'''\"NwN | BLAZ:R | D))(mV)"
+   }
+  },
+  {
+   "key": "792441257",
+   "native": {
+    "titles": [
+     {
+      "raw": "W-UzDM",
+      "conf": 0.178461
+     },
+     {
+      "raw": "IBooHB0",
+      "conf": 0.016404
+     },
+     {
+      "raw": "UoPowerEuiCCIo8nr)CG",
+      "conf": 0.00882421
+     }
+    ],
+    "chart_type": "coop",
+    "chart_conf": 0.776062,
+    "level_digits": [
+     2,
+     1
+    ],
+    "level_scores": [
+     [
+      0.722031,
+      0.856802,
+      0.91284,
+      0.865419,
+      0.801241,
+      0.851066,
+      0.819625,
+      0.773855,
+      0.837638,
+      0.871951
+     ],
+     [
+      0.25378,
+      0.718584,
+      0.686753,
+      0.653136,
+      0.595334,
+      0.526545,
+      0.626016,
+      0.636431,
+      0.599254,
+      0.700995
+     ]
+    ]
+   },
+   "gt": {
+    "song": "BSPower Explosion",
+    "chart_type": "coop",
+    "level": null
+   },
+   "expected": {
+    "song": null,
+    "level": 21,
+    "chart_type": "coop",
+    "raw": "W-UzDM | IBooHB0 | UoPowerEuiCCIo8nr)CG"
+   }
+  },
+  {
+   "key": "793212531",
+   "native": {
+    "titles": [
+     {
+      "raw": "CanonD",
+      "conf": 0.0054525
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 1,
+    "level_digits": [
+     2,
+     1
+    ],
+    "level_scores": [
+     [
+      0.650254,
+      0.867319,
+      0.972048,
+      0.834125,
+      0.797639,
+      0.884175,
+      0.845814,
+      0.789808,
+      0.847072,
+      0.897718
+     ],
+     [
+      0.560653,
+      0.982237,
+      0.811314,
+      0.923139,
+      0.906017,
+      0.778303,
+      0.804547,
+      0.944057,
+      0.883211,
+      0.850632
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Canon D",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": "Canon D",
+    "level": 23,
+    "chart_type": "double",
+    "raw": "CanonD"
+   }
+  },
+  {
+   "key": "793212617",
+   "native": {
+    "titles": [
+     {
+      "raw": "CROssRAY",
+      "conf": 0.0891199
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 1,
+    "level_digits": [
+     2,
+     4
+    ],
+    "level_scores": [
+     [
+      0.871324,
+      0.756423,
+      0.997018,
+      0.911703,
+      0.726514,
+      0.849832,
+      0.859036,
+      0.68046,
+      0.923046,
+      0.877818
+     ],
+     [
+      0.614507,
+      0.63499,
+      0.694716,
+      0.684029,
+      0.806702,
+      0.633343,
+      0.615978,
+      0.446915,
+      0.687427,
+      0.66787
+     ]
+    ]
+   },
+   "gt": {
+    "song": "CROSS RAY (feat. 月下Lia)",
+    "chart_type": "double",
+    "level": 24
+   },
+   "expected": {
+    "song": "CROSS RAY (feat. 月下Lia)",
+    "level": 24,
+    "chart_type": "double",
+    "raw": "CROssRAY"
+   }
+  },
+  {
+   "key": "793867723",
+   "native": {
+    "titles": [
+     {
+      "raw": "GhostBloodyTrain",
+      "conf": 0.377411
+     },
+     {
+      "raw": "zw.wl*IJ",
+      "conf": 0.008942
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.320552,
+    "level_digits": [
+     1,
+     8
+    ],
+    "level_scores": [
+     [
+      0.604357,
+      0.984158,
+      0.766192,
+      0.792156,
+      0.762145,
+      0.792764,
+      0.784641,
+      0.729265,
+      0.866957,
+      0.854706
+     ],
+     [
+      0.937587,
+      0.747885,
+      0.941249,
+      0.933546,
+      0.783124,
+      0.91075,
+      0.942451,
+      0.659015,
+      0.99991,
+      0.93878
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Ghost Bloody Train",
+    "chart_type": "single",
+    "level": 18
+   },
+   "expected": {
+    "song": "Ghost Bloody Train",
+    "level": 18,
+    "chart_type": "single",
+    "raw": "GhostBloodyTrain | zw.wl*IJ"
+   }
+  },
+  {
+   "key": "794385429",
+   "native": {
+    "titles": [
+     {
+      "raw": "%tLav",
+      "conf": 0.204044
+     },
+     {
+      "raw": "Paradoxx",
+      "conf": 0.171802
+     },
+     {
+      "raw": "\"'B,",
+      "conf": 0.0761242
+     }
+    ],
+    "chart_type": "halfdouble",
+    "chart_conf": 0.375809,
+    "level_digits": [],
+    "level_scores": []
+   },
+   "gt": {
+    "song": "Paradoxx",
+    "chart_type": "single",
+    "level": 21
+   },
+   "expected": {
+    "song": "Paradoxx",
+    "level": null,
+    "chart_type": "halfdouble",
+    "raw": "%tLav | Paradoxx | \"'B,"
+   }
+  },
+  {
+   "key": "798263716",
+   "native": {
+    "titles": [
+     {
+      "raw": "BhontBlCodyTraIB",
+      "conf": 0.261632
+     },
+     {
+      "raw": "GhostBloodyTraln",
+      "conf": 0.006125
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.840448,
+    "level_digits": [
+     3,
+     3
+    ],
+    "level_scores": [
+     [
+      0.708572,
+      0.783905,
+      0.865796,
+      0.902672,
+      0.754033,
+      0.743428,
+      0.780036,
+      0.725397,
+      0.79506,
+      0.783841
+     ],
+     [
+      0.636412,
+      0.824336,
+      0.778822,
+      0.999602,
+      0.808183,
+      0.815478,
+      0.831459,
+      0.786505,
+      0.866473,
+      0.876858
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Ghost Bloody Train",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": "Ghost Bloody Train",
+    "level": 23,
+    "chart_type": "double",
+    "raw": "BhontBlCodyTraIB | GhostBloodyTraln"
+   }
+  },
+  {
+   "key": "798894701",
+   "native": {
+    "titles": [
+     {
+      "raw": "MAXnnIsn",
+      "conf": 0.0429894
+     },
+     {
+      "raw": "BxtromeMp8nEsEhooIzstperiodfeat",
+      "conf": 0.023513
+     },
+     {
+      "raw": "Nanahira",
+      "conf": 0.00839231
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.936079,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.889862,
+      0.754068,
+      0.991772,
+      0.931097,
+      0.745711,
+      0.868802,
+      0.875746,
+      0.697482,
+      0.933404,
+      0.895813
+     ],
+     [
+      0.869119,
+      0.773015,
+      0.926099,
+      0.999841,
+      0.724563,
+      0.898865,
+      0.865843,
+      0.679777,
+      0.931024,
+      0.905704
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Extreme Music School 1st period feat. Nanahira",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": null,
+    "level": 23,
+    "chart_type": "double",
+    "raw": "MAXnnIsn | BxtromeMp8nEsEhooIzstperiodfeat | Nanahira"
+   }
+  },
+  {
+   "key": "799143935",
+   "native": {
+    "titles": [
+     {
+      "raw": "EnjoyTheShow",
+      "conf": 0.0364523
+     },
+     {
+      "raw": "pYJz#nO",
+      "conf": 0.00530855
+     },
+     {
+      "raw": "GaNO",
+      "conf": 0.0051142
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.867732,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.887378,
+      0.759628,
+      0.994172,
+      0.925813,
+      0.74529,
+      0.863439,
+      0.869314,
+      0.692939,
+      0.93282,
+      0.890737
+     ],
+     [
+      0.856288,
+      0.790989,
+      0.918453,
+      0.985961,
+      0.74129,
+      0.888078,
+      0.853144,
+      0.683386,
+      0.917802,
+      0.911853
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Enjoy The Show",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": "Enjoy The Show",
+    "level": 23,
+    "chart_type": "double",
+    "raw": "EnjoyTheShow | pYJz#nO | GaNO"
+   }
+  },
+  {
+   "key": "799202570",
+   "native": {
+    "titles": [
+     {
+      "raw": "O2-S",
+      "conf": 0.014494
+     },
+     {
+      "raw": "wZ9.-",
+      "conf": 0.00604036
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.774611,
+    "level_digits": [
+     8,
+     1
+    ],
+    "level_scores": [
+     [
+      0.648351,
+      0.742553,
+      0.722342,
+      0.74725,
+      0.731858,
+      0.706629,
+      0.746999,
+      0.7298,
+      0.769378,
+      0.732984
+     ],
+     [
+      0.327803,
+      0.661081,
+      0.555354,
+      0.557985,
+      0.42666,
+      0.575568,
+      0.637329,
+      0.448543,
+      0.591764,
+      0.631519
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Blazing",
+    "chart_type": "halfdouble",
+    "level": 23
+   },
+   "expected": {
+    "song": null,
+    "level": null,
+    "chart_type": "single",
+    "raw": "O2-S | wZ9.-"
+   }
+  },
+  {
+   "key": "799264471",
+   "native": {
+    "titles": [
+     {
+      "raw": "Dpeea21",
+      "conf": 0.00781672
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.636659,
+    "level_digits": [
+     2,
+     0
+    ],
+    "level_scores": [
+     [
+      0.879308,
+      0.744609,
+      0.980127,
+      0.907363,
+      0.751744,
+      0.850699,
+      0.870351,
+      0.691201,
+      0.926427,
+      0.887461
+     ],
+     [
+      0.925851,
+      0.630747,
+      0.820114,
+      0.804045,
+      0.692538,
+      0.792434,
+      0.839562,
+      0.577047,
+      0.878631,
+      0.845639
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Mission Possible",
+    "chart_type": null,
+    "level": null
+   },
+   "expected": {
+    "song": null,
+    "level": 20,
+    "chart_type": "single",
+    "raw": "Dpeea21"
+   }
+  },
+  {
+   "key": "799603098",
+   "native": {
+    "titles": [
+     {
+      "raw": "gAZDR",
+      "conf": 0.349679
+     },
+     {
+      "raw": "Od",
+      "conf": 0.0326966
+     },
+     {
+      "raw": "6PU(,",
+      "conf": 0.0218921
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.949112,
+    "level_digits": [
+     2,
+     4
+    ],
+    "level_scores": [
+     [
+      0.870704,
+      0.804161,
+      0.990039,
+      0.929518,
+      0.751818,
+      0.853568,
+      0.850704,
+      0.737613,
+      0.914034,
+      0.911855
+     ],
+     [
+      0.720792,
+      0.783688,
+      0.806553,
+      0.722423,
+      0.999886,
+      0.741848,
+      0.721556,
+      0.508191,
+      0.774867,
+      0.815864
+     ]
+    ]
+   },
+   "gt": {
+    "song": "BLAZOR",
+    "chart_type": "double",
+    "level": 24
+   },
+   "expected": {
+    "song": null,
+    "level": 24,
+    "chart_type": "double",
+    "raw": "gAZDR | Od | 6PU(,"
+   }
+  },
+  {
+   "key": "799676852",
+   "native": {
+    "titles": [
+     {
+      "raw": "GhostBloodyTrain",
+      "conf": 0.252351
+     },
+     {
+      "raw": ".zX",
+      "conf": 0.0091944
+     },
+     {
+      "raw": "cAX-S-XUUh",
+      "conf": 0.00632684
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.962738,
+    "level_digits": [
+     2,
+     1
+    ],
+    "level_scores": [
+     [
+      0.865169,
+      0.786284,
+      0.988275,
+      0.920082,
+      0.735085,
+      0.861267,
+      0.858646,
+      0.714778,
+      0.922803,
+      0.904662
+     ],
+     [
+      0.533137,
+      0.992651,
+      0.766019,
+      0.757385,
+      0.739809,
+      0.776399,
+      0.806752,
+      0.75484,
+      0.861298,
+      0.860616
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Ghost Bloody Train",
+    "chart_type": "single",
+    "level": 21
+   },
+   "expected": {
+    "song": "Ghost Bloody Train",
+    "level": 21,
+    "chart_type": "single",
+    "raw": "GhostBloodyTrain | .zX | cAX-S-XUUh"
+   }
+  },
+  {
+   "key": "799724591",
+   "native": {
+    "titles": [
+     {
+      "raw": "P\"\"'!O-Bf",
+      "conf": 0.313053
+     },
+     {
+      "raw": "yOa1~d",
+      "conf": 0.013745
+     },
+     {
+      "raw": "GhostSO",
+      "conf": 0.0120555
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.998453,
+    "level_digits": [
+     2,
+     1
+    ],
+    "level_scores": [
+     [
+      0.834453,
+      0.776951,
+      0.983621,
+      0.881871,
+      0.736945,
+      0.833837,
+      0.854779,
+      0.722475,
+      0.885697,
+      0.883478
+     ],
+     [
+      0.399922,
+      0.869464,
+      0.743618,
+      0.733727,
+      0.65689,
+      0.703675,
+      0.728473,
+      0.692569,
+      0.740616,
+      0.760842
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Ghost Bloody Train",
+    "chart_type": "single",
+    "level": 21
+   },
+   "expected": {
+    "song": null,
+    "level": 21,
+    "chart_type": "single",
+    "raw": "P\"\"'!O-Bf | yOa1~d | GhostSO"
+   }
+  },
+  {
+   "key": "799770527",
+   "native": {
+    "titles": [
+     {
+      "raw": "imaginZrizedcity",
+      "conf": 0.324821
+     },
+     {
+      "raw": "N'3XQA",
+      "conf": 0.0110979
+     },
+     {
+      "raw": "S!",
+      "conf": 0.0106708
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.747794,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.869698,
+      0.793377,
+      0.991622,
+      0.92779,
+      0.740669,
+      0.862045,
+      0.866017,
+      0.723197,
+      0.929109,
+      0.911023
+     ],
+     [
+      0.799197,
+      0.810102,
+      0.882098,
+      0.9372,
+      0.763124,
+      0.823481,
+      0.78694,
+      0.742644,
+      0.872708,
+      0.892904
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Imaginarized City",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": "Imaginarized City",
+    "level": 23,
+    "chart_type": "double",
+    "raw": "imaginZrizedcity | N'3XQA | S!"
+   }
+  },
+  {
+   "key": "799972293",
+   "native": {
+    "titles": [
+     {
+      "raw": "*'!zRrjsPY",
+      "conf": 0.0395138
+     },
+     {
+      "raw": "S!eTupi:yrMLcrpEeibStN",
+      "conf": 0.0240015
+     },
+     {
+      "raw": "!A?!b)!M?",
+      "conf": 0.0090528
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.988269,
+    "level_digits": [
+     2,
+     2
+    ],
+    "level_scores": [
+     [
+      0.861979,
+      0.773842,
+      0.995887,
+      0.894405,
+      0.71777,
+      0.837041,
+      0.845859,
+      0.704956,
+      0.907431,
+      0.867535
+     ],
+     [
+      0.842062,
+      0.815197,
+      0.952654,
+      0.896308,
+      0.755533,
+      0.811383,
+      0.822335,
+      0.744998,
+      0.895911,
+      0.886088
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Rise Up (feat. Miori Celesta)",
+    "chart_type": "single",
+    "level": 22
+   },
+   "expected": {
+    "song": null,
+    "level": 22,
+    "chart_type": "single",
+    "raw": "*'!zRrjsPY | S!eTupi:yrMLcrpEeibStN | !A?!b)!M?"
+   }
+  },
+  {
+   "key": "800259601",
+   "native": {
+    "titles": [
+     {
+      "raw": "weddlngCrashers",
+      "conf": 0.462551
+     },
+     {
+      "raw": "OZ1S-",
+      "conf": 0.0284795
+     },
+     {
+      "raw": "\"0,L",
+      "conf": 0.0220296
+     }
+    ],
+    "chart_type": "double",
+    "chart_conf": 0.905487,
+    "level_digits": [
+     2,
+     3
+    ],
+    "level_scores": [
+     [
+      0.808417,
+      0.770069,
+      0.932153,
+      0.870498,
+      0.796989,
+      0.796809,
+      0.791673,
+      0.664791,
+      0.870947,
+      0.857506
+     ],
+     [
+      0.86108,
+      0.787638,
+      0.925472,
+      0.999883,
+      0.737668,
+      0.899881,
+      0.857136,
+      0.682253,
+      0.929813,
+      0.914592
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Wedding Crashers",
+    "chart_type": "double",
+    "level": 23
+   },
+   "expected": {
+    "song": "Wedding Crashers",
+    "level": 23,
+    "chart_type": "double",
+    "raw": "weddlngCrashers | OZ1S- | \"0,L"
+   }
+  },
+  {
+   "key": "800945526",
+   "native": {
+    "titles": [
+     {
+      "raw": "TheLastRebel!ion",
+      "conf": 0.178229
+     },
+     {
+      "raw": "exee\"\"",
+      "conf": 0.0109926
+     },
+     {
+      "raw": "4IitxNHAmAmBOa",
+      "conf": 0.00852531
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.649522,
+    "level_digits": [
+     2,
+     1
+    ],
+    "level_scores": [
+     [
+      0.694545,
+      0.674488,
+      0.699218,
+      0.66706,
+      0.696126,
+      0.671519,
+      0.683678,
+      0.368338,
+      0.68529,
+      0.688201
+     ],
+     [
+      0.640547,
+      0.899393,
+      0.724576,
+      0.841601,
+      0.692971,
+      0.775157,
+      0.796533,
+      0.731996,
+      0.854987,
+      0.831081
+     ]
+    ]
+   },
+   "gt": {
+    "song": "The Last Rebellion",
+    "chart_type": "single",
+    "level": 21
+   },
+   "expected": {
+    "song": "The Last Rebellion",
+    "level": 21,
+    "chart_type": "single",
+    "raw": "TheLastRebel!ion | exee\"\" | 4IitxNHAmAmBOa"
+   }
+  },
+  {
+   "key": "image",
+   "native": {
+    "titles": [
+     {
+      "raw": "P\"\"'!O-B'",
+      "conf": 0.309478
+     },
+     {
+      "raw": "Ml%N~",
+      "conf": 0.0132053
+     },
+     {
+      "raw": "GhostBO",
+      "conf": 0.0119152
+     }
+    ],
+    "chart_type": "single",
+    "chart_conf": 0.998467,
+    "level_digits": [
+     2,
+     1
+    ],
+    "level_scores": [
+     [
+      0.83399,
+      0.775948,
+      0.984429,
+      0.882049,
+      0.736385,
+      0.834805,
+      0.855478,
+      0.723277,
+      0.884865,
+      0.883786
+     ],
+     [
+      0.437886,
+      0.91706,
+      0.763615,
+      0.74944,
+      0.67564,
+      0.722599,
+      0.740403,
+      0.71486,
+      0.756839,
+      0.780181
+     ]
+    ]
+   },
+   "gt": {
+    "song": "Ghost Bloody Train",
+    "chart_type": "single",
+    "level": 21
+   },
+   "expected": {
+    "song": null,
+    "level": 21,
+    "chart_type": "single",
+    "raw": "P\"\"'!O-B' | Ml%N~ | GhostBO"
+   }
+  }
+ ]
+}

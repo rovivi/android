@@ -11,6 +11,31 @@
 
 namespace piu {
 
+float median(std::vector<float> v) {
+  if (v.empty()) return 0.f;
+  const size_t n = v.size(), h = n / 2;
+  std::nth_element(v.begin(), v.begin() + h, v.end());
+  const float hi = v[h];
+  if (n % 2) return hi;
+  const float lo = *std::max_element(v.begin(), v.begin() + h);
+  return 0.5f * (lo + hi);
+}
+
+cv::Mat discMask(int H, int W, float r) {
+  cv::Mat m(H, W, CV_8U);
+  const double cy = (H - 1) / 2.0, cx = (W - 1) / 2.0;
+  const double ry = std::max(H / 2.0, 1.0), rx = std::max(W / 2.0, 1.0);
+  for (int y = 0; y < H; ++y) {
+    uchar* row = m.ptr<uchar>(y);
+    const double dy = (y - cy) / ry;
+    for (int x = 0; x < W; ++x) {
+      const double dx = (x - cx) / rx;
+      row[x] = (dy * dy + dx * dx <= double(r) * r) ? 255 : 0;
+    }
+  }
+  return m;
+}
+
 cv::Mat cropBox(const cv::Mat& img, const Box& b, float pad, float padX) {
   const float px = (padX < 0.f ? pad : padX);
   const int bw = b.x2 - b.x1, bh = b.y2 - b.y1;
@@ -25,7 +50,7 @@ cv::Mat cropBox(const cv::Mat& img, const Box& b, float pad, float padX) {
 static Glyph normGlyph(const cv::Mat& bin, const cv::Rect& r) {
   cv::Mat roi = bin(r);
   const float ar = float(r.width) / std::max(r.height, 1);
-  const int tw = std::max(1, std::min(GLYPH_W, int(std::lround(GLYPH_H * ar))));
+  const int tw = std::max(1, std::min(GLYPH_W, pyRound(double(GLYPH_H) * ar)));
   cv::Mat small;
   cv::resize(roi, small, cv::Size(tw, GLYPH_H), 0, 0, cv::INTER_AREA);
   cv::Mat out = cv::Mat::zeros(GLYPH_H, GLYPH_W, CV_8U);
@@ -111,12 +136,7 @@ std::vector<Glyph> segmentBadge(const cv::Mat& roi, int wantN) {
   // como un arco que forceN parte en dos falsos dígitos. Filtrarlo por relleno
   // de la caja NO sirve (un `1` es tan hueco como un arco); enmascarar el disco
   // interior sí: los dígitos viven adentro, el borde por definición no.
-  const int H = m.rows, W = m.cols;
-  cv::Mat disc = cv::Mat::zeros(H, W, CV_8U);
-  cv::ellipse(disc, cv::Point((W - 1) / 2, (H - 1) / 2),
-              cv::Size(int(W / 2 * BADGE_INNER_R), int(H / 2 * BADGE_INNER_R)),
-              0, 0, 360, cv::Scalar(255), -1);
-  m &= disc;
+  m &= discMask(m.rows, m.cols, BADGE_INNER_R);
 
   cv::Mat labels, stats, cent;
   const int n = cv::connectedComponentsWithStats(m, labels, stats, cent, 8);

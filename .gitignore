@@ -20,3 +20,8 @@ local.properties
 # OS
 .DS_Store
 Thumbs.db
+
+# prebuilts Linux para el CLI de host (tools/host/fetch.sh)
+third_party/host/
+build_host/
+.vscode/

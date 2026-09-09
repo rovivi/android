@@ -27,12 +27,7 @@ bool classifyChartType(const cv::Mat& roi, std::string* out, float* conf) {
   // pantalla, que en el layout Phoenix es azul. Con la caja floja de YOLO esas
   // esquinas ganaban el voto y 39 de 84 bolitas salían "halfdouble".
   // Restringir el voto al disco inscrito lo arregla (0.500 -> 0.833).
-  const int H = mask.rows, W = mask.cols;
-  cv::Mat disc = cv::Mat::zeros(H, W, CV_8U);
-  cv::ellipse(disc, cv::Point((W - 1) / 2, (H - 1) / 2),
-              cv::Size(int(W / 2 * DISC_R), int(H / 2 * DISC_R)),
-              0, 0, 360, cv::Scalar(255), -1);
-  mask &= disc;
+  mask &= discMask(mask.rows, mask.cols, DISC_R);
 
   const int total = cv::countNonZero(mask);
   if (total < 20) return false;

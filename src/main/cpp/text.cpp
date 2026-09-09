@@ -33,10 +33,9 @@ static std::vector<cv::Rect> mergeByX(std::vector<cv::Rect> b, float overlap = 0
 std::vector<cv::Rect> dominantLine(std::vector<cv::Rect> b) {
   if (b.size() < 3) return b;
   std::sort(b.begin(), b.end(), [](const cv::Rect& a, const cv::Rect& c) { return a.x < c.x; });
-  std::vector<int> hs;
-  for (const auto& r : b) hs.push_back(r.height);
-  std::nth_element(hs.begin(), hs.begin() + hs.size() / 2, hs.end());
-  const float ref = float(hs[hs.size() / 2]);
+  std::vector<float> hs;
+  for (const auto& r : b) hs.push_back(float(r.height));
+  const float ref = median(hs);
   std::vector<cv::Rect> keep;
   for (const auto& r : b)
     if (std::abs(r.height - ref) <= DOM_H_TOL * ref) keep.push_back(r);
@@ -45,13 +44,9 @@ std::vector<cv::Rect> dominantLine(std::vector<cv::Rect> b) {
   std::vector<int> gaps;
   for (size_t i = 0; i + 1 < keep.size(); ++i)
     gaps.push_back(keep[i + 1].x - (keep[i].x + keep[i].width));
-  std::vector<int> pos;
-  for (int g : gaps) if (g >= 0) pos.push_back(g);
-  float med = 0.f;
-  if (!pos.empty()) {
-    std::nth_element(pos.begin(), pos.begin() + pos.size() / 2, pos.end());
-    med = float(pos[pos.size() / 2]);
-  }
+  std::vector<float> pos;
+  for (int g : gaps) if (g >= 0) pos.push_back(float(g));
+  const float med = median(pos);
   const float limit = std::max(med * DOM_GAP_MULT, 0.9f * ref);
 
   std::vector<std::vector<cv::Rect>> runs{{keep[0]}};
@@ -104,7 +99,7 @@ cv::Mat focusBand(const cv::Mat& roi) {
 // la banda cruza el recorte en diagonal, así que come trazo además de fondo.
 static void variants(const cv::Mat& gray, std::vector<cv::Mat>* out) {
   out->push_back(gray);
-  const int k = std::max(3, (int(std::lround(0.55 * gray.rows)) | 1));
+  const int k = std::max(3, (pyRound(0.55 * gray.rows) | 1));
   cv::Mat th;
   cv::morphologyEx(gray, th, cv::MORPH_TOPHAT,
                    cv::getStructuringElement(cv::MORPH_ELLIPSE, {k, k}));
@@ -135,13 +130,13 @@ static float percentile(const int (&h)[256], size_t n, float p) {
 
 static Glyph normInLine(const cv::Mat& bin, const cv::Rect& r, int y0, int lineH) {
   cv::Mat roi = bin(r);
-  const int gh = std::max(1, int(std::lround(float(GLYPH_H) * r.height / lineH)));
+  const int gh = std::max(1, pyRound(double(GLYPH_H) * r.height / lineH));
   const int gw = std::max(1, std::min(GLYPH_W,
-      int(std::lround(float(gh) * r.width / std::max(r.height, 1)))));
+      pyRound(double(gh) * r.width / std::max(r.height, 1))));
   cv::Mat small;
   cv::resize(roi, small, cv::Size(gw, gh), 0, 0, cv::INTER_AREA);
   cv::Mat out = cv::Mat::zeros(GLYPH_H, GLYPH_W, CV_8U);
-  int top = int(std::lround(float(GLYPH_H) * (r.y - y0) / lineH));
+  int top = pyRound(double(GLYPH_H) * (r.y - y0) / lineH);
   top = std::max(0, std::min(GLYPH_H - gh, top));
   small.copyTo(out(cv::Rect((GLYPH_W - gw) / 2, top, gw, gh)));
   Glyph gl;

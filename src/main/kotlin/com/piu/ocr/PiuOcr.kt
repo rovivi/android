@@ -47,7 +47,29 @@ class PiuOcr private constructor(
         // fallaban en lockPixels y volvían vacíos en silencio.
         val bmp = if (bitmap.config == Bitmap.Config.ARGB_8888 && !isHardware(bitmap)) bitmap
                   else bitmap.copy(Bitmap.Config.ARGB_8888, false)
-        val j = JSONObject(nativeRead(handle, bmp))
+        return interpret(nativeRead(handle, bmp), matcher)
+    }
+
+    /** Idempotente: un segundo close() era un double free en el .so. */
+    @Synchronized
+    override fun close() {
+        if (handle != 0L) { nativeDestroy(handle); handle = 0L }
+    }
+
+    private fun isHardware(b: Bitmap) =
+        Build.VERSION.SDK_INT >= 26 && b.config == Bitmap.Config.HARDWARE
+
+    companion object {
+        private var loaded = false
+
+    /**
+     * Interpreta el JSON del .so: gates y cruce con el catálogo. Es una
+     * función pura (sin Context ni Bitmap) para que el test de paridad
+     * (tools/parity) la corra en la JVM sobre salidas grabadas del CLI.
+     */
+    @JvmStatic
+    internal fun interpret(nativeJson: String, matcher: SongMatcher): Reading {
+        val j = JSONObject(nativeJson)
 
         // chart_type primero: acota qué canciones son posibles.
         val ctRaw = j.optString("chart_type").ifEmpty { null }
@@ -83,11 +105,12 @@ class PiuOcr private constructor(
 
         // Con la canción resuelta el catálogo dice qué niveles son legales, y
         // eso reordena los dígitos leídos en vez de solo aceptar el argmax.
-        val level = readLevel(j, song.value, chart.value)
+        val level = readLevel(j, song.value, chart.value, matcher)
         return Reading(song, level, chart, raws.joinToString(" | "))
     }
 
-    private fun readLevel(j: JSONObject, song: String?, chartType: String?): Field<Int> {
+    private fun readLevel(j: JSONObject, song: String?, chartType: String?,
+                          matcher: SongMatcher): Field<Int> {
         val sc = j.optJSONArray("level_scores") ?: return Field(null, 0f, "sin_glifos")
         if (sc.length() == 0) return Field(null, 0f, "sin_glifos")
         val legal = song?.let { matcher.levelsFor(it, chartType) }.orEmpty()
@@ -96,7 +119,9 @@ class PiuOcr private constructor(
             val d = j.optJSONArray("level_digits") ?: return Field(null, 0f, "sin_glifos")
             val v = (0 until d.length()).joinToString("") { d.getInt(it).toString() }
                 .toIntOrNull() ?: return Field(null, 0f, "no_numerico")
-            return Field(v, 0f, if (v in 1..28) null else "fuera_de_rango")
+            // value null cuando hay reason, como en canción y chart_type: un
+            // 81 con reason="fuera_de_rango" igual terminaba en la base.
+            return if (v in 1..28) Field(v, 0f, null) else Field(null, 0f, "fuera_de_rango")
         }
         val scored = legal.map { cand ->
             cand to cand.toString().withIndex().sumOf { (i, ch) ->
@@ -108,17 +133,6 @@ class PiuOcr private constructor(
         return Field(scored[0].first, m.toFloat(), null)
     }
 
-    /** Idempotente: un segundo close() era un double free en el .so. */
-    @Synchronized
-    override fun close() {
-        if (handle != 0L) { nativeDestroy(handle); handle = 0L }
-    }
-
-    private fun isHardware(b: Bitmap) =
-        Build.VERSION.SDK_INT >= 26 && b.config == Bitmap.Config.HARDWARE
-
-    companion object {
-        private var loaded = false
 
         /**
          * Carga la librería nativa.

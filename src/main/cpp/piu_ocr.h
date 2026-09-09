@@ -6,6 +6,7 @@
 // Ver android/MODULO_ANDROID.md §3 antes de tocar cualquiera.
 #pragma once
 #include <opencv2/core.hpp>
+#include <cmath>
 
 namespace ncnn { class Net; }
 #include <string>
@@ -23,6 +24,21 @@ constexpr float DOM_H_TOL = 0.42f, DOM_GAP_MULT = 2.6f;
 constexpr int   BADGE_S_MAX = 90, BADGE_V_MIN = 150, BADGE_SCALE = 6;
 
 struct Box { int x1, y1, x2, y2; float conf; int cls = -1; };
+
+// round() de Python redondea el .5 al PAR (banker's); std::lround lo aleja
+// de cero. Donde el port replica un round() de Python va esto, o los glifos
+// salen un píxel distintos y el test de paridad lo marca.
+inline int pyRound(double v) {
+  const double f = std::floor(v), d = v - f;
+  if (d > 0.5) return int(f) + 1;
+  if (d < 0.5) return int(f);
+  return (int(f) % 2 == 0) ? int(f) : int(f) + 1;
+}
+// Mediana estilo numpy: promedio de los dos del medio si n es par.
+float median(std::vector<float> v);
+// Máscara elíptica inscrita en HxW con radio relativo r, con la misma fórmula
+// que el numpy de badge.py/segment.py (cv::ellipse rasteriza distinto).
+cv::Mat discMask(int H, int W, float r);
 struct Glyph { unsigned char px[GLYPH_H * GLYPH_W]; };
 
 // --- detector.cpp ------------------------------------------------------
@@ -59,6 +75,8 @@ std::vector<Glyph> segmentChars(const cv::Mat& roi, int wantN = 0);
 bool classifyChartType(const cv::Mat& roi, std::string* out, float* conf);
 
 // --- recognize.cpp -----------------------------------------------------
+// Etiqueta de plantilla -> dígito 0..9, o -1. level.bin trae code points.
+int digitOf(int label);
 class Templates {
  public:
   static Templates load(const std::string& path);   // chars.bin / level.bin
@@ -75,6 +93,22 @@ class Templates {
   std::vector<int> classes_;  // etiqueta por plantilla
   std::vector<int> uniq_;     // etiquetas distintas, ordenadas
   std::vector<int> clsIdx_;   // índice en uniq_ por plantilla (precalculado)
+};
+
+// --- pipeline.cpp ------------------------------------------------------
+// Lo que corre nativeRead, sin JNI: lo comparten el .so y el CLI de host
+// (tools/host) que alimenta el test de paridad contra el pipeline Python.
+class Engine {
+ public:
+  bool load(const std::string& assetDir);
+  // Detecta con YOLO y lee. `boxes` no nulo saltea el detector y usa esas
+  // cajas (el test de paridad las toma de dataset_v2/boxes.json).
+  std::string read(const cv::Mat& bgr, const std::vector<Box>* boxes = nullptr,
+                   std::vector<Box>* usedBoxes = nullptr) const;
+  static const char* emptyJson();
+ private:
+  Templates chars_, level_;
+  Detector det_;
 };
 
 }  // namespace piu

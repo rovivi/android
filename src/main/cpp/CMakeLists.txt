@@ -19,7 +19,8 @@ find_package(ncnn REQUIRED)
 set_target_properties(ncnn PROPERTIES INTERFACE_COMPILE_OPTIONS "")
 
 add_library(piuocr SHARED
-    jni_bridge.cpp detector.cpp segment.cpp text.cpp badge.cpp recognize.cpp)
+    jni_bridge.cpp pipeline.cpp detector.cpp segment.cpp text.cpp badge.cpp
+    recognize.cpp)
 target_link_libraries(piuocr ${OpenCV_LIBS} ncnn jnigraphics log)
 # -fexceptions: AGP compila con -fno-exceptions; sin esto una cv::Exception
 # cruza el JNI y aborta el proceso en vez de caer en el catch de nativeRead.

@@ -1,0 +1,380 @@
+#!/usr/bin/env python3
+"""Test de paridad: el C++ del .so contra el pipeline Python, sobre las fotos.
+
+Corre las MISMAS 58 fotos de `piu_ocr/dataset_v2` por los dos caminos y las
+compara entre sí y contra el ground truth leído a mano:
+
+  python   ResultReader.read(img, boxes)          (piu_ocr/pipeline.py)
+  nativo   piuocr_cli --box ... (mismo C++ del .so) + réplica de PiuOcr.interpret
+
+Los dos usan las mismas plantillas (build_mobile/chars.npz == chars.bin) y el
+mismo catálogo, así que cualquier diferencia es del port, no de los datos.
+
+Modos:
+  (default)   cajas de dataset_v2/boxes.json para los dos: aísla el OCR.
+  --detect    además corre el YOLO de NCNN y lo compara con las cajas de
+              PyTorch+TTA, y mide el pipeline nativo end-to-end.
+
+Salidas:
+  tabla por campo (cobertura / precisión / acierto) para python y nativo, más
+  el acuerdo nativo-vs-python; --json con el detalle por foto; --fixture
+  graba src/test/resources/parity_fixture.json para el test JVM de Kotlin
+  (ParityTest.kt), que verifica que interpret() de verdad da lo mismo que la
+  réplica de acá.
+
+Regresión: --baseline compara las métricas nativas con tools/parity/baseline.json
+y falla (exit 1) si alguna cae más de --tol. --update-baseline las graba.
+
+    piu_yolo/venv/bin/python android/tools/parity/parity.py
+    python3 android/tools/parity/parity.py --detect --fixture --baseline
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import math
+import os
+import subprocess
+import sys
+import time
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ANDROID = os.path.abspath(os.path.join(HERE, "..", ".."))
+PIU_OCR = os.path.dirname(ANDROID)                 # piu_ocr/
+ROOT = os.path.dirname(PIU_OCR)                    # python_projects/
+D2 = os.path.join(PIU_OCR, "dataset_v2")
+PHOTOS = os.path.join(PIU_OCR, "DATASET")
+MOBILE = os.path.join(PIU_OCR, "build_mobile")
+ASSETS = os.path.join(ANDROID, "src", "main", "assets", "piu_ocr")
+CLI = os.path.join(ANDROID, "build_host", "piuocr_cli")
+VENV_PY = os.path.join(ROOT, "piu_yolo", "venv", "bin", "python")
+
+CLS = {"difficulty": 0, "fullscore": 1, "rank": 2, "score": 3, "song_name": 4}
+CLS_NAME = {v: k for k, v in CLS.items()}
+
+# Mismos gates que PiuOcr.kt. Si cambian allá tienen que cambiar acá, y el
+# test JVM (ParityTest) es el que lo detecta.
+MIN_SONG_MARGIN = 0.015
+MIN_BADGE_CONF = 0.15
+MAX_SONG_BOXES = 3
+
+
+def _reexec_with_venv():
+    """cv2 vive en el venv de piu_yolo; si falta, relanzar con ese python."""
+    try:
+        import cv2  # noqa: F401
+        return
+    except ImportError:
+        pass
+    if os.path.exists(VENV_PY) and os.path.realpath(sys.executable) != os.path.realpath(VENV_PY):
+        os.execv(VENV_PY, [VENV_PY] + sys.argv)
+    sys.exit("falta cv2: correr con piu_yolo/venv/bin/python")
+
+
+_reexec_with_venv()
+import cv2  # noqa: E402
+import numpy as np  # noqa: E402
+
+sys.path.insert(0, ROOT)
+from piu_ocr.pipeline import ResultReader  # noqa: E402
+from piu_ocr.recognize import TemplateDigits  # noqa: E402
+from piu_ocr.song_match import Catalog, normalize  # noqa: E402
+
+
+# ── nativo ───────────────────────────────────────────────────────────────────
+
+def build_cli():
+    if os.path.exists(CLI):
+        return
+    host = os.path.join(ANDROID, "third_party", "host")
+    if not os.path.isdir(host) or len(os.listdir(host)) < 2:
+        subprocess.check_call([os.path.join(ANDROID, "tools", "host", "fetch.sh")])
+    bd = os.path.join(ANDROID, "build_host")
+    subprocess.check_call(["cmake", "-S", os.path.join(ANDROID, "tools", "host"),
+                           "-B", bd, "-DCMAKE_BUILD_TYPE=Release"])
+    subprocess.check_call(["cmake", "--build", bd, "-j"])
+
+
+def run_native(image, boxes=None):
+    """boxes: {clase: [{"box":[...], "conf":f}]} o None para usar el detector."""
+    cmd = [CLI, "--assets", ASSETS, image]
+    if boxes is not None:
+        for name, lst in boxes.items():
+            if name not in CLS:
+                continue
+            for b in (lst if isinstance(lst, list) else [lst]):
+                x1, y1, x2, y2 = (int(v) for v in b["box"])
+                cmd += ["--box", f"{CLS[name]},{x1},{y1},{x2},{y2},{b.get('conf', 1.0):.6f}"]
+    out = subprocess.run(cmd, capture_output=True, text=True)
+    if out.returncode != 0:
+        raise RuntimeError(f"piuocr_cli falló en {image}: {out.stderr.strip()}")
+    return json.loads(out.stdout)
+
+
+def interpret(native, catalog):
+    """Réplica 1:1 de PiuOcr.interpret (Kotlin). Cualquier divergencia entre
+    esto y Kotlin la detecta ParityTest.kt sobre el fixture."""
+    ct_raw = native.get("chart_type") or None
+    ct_conf = float(native.get("chart_conf", 0.0))
+    chart = ct_raw if (ct_raw and ct_conf >= MIN_BADGE_CONF) else None
+
+    pooled, raws = {}, []
+    for t in native.get("titles", [])[:MAX_SONG_BOXES]:
+        raw = t.get("raw", "")
+        if not raw:
+            continue
+        raws.append(raw)
+        w = math.sqrt(max(float(t.get("conf", 1.0)), 0.02))
+        for c in catalog.match(raw, chart_type=chart, topk=8):
+            sc = c["score"] * w
+            e = pooled.get(c["name"], 0.0)
+            pooled[c["name"]] = max(e, sc) + 0.15 * min(e, sc)
+    ranked = sorted(pooled.items(), key=lambda kv: -kv[1])
+    margin = ranked[0][1] - ranked[1][1] if len(ranked) > 1 else 1.0
+    song = ranked[0][0] if ranked and margin >= MIN_SONG_MARGIN else None
+
+    level = None
+    sc = native.get("level_scores") or []
+    if sc:
+        legal = [l for l in (catalog.levels_for(song, chart) if song else [])
+                 if len(str(l)) == len(sc)]
+        if legal:
+            scored = sorted(((sum(sc[i][int(ch)] for i, ch in enumerate(str(cand))), cand)
+                             for cand in legal), reverse=True)
+            level = scored[0][1]
+        else:
+            digits = "".join(str(d) for d in native.get("level_digits", []))
+            try:
+                v = int(digits)
+                level = v if 1 <= v <= 28 else None
+            except ValueError:
+                level = None
+    return {"song": song, "level": level, "chart_type": chart,
+            "raw": " | ".join(raws), "song_margin": round(margin, 4),
+            "chart_conf": round(ct_conf, 3)}
+
+
+# ── python ───────────────────────────────────────────────────────────────────
+
+def make_reader():
+    """ResultReader con LAS MISMAS plantillas que viajan en el .so."""
+    r = ResultReader(catalog=os.path.join(D2, "catalog.json"))
+    r.chars = TemplateDigits.load_packed(os.path.join(MOBILE, "chars.npz"))
+    r.level = TemplateDigits.load_packed(os.path.join(MOBILE, "level.npz"))
+    # level.npz guarda los dígitos como str; scores() indexa por int(c).
+    r.level.classes = np.array([int(c) for c in r.level.classes])
+    return r
+
+
+def run_python(reader, img, boxes):
+    out = reader.read(img, boxes)
+    return {"song": out["song"]["value"], "level": out["level"]["value"],
+            "chart_type": out["chart_type"]["value"],
+            "raw": out["song"].get("raw", ""),
+            "song_margin": out["song"].get("confidence"),
+            "chart_conf": out["chart_type"].get("confidence")}
+
+
+# ── métricas ─────────────────────────────────────────────────────────────────
+
+def iou(a, b):
+    x1, y1 = max(a[0], b[0]), max(a[1], b[1])
+    x2, y2 = min(a[2], b[2]), min(a[3], b[3])
+    inter = max(0, x2 - x1) * max(0, y2 - y1)
+    ua = (a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - inter
+    return inter / ua if ua > 0 else 0.0
+
+
+def field_metrics(rows, side, field, gt_key, eq):
+    n = cov = ok = 0
+    for r in rows:
+        gt = r["gt"].get(gt_key)
+        if gt is None:
+            continue
+        n += 1
+        v = r[side].get(field)
+        if v is not None:
+            cov += 1
+            ok += int(eq(v, gt))
+    return {"n": n, "coverage": cov / n if n else 0.0,
+            "precision": ok / cov if cov else 0.0, "accuracy": ok / n if n else 0.0}
+
+
+def agreement(rows, field):
+    same = sum(1 for r in rows if r["python"].get(field) == r["native"].get(field))
+    return same / len(rows) if rows else 0.0
+
+
+def summarize(rows, detect_rows):
+    eq_song = lambda v, g: normalize(v) == normalize(g)
+    eq = lambda v, g: v == g
+    fields = [("song", "song", eq_song), ("level", "level", eq),
+              ("chart_type", "chart_type", eq)]
+    m = {}
+    for side in ("python", "native"):
+        m[side] = {f: field_metrics(rows, side, f, g, e) for f, g, e in fields}
+    m["agreement"] = {f: agreement(rows, f) for f, _, _ in fields}
+    m["agreement"]["raw"] = agreement(rows, "raw")
+    if detect_rows:
+        m["detector"] = {}
+        for name, cid in CLS.items():
+            hits = tot = 0
+            for r in detect_rows:
+                ref = r["ref_boxes"].get(name)
+                if not ref:
+                    continue
+                tot += 1
+                best = ref[0]["box"] if isinstance(ref, list) else ref["box"]
+                det = [b for b in r["det_boxes"] if b["cls"] == cid]
+                hits += int(any(iou(b["box"], best) >= 0.5 for b in det))
+            m["detector"][name] = {"n": tot, "recall@0.5": hits / tot if tot else 0.0}
+        m["native_e2e"] = {f: field_metrics(detect_rows, "native", f, g, e)
+                           for f, g, e in fields}
+        ms = [r["ms"] for r in detect_rows]
+        m["native_ms"] = {"mean": sum(ms) / len(ms), "max": max(ms)}
+    return m
+
+
+def print_table(m):
+    def row(label, d):
+        return f"  {label:12s} n={d['n']:3d}  cob {d['coverage']:.3f}  prec {d['precision']:.3f}  acierto {d['accuracy']:.3f}"
+    for side in ("python", "native"):
+        print(f"{side} (cajas de boxes.json):")
+        for f in ("song", "level", "chart_type"):
+            print(row(f, m[side][f]))
+    print("acuerdo nativo == python:  " +
+          "  ".join(f"{k} {v:.3f}" for k, v in m["agreement"].items()))
+    if "detector" in m:
+        print("detector NCNN vs PyTorch+TTA (recall IoU>=0.5 de la mejor caja):")
+        print("  " + "  ".join(f"{k} {v['recall@0.5']:.3f}" for k, v in m["detector"].items()))
+        print("nativo end-to-end (detector + OCR + gates):")
+        for f in ("song", "level", "chart_type"):
+            print(row(f, m["native_e2e"][f]))
+        print(f"  latencia nativa (host): media {m['native_ms']['mean']:.0f} ms, "
+              f"max {m['native_ms']['max']:.0f} ms")
+
+
+def flatten(m, prefix=""):
+    out = {}
+    for k, v in m.items():
+        if isinstance(v, dict):
+            out.update(flatten(v, f"{prefix}{k}."))
+        elif isinstance(v, (int, float)):
+            out[prefix + k] = v
+    return out
+
+
+def check_baseline(m, path, tol):
+    if not os.path.exists(path):
+        print(f"sin baseline en {path}; --update-baseline para crearla")
+        return True
+    base = flatten(json.load(open(path)))
+    cur = flatten(m)
+    bad = []
+    for k, v in base.items():
+        if k.endswith(".n") or k.startswith("native_ms") or k not in cur:
+            continue
+        if cur[k] < v - tol:
+            bad.append(f"  {k}: {v:.3f} -> {cur[k]:.3f}")
+    if bad:
+        print("REGRESIÓN contra baseline:")
+        print("\n".join(bad))
+        return False
+    print("baseline OK (ninguna métrica cayó)")
+    return True
+
+
+# ── main ─────────────────────────────────────────────────────────────────────
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("--detect", action="store_true", help="correr también el YOLO nativo")
+    ap.add_argument("--json", help="detalle por foto")
+    ap.add_argument("--fixture", action="store_true",
+                    help="grabar src/test/resources/parity_fixture.json")
+    ap.add_argument("--baseline", action="store_true",
+                    help="comparar con tools/parity/baseline.json")
+    ap.add_argument("--update-baseline", action="store_true")
+    ap.add_argument("--tol", type=float, default=0.0)
+    ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--diff", action="store_true", help="listar fotos donde difieren")
+    a = ap.parse_args()
+
+    build_cli()
+    boxes = {b["key"]: b for b in json.load(open(os.path.join(D2, "boxes.json")))}
+    gt_song = json.load(open(os.path.join(D2, "gt_song.json")))
+    gt_lvl = json.load(open(os.path.join(D2, "gt_level.json")))
+    catalog = Catalog(os.path.join(D2, "catalog.json"))
+    reader = make_reader()
+
+    rows, detect_rows = [], []
+    keys = [k for k in sorted(boxes) if not k.startswith("_") and gt_song.get(k)]
+    if a.limit:
+        keys = keys[:a.limit]
+    t0 = time.time()
+    for key in keys:
+        rec = boxes[key]
+        path = os.path.join(PHOTOS, rec["file"])
+        img = cv2.imread(path)
+        if img is None:
+            continue
+        ct, lvl = (gt_lvl.get(key) or [None, None])
+        gt = {"song": gt_song[key], "chart_type": ct, "level": lvl}
+
+        nat = run_native(path, rec["boxes"])
+        row = {"key": key, "file": rec["file"], "gt": gt,
+               "python": run_python(reader, img, rec["boxes"]),
+               "native": interpret(nat["result"], catalog),
+               "native_json": nat["result"]}
+        rows.append(row)
+
+        if a.detect:
+            det = run_native(path, None)
+            detect_rows.append({"key": key, "gt": gt,
+                                "native": interpret(det["result"], catalog),
+                                "native_json": det["result"],
+                                "det_boxes": det["boxes"], "ref_boxes": rec["boxes"],
+                                "ms": det["ms"]["read"]})
+        sys.stderr.write(f"\r{len(rows)}/{len(keys)} {key}   ")
+    sys.stderr.write(f"\r{len(rows)} fotos en {time.time() - t0:.0f} s\n")
+
+    m = summarize(rows, detect_rows)
+    print_table(m)
+
+    if a.diff:
+        print("\nfotos donde nativo != python:")
+        for r in rows:
+            d = [f for f in ("song", "level", "chart_type", "raw")
+                 if r["python"].get(f) != r["native"].get(f)]
+            if d:
+                print(f"  {r['key']}: {', '.join(d)}")
+                for f in d:
+                    print(f"      {f}: py={r['python'].get(f)!r}  nat={r['native'].get(f)!r}  gt={r['gt'].get(f)!r}")
+
+    if a.json:
+        json.dump({"metrics": m, "rows": rows, "detect": detect_rows},
+                  open(a.json, "w"), indent=1, ensure_ascii=False)
+    if a.fixture:
+        fx = os.path.join(ANDROID, "src", "test", "resources", "parity_fixture.json")
+        os.makedirs(os.path.dirname(fx), exist_ok=True)
+        json.dump({
+            "_note": "generado por tools/parity/parity.py --fixture. 'expected' es la "
+                     "réplica Python de PiuOcr.interpret; ParityTest.kt exige igualdad.",
+            "rows": [{"key": r["key"], "native": r["native_json"], "gt": r["gt"],
+                      "expected": {k: r["native"][k] for k in ("song", "level", "chart_type", "raw")}}
+                     for r in rows + detect_rows],
+        }, open(fx, "w"), indent=1, ensure_ascii=False)
+        print(f"fixture: {fx} ({len(rows) + len(detect_rows)} filas)")
+
+    bp = os.path.join(HERE, "baseline.json")
+    ok = True
+    if a.update_baseline:
+        json.dump(m, open(bp, "w"), indent=1)
+        print(f"baseline grabada en {bp}")
+    elif a.baseline:
+        ok = check_baseline(m, bp, a.tol)
+    sys.exit(0 if ok else 1)
+
+
+if __name__ == "__main__":
+    main()

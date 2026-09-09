@@ -12,6 +12,14 @@
 
 namespace piu {
 
+// build_mobile.py guarda toda etiqueta de un carácter como su code point, así
+// que en level.bin el "2" es 50, no 2. Acepta las dos convenciones.
+int digitOf(int label) {
+  if (label >= 0 && label <= 9) return label;
+  if (label >= '0' && label <= '9') return label - '0';
+  return -1;
+}
+
 namespace {
 struct Header { char magic[4]; int32_t k, dim, quantized; float scale; };
 }  // namespace
@@ -131,8 +139,10 @@ void Templates::scores(const std::vector<Glyph>& gs,
     // ganen. Lo necesita el cruce con el catálogo, que reordena niveles enteros
     // y no solo acepta o rechaza el argmax.
     std::vector<float> row(10, -1.f);
-    for (int c = 0; c < pc.cols; ++c)
-      if (uniq[c] >= 0 && uniq[c] < 10) row[uniq[c]] = pc.at<float>(i, c);
+    for (int c = 0; c < pc.cols; ++c) {
+      const int d = digitOf(uniq[c]);
+      if (d >= 0) row[d] = pc.at<float>(i, c);
+    }
     out->push_back(std::move(row));
   }
 }

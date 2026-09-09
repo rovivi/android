@@ -16,6 +16,8 @@
 #include <opencv2/imgproc.hpp>
 #include <algorithm>
 #include <cmath>
+#include <cstdio>
+#include <cstdlib>
 
 namespace piu {
 namespace {
@@ -23,6 +25,13 @@ namespace {
 // Escalas del TTA. Las mismas que usa ultralytics para YOLO: la original más
 // una reducción y un flip horizontal. Se pasó de 3 a 2 escalas porque la
 // tercera no agregaba detecciones y sí un 33 % de costo.
+//
+// OJO: el export a NCNN es de FORMA FIJA (los Reshape del .param llevan
+// 0=33600 anchors, los de 1280). Alimentar 1056 px devolvía basura con
+// conf 0.9999 en la clase 1 que después ganaba el NMS: medido con el CLI de
+// host, 0 de 58 song_name. Por eso la reducción se hace ADENTRO del lienzo de
+// 1280 (la imagen ocupa el 83 % y el resto es relleno 114), que para una red
+// convolucional es la misma augmentación sin cambiar la forma de entrada.
 struct Aug { float scale; bool flip; };
 const Aug kAugs[] = {{1.00f, false}, {0.83f, false}, {1.00f, true}};
 
@@ -61,8 +70,8 @@ std::vector<Box> Detector::detectOnce(const cv::Mat& bgr, int imgsz,
                                       float scale, bool flip) const {
   // Letterbox al tamaño del modelo, igual que ultralytics.
   const int W = bgr.cols, H = bgr.rows;
-  const int target = int(imgsz * scale) / 32 * 32;
-  const float r = std::min(float(target) / W, float(target) / H);
+  const int target = imgsz;                      // forma fija, ver kAugs
+  const float r = std::min(float(target) / W, float(target) / H) * scale;
   const int nw = int(std::round(W * r)), nh = int(std::round(H * r));
   cv::Mat resized;
   cv::resize(bgr, resized, cv::Size(nw, nh));
@@ -80,6 +89,13 @@ std::vector<Box> Detector::detectOnce(const cv::Mat& bgr, int imgsz,
   ex.input("in0", in);
   ncnn::Mat out;
   ex.extract("out0", out);
+  if (std::getenv("PIU_DEBUG")) {       // solo en el CLI de host, nunca en Android
+    std::fprintf(stderr, "out dims=%d w=%d h=%d c=%d target=%d r=%.4f\n",
+                 out.dims, out.w, out.h, out.c, target, r);
+    for (int y = 0; y < std::min(out.h, 9); ++y)
+      std::fprintf(stderr, "  row%d: %.4f %.4f %.4f\n", y, out.row(y)[0],
+                   out.row(y)[1], out.row(y)[out.w / 2]);
+  }
 
   // out: (4 + nclases) x anchors
   std::vector<Box> boxes;
@@ -96,6 +112,10 @@ std::vector<Box> Detector::detectOnce(const cv::Mat& bgr, int imgsz,
     if (flip) cx = target - cx;             // deshacer el flip
     Box b{int((cx - w / 2 - dx) / r), int((cy - h / 2 - dy) / r),
           int((cx + w / 2 - dx) / r), int((cy + h / 2 - dy) / r), bc};
+    // Recortar a la imagen: el relleno del letterbox deja cajas negativas.
+    b.x1 = std::max(0, std::min(W, b.x1)); b.x2 = std::max(0, std::min(W, b.x2));
+    b.y1 = std::max(0, std::min(H, b.y1)); b.y2 = std::max(0, std::min(H, b.y2));
+    if (b.x2 - b.x1 < 2 || b.y2 - b.y1 < 2) continue;
     b.cls = best;
     boxes.push_back(b);
   }

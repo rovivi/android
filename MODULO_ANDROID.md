@@ -153,12 +153,28 @@ piu-ocr-release.aar                              10.14 MB
 
 Símbolos JNI verificados con `llvm-nm`: `nativeCreate`, `nativeDestroy`, `nativeRead`.
 
-**Optimización pendiente:** el `.so` linkea glslang y SPIRV (el compilador de
-shaders de Vulkan) porque bajé el release `ncnn-android-vulkan`, y el detector
-corre con `use_vulkan_compute = false`. Usando el build de ncnn sin Vulkan el
-`.so` baja de 12.8 MB a ~4.
+Hoy: `libpiuocr.so` **7.6 MB** (ncnn sin Vulkan, `-fvisibility=hidden`,
+`--gc-sections`, `--exclude-libs,ALL`; exporta solo los 3 `Java_*`).
 
-## 9. Sobre el modelo: fp16, no int8
+## 9. Test de paridad (host)
+
+`tools/parity/parity.py` compila el mismo C++ como binario Linux y lo corre
+sobre las 58 fotos contra el pipeline Python y el GT. Ver `tools/parity/README.md`.
+Lo que encontró al primer uso, todo invisible desde Android:
+
+| bug | síntoma | causa |
+|---|---|---|
+| detector: 0/58 `song_name` | cajas conf 0.9999 clase 1, fuera de la imagen | el export NCNN es de **forma fija** (`Reshape 0=33600`); la pasada TTA a 1056 px devolvía basura. Ahora la escala se hace adentro del lienzo de 1280 |
+| `level_digits` = `[50, 54]` | nivel "5054" | `build_mobile.py` guarda las clases como code point: `'2'` → 50. `digitOf()` acepta las dos convenciones |
+| chart_type 0.881 → 0.810 | "halfdouble" de más | nativo votaba el mejor entre TODAS las cajas de bolita; una segunda caja floja sobre pantalla azul gana con conf 1.0. Python usa solo la primera |
+| Kotlin ≠ Python en 4/90 | canción distinta al borde del gate | `similarity` era LCS y `difflib.ratio()` no lo es; Python redondea el score a 4 decimales; `org.json` de JVM no preserva el orden del catálogo; Kotlin filtraba por chart_type y Python no |
+| round() | glifos un píxel distintos | Python redondea el .5 al par; `std::lround` lo aleja de cero (`pyRound`) |
+
+Números de referencia (`baseline.json`), cajas de PyTorch: canción 0.756 de
+acierto (igual que Python), nivel 0.810 (Python 0.738), chart 0.837.
+End-to-end con el detector NCNN: canción 0.644, recall de `song_name` 0.844.
+
+## 10. Sobre el modelo: fp16, no int8
 
 `ultralytics` **no soporta `int8=True` para formato ncnn** — la cuantización
 real necesita `ncnn2table` + `ncnn2int8`, que no vienen en el release de
