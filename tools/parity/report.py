@@ -27,8 +27,9 @@ detail = json.load(open(os.path.join(DOCS, "parity_detail.json")))
 plt.rcParams.update({"figure.dpi": 130, "font.size": 10, "axes.spines.top": False,
                      "axes.spines.right": False, "axes.grid": True, "grid.alpha": 0.25})
 C_PY, C_NAT, C_E2E, C_BAD, C_OK = "#7f8c8d", "#2980b9", "#27ae60", "#c0392b", "#27ae60"
-FIELDS = ["song", "level", "chart_type"]
-LABEL = {"song": "canción", "level": "nivel", "chart_type": "chart type"}
+FIELDS = ["song", "level", "chart_type", "score"]
+LABEL = {"song": "canción", "level": "nivel", "chart_type": "chart type",
+         "score": "score"}
 
 
 def save(name):
@@ -39,7 +40,7 @@ def save(name):
 
 # 1. acierto por campo: python vs nativo (cajas PyTorch) vs nativo end-to-end
 def fig_fields():
-    fig, axes = plt.subplots(1, 3, figsize=(11, 3.6), sharey=True)
+    fig, axes = plt.subplots(1, 3, figsize=(12.5, 3.6), sharey=True)
     for ax, metric in zip(axes, ["accuracy", "precision", "coverage"]):
         x = np.arange(len(FIELDS)); w = 0.26
         for i, (side, key, col) in enumerate([("Python (ref.)", "python", C_PY),
@@ -114,11 +115,12 @@ def fig_before_after():
         ("canción end-to-end\n(acierto)", 0.0, 0.733, "", True),
         ("recall song_name\n(detector)", 0.0, 0.956, "", True),
         ("nivel leído\n(acierto, cajas PyTorch)", 0.0, 0.810, "", True),
+        ("score\n(acierto e2e)", 0.0, 0.905, "", True),
         ("acuerdo texto crudo\nnativo == Python", 0.533, 0.711, "", True),
         ("Kotlin ≠ Python\n(fotos de 90)", 4, 0, "", False),
         ("libpiuocr.so, MB", 12.84, 7.61, "", False),
     ]
-    fig, axes = plt.subplots(1, len(items), figsize=(12.5, 3.4))
+    fig, axes = plt.subplots(1, len(items), figsize=(14, 3.4))
     for ax, (name, b, a, unit, higher) in zip(axes, items):
         bars = ax.bar(["antes", "ahora"], [b, a], color=[C_BAD, C_E2E], width=0.6)
         for bar, v in zip(bars, [b, a]):
@@ -170,7 +172,7 @@ def fig_latency_agreement():
     a1.set_xlabel("foto (ordenadas)"); a1.set_ylabel("ms")
     a1.set_title("Latencia end-to-end en host (detector 3 pasadas + OCR)", fontsize=10)
     ag = base["agreement"]
-    keys = ["raw", "level", "chart_type", "song"]
+    keys = ["raw", "level", "score", "chart_type", "song"]
     vals = [ag[k] for k in keys]
     bars = a2.barh([{"raw": "texto crudo del título"}.get(k, LABEL.get(k, k)) for k in keys], vals,
                    color=[C_PY, C_NAT, C_NAT, C_E2E])

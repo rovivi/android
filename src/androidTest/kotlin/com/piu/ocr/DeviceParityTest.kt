@@ -48,6 +48,7 @@ class DeviceParityTest {
                     put("song", r.song.value ?: JSONObject.NULL)
                     put("level", r.level.value ?: JSONObject.NULL)
                     put("chart_type", r.chartType.value ?: JSONObject.NULL)
+                    put("score", r.score.value ?: JSONObject.NULL)
                     put("raw", r.rawTitle)
                     put("size", "${bmp.width}x${bmp.height}")
                 })

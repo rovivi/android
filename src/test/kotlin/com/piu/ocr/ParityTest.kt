@@ -47,11 +47,36 @@ class ParityTest {
             if (got.level.value != expLevel) diffs += "level kt=${got.level.value} py=$expLevel"
             val expChart = if (exp.isNull("chart_type")) null else exp.getString("chart_type")
             if (got.chartType.value != expChart) diffs += "chart kt=${got.chartType.value} py=$expChart"
+            val expScore = if (exp.isNull("score")) null else exp.getInt("score")
+            if (got.score.value != expScore) diffs += "score kt=${got.score.value} py=$expScore"
             if (got.rawTitle != exp.getString("raw")) diffs += "raw kt=${got.rawTitle} py=${exp.getString("raw")}"
             if (diffs.isNotEmpty()) bad += "${r.getString("key")}: ${diffs.joinToString("; ")}"
         }
         assertEquals("interpret() difiere de la réplica Python en:\n" + bad.joinToString("\n"),
                      0, bad.size)
+    }
+
+    /** El score sale del C++ ya validado (0..1000000); acá solo el gate. */
+    @Test
+    fun scoreAccuracyAgainstGroundTruth() {
+        val rows = fixture.getJSONArray("rows")
+        var n = 0; var cov = 0; var ok = 0
+        for (i in 0 until rows.length()) {
+            val r = rows.getJSONObject(i)
+            val gt = r.getJSONObject("gt")
+            if (gt.isNull("score")) continue
+            n++
+            val v = PiuOcr.interpret(r.getJSONObject("native").toString(), matcher).score.value
+                ?: continue
+            cov++
+            val g = gt.get("score")
+            val hit = if (g is org.json.JSONArray)
+                (0 until g.length()).any { g.getInt(it) == v } else g == v
+            if (hit) ok++
+        }
+        val precision = if (cov > 0) ok.toDouble() / cov else 0.0
+        println("score: n=$n cobertura=${cov.toDouble() / n} precision=$precision")
+        assertTrue("precisión de score $precision < 0.90", precision >= 0.90)
     }
 
     @Test

@@ -26,6 +26,7 @@ llegaba a Kotlin. Nada de eso era visible sin correr el C++ sobre fotos reales.
 
 | | antes | ahora |
 |---|---|---|
+| score end-to-end (acierto) | sin implementar | **0.905** |
 | canción end-to-end (acierto) | 0 | **0.733** |
 | recall de `song_name` del detector | 0 | **0.956** |
 | nivel (acierto, cajas PyTorch) | 0 | **0.810** |
@@ -41,6 +42,8 @@ end-to-end con su propio detector NCNN.
 
 ![campos](img/fields.png)
 
+- **Score**: el campo más sólido, 0.905 de acierto y 0.97 de precisión. No
+  estaba portado — el módulo ni siquiera embarcaba el atlas de dígitos. Ver §4.
 - **Canción**: el port empata con Python (0.756) y con su detector queda a 2 pts.
   Precisión cuando responde: 0.89–0.92. Lo que no pasa el gate se escala al VLM.
 - **Nivel**: el port es *mejor* que Python (0.81 vs 0.74) porque fuerza dos
@@ -65,7 +68,37 @@ que pasan, 33 son correctas.
 
 ![margen](img/margin.png)
 
-## 4. Detector: el TTA a mano
+## 4. El score
+
+No existía: `pipeline.py` lo lee con `read_score`, pero el port a C++ nunca lo
+incluyó y el bundle no traía el atlas de dígitos, así que `Reading` no tenía el
+campo. Se agregó:
+
+- `build_mobile.py` empaqueta `digits.bin` desde `atlas.npz` — 296 ejemplares,
+  int8, **228 KB**. K-means no serviría (32 centroides × 10 clases > 296
+  glifos), y los ejemplares son exactamente lo que usa la referencia Python.
+- `src/main/cpp/score.cpp` porta `segment_digits` + `read_score`: barrido de 8
+  umbrales (Otsu, su inverso y 6 percentiles), filtrado de componentes por
+  altura, relleno, proporción y **brillo** (PIU dibuja los ceros no
+  significativos en gris apagado), y la línea del score separada del bonus
+  `+84,818` que va debajo.
+- El umbral se elige preguntándole al clasificador, no solo por regularidad: un
+  borrón relleno por un mal umbral es un blob del tamaño correcto igual que un
+  `8`.
+- Regla de dominio: 0..1 000 000; el único valor legítimo de 7 dígitos es
+  `1000000`, cualquier otro significa que se coló un dígito de más.
+- Gate `MIN_SCORE_MARGIN = 0.010` en Kotlin, el mismo que `pipeline.py`.
+
+| | cobertura | precisión | acierto |
+|---|---|---|---|
+| Python (referencia) | 1.000 | 0.929 | 0.929 |
+| nativo, cajas PyTorch | 0.952 | **0.975** | 0.929 |
+| nativo end-to-end | 0.929 | 0.974 | **0.905** |
+
+El gate rechaza 2-3 fotos y a cambio la precisión sube de 0.93 a 0.97: los
+errores se vuelven escalaciones. `recall` de la caja `score` del detector: 1.000.
+
+## 5. Detector: el TTA a mano
 
 El export a NCNN es de forma fija (`Reshape 0=33600` en el `.param`). La pasada
 TTA a 1056 px devolvía cajas con confianza 0.9999 en la clase equivocada, que
@@ -82,19 +115,20 @@ la latencia en el teléfono no cierra.
 
 ![detector](img/detector.png)
 
-## 5. Bugs que encontró el test de paridad
+## 6. Bugs que encontró el test de paridad
 
 | dónde | síntoma | causa |
 |---|---|---|
 | `detector.cpp` | 0/58 títulos | export de forma fija; TTA a otro tamaño = basura |
 | `recognize.cpp` | nivel "5054" | `build_mobile.py` guarda `'2'` como 50; `digitOf()` acepta ambos |
 | `pipeline.cpp` | chart type 0.88 → 0.81 | votaba entre todas las bolitas; una caja floja sobre pantalla azul gana con conf 1.0 |
+| `pipeline.cpp` / assets | el score nunca se leía | no estaba portado ni embarcado el atlas de dígitos (§4) |
 | `SongMatcher.kt` | canción distinta al borde del gate | `similarity()` era LCS y `difflib.ratio()` no lo es; Python redondea a 4 decimales; `org.json` de JVM no preserva el orden del catálogo; Kotlin filtraba por chart type y Python no; `normalize()` sin NFD |
 | `text.cpp`, `segment.cpp` | glifos un píxel distintos | `round()` de Python es half-even; `std::lround` no; mediana de numpy promedia |
 | `jni_bridge.cpp` | handle a medias, `"{}"` que rompía `getJSONArray`, `cv::Exception` abortaba el proceso, `lockPixels` sin unlock | robustez JNI |
 | `PiuOcr.kt` | modelos viejos tras actualizar la app, double free en `close()`, bitmaps `HARDWARE` vacíos | copia de assets por versión + atómica, close idempotente, conversión a `ARGB_8888` |
 
-## 6. Cómo se verifica cualquier cambio
+## 7. Cómo se verifica cualquier cambio
 
 ```bash
 tools/host/fetch.sh                                   # una vez: ncnn + opencv-mobile Linux
@@ -108,7 +142,7 @@ Tres capas: el C++ como binario de host contra Python y ground truth
 reproduce con el `PiuOcr.interpret()` real en la JVM; y el test instrumentado
 que corre el `.so` arm64 real y compara contra las otras dos.
 
-## 7. Lo que falta
+## 8. Lo que falta
 
 - **Correr en device.** Todo lo de arriba es en x86; ncnn en ARM usa fp16 y
   puede mover 1–3 fotos. Latencia estimada 2–4 s por foto con 3 pasadas.

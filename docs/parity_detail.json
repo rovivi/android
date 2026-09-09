@@ -18,6 +18,12 @@
     "coverage": 0.9767441860465116,
     "precision": 0.8809523809523809,
     "accuracy": 0.8604651162790697
+   },
+   "score": {
+    "n": 42,
+    "coverage": 1.0,
+    "precision": 0.9285714285714286,
+    "accuracy": 0.9285714285714286
    }
   },
   "native": {
@@ -38,12 +44,19 @@
     "coverage": 0.9767441860465116,
     "precision": 0.8571428571428571,
     "accuracy": 0.8372093023255814
+   },
+   "score": {
+    "n": 42,
+    "coverage": 0.9523809523809523,
+    "precision": 0.975,
+    "accuracy": 0.9285714285714286
    }
   },
   "agreement": {
    "song": 0.9777777777777777,
    "level": 0.8888888888888888,
    "chart_type": 0.9777777777777777,
+   "score": 0.9555555555555556,
    "raw": 0.7111111111111111
   },
   "detector": {
@@ -86,11 +99,17 @@
     "coverage": 0.9767441860465116,
     "precision": 0.7857142857142857,
     "accuracy": 0.7674418604651163
+   },
+   "score": {
+    "n": 42,
+    "coverage": 0.9285714285714286,
+    "precision": 0.9743589743589743,
+    "accuracy": 0.9047619047619048
    }
   },
   "native_ms": {
-   "mean": 639.0822222222222,
-   "max": 699.5
+   "mean": 685.1444444444444,
+   "max": 964.4
   }
  },
  "rows": [
@@ -100,12 +119,14 @@
    "gt": {
     "song": "Kokugen Kairou Labyrinth",
     "chart_type": "double",
-    "level": 26
+    "level": 26,
+    "score": 886899
    },
    "python": {
     "song": null,
     "level": 2,
     "chart_type": "double",
+    "score": 886890,
     "raw": "\"*?*sllx,,6QO | \"\"kuz,.QL | \"\"?*Glxx6N6QO",
     "song_margin": 0.0004,
     "chart_conf": 0.841
@@ -114,6 +135,7 @@
     "song": null,
     "level": 26,
     "chart_type": "double",
+    "score": 886890,
     "raw": "\"*?*sllx,,6QO | \"\"kuz,.QL | \"\"?*Glxx6N6QO",
     "song_margin": 0.0004,
     "chart_conf": 0.84
@@ -133,6 +155,9 @@
       "conf": 0.136158
      }
     ],
+    "score": 886890,
+    "score_margin": 0.0115769,
+    "score_digits": "0886890",
     "chart_type": "double",
     "chart_conf": 0.840369,
     "level_digits": [
@@ -173,12 +198,14 @@
    "gt": {
     "song": "Point Break",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": 948384
    },
    "python": {
     "song": null,
     "level": 213,
     "chart_type": "double",
+    "score": 948384,
     "raw": "P~MDrur'.Z | PuinT-r'Nx | \"9!ntOroax",
     "song_margin": 0.0066,
     "chart_conf": 0.846
@@ -187,6 +214,7 @@
     "song": null,
     "level": 23,
     "chart_type": "double",
+    "score": 948384,
     "raw": "P~MDrur'.Z | PuinT-r'Nx | \"9!ntOroax",
     "song_margin": 0.0066,
     "chart_conf": 0.847
@@ -206,6 +234,9 @@
       "conf": 0.120299
      }
     ],
+    "score": 948384,
+    "score_margin": 0.0279174,
+    "score_digits": "948384",
     "chart_type": "double",
     "chart_conf": 0.846541,
     "level_digits": [
@@ -246,12 +277,14 @@
    "gt": {
     "song": "Rise Up (feat. Miori Celesta)",
     "chart_type": "single",
-    "level": 22
+    "level": 22,
+    "score": null
    },
    "python": {
     "song": "Rise Up (feat. Miori Celesta)",
     "level": 22,
     "chart_type": "single",
+    "score": null,
     "raw": "MioriCeIesta | MioriCeSesta | lwmioIiKelesto)",
     "song_margin": 0.1063,
     "chart_conf": 0.65
@@ -260,6 +293,7 @@
     "song": "Rise Up (feat. Miori Celesta)",
     "level": 22,
     "chart_type": "single",
+    "score": null,
     "raw": "MioriCeIesta | MioriCeSesta | lwmioIiKelesto)",
     "song_margin": 0.1063,
     "chart_conf": 0.649
@@ -279,6 +313,9 @@
       "conf": 0.143663
      }
     ],
+    "score": -1,
+    "score_margin": 0,
+    "score_digits": "",
     "chart_type": "single",
     "chart_conf": 0.648821,
     "level_digits": [
@@ -319,12 +356,14 @@
    "gt": {
     "song": "INFiNiTE ENERZY -Overdoze-",
     "chart_type": "double",
-    "level": 25
+    "level": 25,
+    "score": 975919
    },
    "python": {
     "song": "INFiNiTE ENERZY -Overdoze-",
     "level": 25,
     "chart_type": "double",
+    "score": 975919,
     "raw": "!NFiNiTEENERZyoyedozo | lNF!NiTEENERzyoyedozo | !NFiNiTEENERzyovedozo",
     "song_margin": 0.1321,
     "chart_conf": 0.513
@@ -333,6 +372,7 @@
     "song": "INFiNiTE ENERZY -Overdoze-",
     "level": 25,
     "chart_type": "double",
+    "score": 975919,
     "raw": "!NFiNiTEENERZyoyedozo | lNF!NiTEENERzyoyedozo | !NFiNiTEENERzyovedozo",
     "song_margin": 0.1321,
     "chart_conf": 0.512
@@ -352,6 +392,9 @@
       "conf": 0.04542
      }
     ],
+    "score": 975919,
+    "score_margin": 0.035011,
+    "score_digits": "975919",
     "chart_type": "double",
     "chart_conf": 0.511882,
     "level_digits": [
@@ -392,12 +435,14 @@
    "gt": {
     "song": "B3",
     "chart_type": "single",
-    "level": 18
+    "level": 18,
+    "score": 1000000
    },
    "python": {
     "song": "B3",
     "level": 18,
     "chart_type": "single",
+    "score": 1000000,
     "raw": "OSS | B3 | ..B",
     "song_margin": 0.0731,
     "chart_conf": 0.358
@@ -406,6 +451,7 @@
     "song": "B3",
     "level": 18,
     "chart_type": "single",
+    "score": 1000000,
     "raw": "OSS | B3 | ..B",
     "song_margin": 0.0731,
     "chart_conf": 0.356
@@ -425,6 +471,9 @@
       "conf": 0.015277
      }
     ],
+    "score": 1000000,
+    "score_margin": 0.046736,
+    "score_digits": "1000000",
     "chart_type": "single",
     "chart_conf": 0.355811,
     "level_digits": [
@@ -465,12 +514,14 @@
    "gt": {
     "song": "The Last Rebellion",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": 993925
    },
    "python": {
     "song": "The Last Rebellion",
     "level": 23,
     "chart_type": "double",
+    "score": 993925,
     "raw": "TheLastRebeIIio- | TheLastRebeIIion | TheLastRebeIIion",
     "song_margin": 0.1098,
     "chart_conf": 0.816
@@ -479,6 +530,7 @@
     "song": "The Last Rebellion",
     "level": 23,
     "chart_type": "double",
+    "score": 993925,
     "raw": "TheLastRebeIIio- | TheLastRebeIIion | TheLastRebeIIion",
     "song_margin": 0.1098,
     "chart_conf": 0.816
@@ -498,6 +550,9 @@
       "conf": 0.052028
      }
     ],
+    "score": 993925,
+    "score_margin": 0.0141702,
+    "score_digits": "993925",
     "chart_type": "double",
     "chart_conf": 0.815577,
     "level_digits": [
@@ -538,12 +593,14 @@
    "gt": {
     "song": "Anguished Unmaking",
     "chart_type": "double",
-    "level": 22
+    "level": 22,
+    "score": 941655
    },
    "python": {
     "song": null,
     "level": 22,
     "chart_type": "double",
+    "score": 941655,
     "raw": "Ansu1SEBeFpm'kinN | A*sliS-eGUnm'kpng | A\"slisOe-Unmxkp'g",
     "song_margin": 0.0074,
     "chart_conf": 0.792
@@ -552,6 +609,7 @@
     "song": null,
     "level": 22,
     "chart_type": "double",
+    "score": 941655,
     "raw": "Ansu1SEBeFpm'kinN | A*sliS-eGUnm'kpng | A\"slisOe-Unmxkp'g",
     "song_margin": 0.0074,
     "chart_conf": 0.791
@@ -571,6 +629,9 @@
       "conf": 0.069537
      }
     ],
+    "score": 941655,
+    "score_margin": 0.0232603,
+    "score_digits": "941655",
     "chart_type": "double",
     "chart_conf": 0.791425,
     "level_digits": [
@@ -611,12 +672,14 @@
    "gt": {
     "song": "Rise Up (feat. Miori Celesta)",
     "chart_type": "double",
-    "level": 24
+    "level": 24,
+    "score": 997520
    },
    "python": {
     "song": "Rise Up (feat. Miori Celesta)",
     "level": 24,
     "chart_type": "double",
+    "score": 996928,
     "raw": "kI80Upf0attlCrrCelesta | L0YcU0f0a.ulOriC,lestg | UHoo",
     "song_margin": 0.0751,
     "chart_conf": 0.587
@@ -625,6 +688,7 @@
     "song": "Rise Up (feat. Miori Celesta)",
     "level": 24,
     "chart_type": "double",
+    "score": null,
     "raw": "kI80Upf0attlCrrCelesta | L0YcU0f0a.tlOriC,lestg | UHoo",
     "song_margin": 0.0792,
     "chart_conf": 0.587
@@ -644,6 +708,9 @@
       "conf": 0.10208
      }
     ],
+    "score": 996928,
+    "score_margin": 0.000357807,
+    "score_digits": "996928",
     "chart_type": "double",
     "chart_conf": 0.586537,
     "level_digits": [
@@ -684,12 +751,17 @@
    "gt": {
     "song": "B3",
     "chart_type": "single",
-    "level": 18
+    "level": 18,
+    "score": [
+     998743,
+     1000000
+    ]
    },
    "python": {
     "song": null,
     "level": 8,
     "chart_type": "single",
+    "score": 228143,
     "raw": "BEsnNEP | \"Rs | So5",
     "song_margin": 0.0101,
     "chart_conf": 0.213
@@ -698,6 +770,7 @@
     "song": null,
     "level": 21,
     "chart_type": "single",
+    "score": null,
     "raw": "BEsnNEP | \"Rs | So5",
     "song_margin": 0.0101,
     "chart_conf": 0.211
@@ -717,6 +790,9 @@
       "conf": 0.055476
      }
     ],
+    "score": 228143,
+    "score_margin": 0.00416994,
+    "score_digits": "228143",
     "chart_type": "single",
     "chart_conf": 0.211428,
     "level_digits": [
@@ -757,12 +833,14 @@
    "gt": {
     "song": "Extreme Music School 2nd period feat. Nanahira",
     "chart_type": null,
-    "level": null
+    "level": null,
+    "score": 991450
    },
    "python": {
     "song": "Extreme Music School 2nd period feat. Nanahira",
     "level": null,
     "chart_type": null,
+    "score": 991450,
     "raw": "Extremea4usiccchool2nd | ,~Nfb\"\" | B.b\"w",
     "song_margin": 0.0437,
     "chart_conf": null
@@ -771,6 +849,7 @@
     "song": "Extreme Music School 2nd period feat. Nanahira",
     "level": null,
     "chart_type": null,
+    "score": 991450,
     "raw": "Extremea4usiccchool2nd | ,~Nfb\"\" | B.b\"w",
     "song_margin": 0.0437,
     "chart_conf": 0.0
@@ -790,6 +869,9 @@
       "conf": 0.157855
      }
     ],
+    "score": 991450,
+    "score_margin": 0.0171136,
+    "score_digits": "991450",
     "chart_type": "",
     "chart_conf": 0,
     "level_digits": [],
@@ -802,12 +884,14 @@
    "gt": {
     "song": "The Last Rebellion",
     "chart_type": "single",
-    "level": 21
+    "level": 21,
+    "score": 995030
    },
    "python": {
     "song": "The Last Rebellion",
     "level": null,
     "chart_type": "halfdouble",
+    "score": 995030,
     "raw": "TheLastRebellion | LLU\"H9 | zbV,DX",
     "song_margin": 0.3208,
     "chart_conf": 0.619
@@ -816,6 +900,7 @@
     "song": "The Last Rebellion",
     "level": null,
     "chart_type": "halfdouble",
+    "score": 995030,
     "raw": "TheLastRebellion | LLU\"H9 | zbV,DX",
     "song_margin": 0.3208,
     "chart_conf": 0.618
@@ -835,6 +920,9 @@
       "conf": 0.059255
      }
     ],
+    "score": 995030,
+    "score_margin": 0.0266976,
+    "score_digits": "995030",
     "chart_type": "halfdouble",
     "chart_conf": 0.618305,
     "level_digits": [],
@@ -847,12 +935,14 @@
    "gt": {
     "song": "The Last Rebellion",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": 957683
    },
    "python": {
     "song": "The Last Rebellion",
     "level": 23,
     "chart_type": "double",
+    "score": 957683,
     "raw": "LOeLas.Reh-ii)or | Th-L.s'Pebeiitoo | Th-LeL'Pebeiiioo",
     "song_margin": 0.0365,
     "chart_conf": 0.674
@@ -861,6 +951,7 @@
     "song": "The Last Rebellion",
     "level": 23,
     "chart_type": "double",
+    "score": 957683,
     "raw": "LOeLas.Reh-ii)or | Th-L.s'Pebeiitoo | Th-LeL'Pebeiiioo",
     "song_margin": 0.0365,
     "chart_conf": 0.672
@@ -880,6 +971,9 @@
       "conf": 0.059607
      }
     ],
+    "score": 957683,
+    "score_margin": 0.024812,
+    "score_digits": "957683",
     "chart_type": "double",
     "chart_conf": 0.672016,
     "level_digits": [
@@ -920,12 +1014,14 @@
    "gt": {
     "song": "Freedom Dive",
     "chart_type": "single",
-    "level": 22
+    "level": 22,
+    "score": 993171
    },
    "python": {
     "song": "Freedom Dive",
     "level": 22,
     "chart_type": "single",
+    "score": 993171,
     "raw": ".bN?o\"\" | FREEDOMDiVE | .\"Nbb\"\"",
     "song_margin": 0.1758,
     "chart_conf": 0.563
@@ -934,6 +1030,7 @@
     "song": "Freedom Dive",
     "level": 22,
     "chart_type": "single",
+    "score": 993171,
     "raw": ".bN?o\"\" | FREEDOMDiVE | .\"Nbb\"\"",
     "song_margin": 0.1758,
     "chart_conf": 0.561
@@ -953,6 +1050,9 @@
       "conf": 0.095292
      }
     ],
+    "score": 993171,
+    "score_margin": 0.0326168,
+    "score_digits": "993171",
     "chart_type": "single",
     "chart_conf": 0.561374,
     "level_digits": [
@@ -993,12 +1093,14 @@
    "gt": {
     "song": "Digitalis",
     "chart_type": "double",
-    "level": 21
+    "level": 21,
+    "score": 990525
    },
    "python": {
     "song": "Digitalis",
     "level": 21,
     "chart_type": "double",
+    "score": 990525,
     "raw": "Digitalis | Digitalis | Digitalis",
     "song_margin": 0.4372,
     "chart_conf": 0.724
@@ -1007,6 +1109,7 @@
     "song": "Digitalis",
     "level": 21,
     "chart_type": "double",
+    "score": 990525,
     "raw": "Digitalis | Digitalis | Digitalis",
     "song_margin": 0.4372,
     "chart_conf": 0.723
@@ -1026,6 +1129,9 @@
       "conf": 0.20047
      }
     ],
+    "score": 990525,
+    "score_margin": 0.033914,
+    "score_digits": "990525",
     "chart_type": "double",
     "chart_conf": 0.722733,
     "level_digits": [
@@ -1066,12 +1172,14 @@
    "gt": {
     "song": "Legendary Dominion",
     "chart_type": "single",
-    "level": 20
+    "level": 20,
+    "score": 997467
    },
    "python": {
     "song": "Legendary Dominion",
     "level": 20,
     "chart_type": "halfdouble",
+    "score": 997467,
     "raw": "LegenCary0ominion | FMni((ohie",
     "song_margin": 0.1716,
     "chart_conf": 0.254
@@ -1080,6 +1188,7 @@
     "song": "Legendary Dominion",
     "level": 20,
     "chart_type": "halfdouble",
+    "score": 997467,
     "raw": "LegenCary0ominion | FMni((ohie",
     "song_margin": 0.1716,
     "chart_conf": 0.253
@@ -1095,6 +1204,9 @@
       "conf": 0.02451
      }
     ],
+    "score": 997467,
+    "score_margin": 0.0125036,
+    "score_digits": "997467",
     "chart_type": "halfdouble",
     "chart_conf": 0.253198,
     "level_digits": [
@@ -1135,12 +1247,14 @@
    "gt": {
     "song": "CHAOS AGAIN",
     "chart_type": "single",
-    "level": 24
+    "level": 24,
+    "score": 945370
    },
    "python": {
     "song": "CHAOS AGAIN",
     "level": 24,
     "chart_type": "single",
+    "score": 945370,
     "raw": "CHAoSAGAiN | CHAOSAGA!N | CHAOSAGA!N",
     "song_margin": 0.4553,
     "chart_conf": 0.395
@@ -1149,6 +1263,7 @@
     "song": "CHAOS AGAIN",
     "level": 24,
     "chart_type": "single",
+    "score": 945370,
     "raw": "CHAoSAGAiN | CHAOSAGA!N | CHAOSAGA!N",
     "song_margin": 0.4553,
     "chart_conf": 0.393
@@ -1168,6 +1283,9 @@
       "conf": 0.131994
      }
     ],
+    "score": 945370,
+    "score_margin": 0.0429679,
+    "score_digits": "945370",
     "chart_type": "single",
     "chart_conf": 0.392887,
     "level_digits": [
@@ -1208,12 +1326,14 @@
    "gt": {
     "song": "QUATTUORUX",
     "chart_type": "single",
-    "level": 24
+    "level": 24,
+    "score": 944127
    },
    "python": {
     "song": "QUATTUORUX",
     "level": 24,
     "chart_type": "single",
+    "score": 944127,
     "raw": "QUATTuoRux | Svl | \"Qw",
     "song_margin": 0.2638,
     "chart_conf": 0.398
@@ -1222,6 +1342,7 @@
     "song": "QUATTUORUX",
     "level": 24,
     "chart_type": "single",
+    "score": 944127,
     "raw": "QUATTuoRux | Svl | \"Qw",
     "song_margin": 0.2638,
     "chart_conf": 0.398
@@ -1241,6 +1362,9 @@
       "conf": 0.024257
      }
     ],
+    "score": 944127,
+    "score_margin": 0.046856,
+    "score_digits": "944127",
     "chart_type": "single",
     "chart_conf": 0.397585,
     "level_digits": [
@@ -1281,12 +1405,14 @@
    "gt": {
     "song": "Broken Karma (PIU EDIT)",
     "chart_type": "single",
-    "level": 19
+    "level": 19,
+    "score": 1000000
    },
    "python": {
     "song": "Broken Karma (PIU EDIT)",
     "level": 19,
     "chart_type": "single",
+    "score": 1000000,
     "raw": "BtokenKarma(PlUEDl1) | sooKEBKarma(PIUE0lT | BrokehKarma(PlUEDll)",
     "song_margin": 0.222,
     "chart_conf": 0.271
@@ -1295,6 +1421,7 @@
     "song": "Broken Karma (PIU EDIT)",
     "level": 19,
     "chart_type": "single",
+    "score": 1000000,
     "raw": "BtokenKarmalPlUEDl1) | sooKEBKarma(PIUE0lT | BrokehKarma(PlUEDll)",
     "song_margin": 0.1975,
     "chart_conf": 0.268
@@ -1314,6 +1441,9 @@
       "conf": 0.110385
      }
     ],
+    "score": 1000000,
+    "score_margin": 0.0459741,
+    "score_digits": "1000000",
     "chart_type": "single",
     "chart_conf": 0.268152,
     "level_digits": [
@@ -1354,12 +1484,14 @@
    "gt": {
     "song": "We Love Your Step",
     "chart_type": "single",
-    "level": 22
+    "level": 22,
+    "score": 972340
    },
    "python": {
     "song": "Ultimatum",
     "level": 21,
     "chart_type": "single",
+    "score": 972340,
     "raw": "wU8tuM | \"'Q'\"'* | l.icUoyeYourSteP",
     "song_margin": 0.0176,
     "chart_conf": 0.986
@@ -1368,6 +1500,7 @@
     "song": "Ultimatum",
     "level": 21,
     "chart_type": "single",
+    "score": 972340,
     "raw": "wU8tuM | *N'BZ\"Lm | l.hcUoyeYourSteP",
     "song_margin": 0.0176,
     "chart_conf": 0.986
@@ -1387,6 +1520,9 @@
       "conf": 0.018038
      }
     ],
+    "score": 972340,
+    "score_margin": 0.0252334,
+    "score_digits": "972340",
     "chart_type": "single",
     "chart_conf": 0.985699,
     "level_digits": [
@@ -1427,12 +1563,14 @@
    "gt": {
     "song": "Dement ~After Legend~",
     "chart_type": "single",
-    "level": 23
+    "level": 23,
+    "score": 948002
    },
    "python": {
     "song": "Dement ~After Legend~",
     "level": 23,
     "chart_type": "halfdouble",
+    "score": 948002,
     "raw": "AfterLegend | AfterLegend | AfterLegend",
     "song_margin": 0.0983,
     "chart_conf": 0.472
@@ -1441,6 +1579,7 @@
     "song": "Dement ~After Legend~",
     "level": 23,
     "chart_type": "halfdouble",
+    "score": 948002,
     "raw": "AfterLegend | AfterLegend | AfterLegend",
     "song_margin": 0.0983,
     "chart_conf": 0.471
@@ -1460,6 +1599,9 @@
       "conf": 0.10994
      }
     ],
+    "score": 948002,
+    "score_margin": 0.0345446,
+    "score_digits": "948002",
     "chart_type": "halfdouble",
     "chart_conf": 0.47141,
     "level_digits": [
@@ -1500,12 +1642,14 @@
    "gt": {
     "song": "BLAZOR",
     "chart_type": "single",
-    "level": 18
+    "level": 18,
+    "score": 1000000
    },
    "python": {
     "song": "BLAZOR",
     "level": 18,
     "chart_type": "single",
+    "score": 1000000,
     "raw": "BLAZOR | BLAZ:R | BUOR",
     "song_margin": 0.192,
     "chart_conf": 0.225
@@ -1514,6 +1658,7 @@
     "song": "BLAZOR",
     "level": 18,
     "chart_type": "single",
+    "score": 1000000,
     "raw": "BLAZOR | BLAZ:R | BUOR",
     "song_margin": 0.192,
     "chart_conf": 0.224
@@ -1533,6 +1678,9 @@
       "conf": 0.043821
      }
     ],
+    "score": 1000000,
+    "score_margin": 0.0569109,
+    "score_digits": "1000000",
     "chart_type": "single",
     "chart_conf": 0.223657,
     "level_digits": [
@@ -1573,12 +1721,14 @@
    "gt": {
     "song": "Ultimatum",
     "chart_type": "single",
-    "level": 21
+    "level": 21,
+    "score": 994183
    },
    "python": {
     "song": "Ultimatum",
     "level": 21,
     "chart_type": null,
+    "score": 994183,
     "raw": "Ultimatum | UItimatum | Ultt",
     "song_margin": 0.2228,
     "chart_conf": 0.051
@@ -1587,6 +1737,7 @@
     "song": "Ultimatum",
     "level": 21,
     "chart_type": null,
+    "score": 994183,
     "raw": "Ultimatum | UItimatum | Ultt",
     "song_margin": 0.2228,
     "chart_conf": 0.051
@@ -1606,6 +1757,9 @@
       "conf": 0.01906
      }
     ],
+    "score": 994183,
+    "score_margin": 0.0291087,
+    "score_digits": "994183",
     "chart_type": "halfdouble",
     "chart_conf": 0.0505466,
     "level_digits": [
@@ -1646,12 +1800,14 @@
    "gt": {
     "song": "OVERNIGHT FLOWER",
     "chart_type": "single",
-    "level": 19
+    "level": 19,
+    "score": 997252
    },
    "python": {
     "song": "OVERNIGHT FLOWER",
     "level": 19,
     "chart_type": "single",
+    "score": 997252,
     "raw": "oVEkNiGBTFLDWE8 | OVERNiGBTFLDWEP | OVERNiGHTFLDWLP",
     "song_margin": 0.0496,
     "chart_conf": 0.37
@@ -1660,6 +1816,7 @@
     "song": "OVERNIGHT FLOWER",
     "level": 19,
     "chart_type": "single",
+    "score": 997252,
     "raw": "oVEkNiGBTFLDWE8 | OVERNiGBTFLDWEP | OVERNiGHTFLDWLP",
     "song_margin": 0.0496,
     "chart_conf": 0.369
@@ -1679,6 +1836,9 @@
       "conf": 0.069571
      }
     ],
+    "score": 997252,
+    "score_margin": 0.0402952,
+    "score_digits": "997252",
     "chart_type": "single",
     "chart_conf": 0.368964,
     "level_digits": [
@@ -1719,12 +1879,14 @@
    "gt": {
     "song": "Appassionata",
     "chart_type": "single",
-    "level": 22
+    "level": 22,
+    "score": 952208
    },
    "python": {
     "song": "Appassionata",
     "level": null,
     "chart_type": "single",
+    "score": 952208,
     "raw": "iassionata | eggo | \"%,",
     "song_margin": 0.0425,
     "chart_conf": 0.978
@@ -1733,6 +1895,7 @@
     "song": "Appassionata",
     "level": null,
     "chart_type": "single",
+    "score": 952208,
     "raw": "iassionata | eggo | \"%,",
     "song_margin": 0.0425,
     "chart_conf": 0.977
@@ -1752,6 +1915,9 @@
       "conf": 0.008382
      }
     ],
+    "score": 952208,
+    "score_margin": 0.0287089,
+    "score_digits": "952208",
     "chart_type": "single",
     "chart_conf": 0.977363,
     "level_digits": [],
@@ -1764,12 +1930,14 @@
    "gt": {
     "song": "Imaginarized City",
     "chart_type": "single",
-    "level": 19
+    "level": 19,
+    "score": 970350
    },
    "python": {
     "song": "Imaginarized City",
     "level": 19,
     "chart_type": "halfdouble",
+    "score": 970350,
     "raw": "'H'-OlnSZIzedcitv | 'H'aOlRSrIzTdCpty | 'fw2c",
     "song_margin": 0.0955,
     "chart_conf": 0.537
@@ -1778,6 +1946,7 @@
     "song": "Imaginarized City",
     "level": 19,
     "chart_type": "halfdouble",
+    "score": 970350,
     "raw": "'H'-OlnSZIzedcitv | 'H'aOlRSrIzTdCpty | 'fw2-",
     "song_margin": 0.0955,
     "chart_conf": 0.535
@@ -1797,6 +1966,9 @@
       "conf": 0.068333
      }
     ],
+    "score": 970350,
+    "score_margin": 0.0231517,
+    "score_digits": "970350",
     "chart_type": "halfdouble",
     "chart_conf": 0.535355,
     "level_digits": [
@@ -1837,12 +2009,14 @@
    "gt": {
     "song": "Dead End",
     "chart_type": "single",
-    "level": 21
+    "level": 21,
+    "score": null
    },
    "python": {
     "song": "Dead End",
     "level": 21,
     "chart_type": "single",
+    "score": null,
     "raw": "beadEnd | DRRdEnd | OadEnd",
     "song_margin": 0.2118,
     "chart_conf": 0.285
@@ -1851,6 +2025,7 @@
     "song": "Dead End",
     "level": 21,
     "chart_type": "single",
+    "score": null,
     "raw": "beadEnd | DRRdEnd | OadEnd",
     "song_margin": 0.2118,
     "chart_conf": 0.283
@@ -1870,6 +2045,9 @@
       "conf": 0.112232
      }
     ],
+    "score": -1,
+    "score_margin": 0,
+    "score_digits": "",
     "chart_type": "single",
     "chart_conf": 0.283058,
     "level_digits": [
@@ -1910,12 +2088,14 @@
    "gt": {
     "song": "BLAZOR",
     "chart_type": "single",
-    "level": 20
+    "level": 20,
+    "score": 997725
    },
    "python": {
     "song": "BLAZOR",
     "level": 20,
     "chart_type": "single",
+    "score": 997725,
     "raw": "BLAZ1R | BLAZ:R | Re",
     "song_margin": 0.0565,
     "chart_conf": 0.195
@@ -1924,6 +2104,7 @@
     "song": "BLAZOR",
     "level": 20,
     "chart_type": "single",
+    "score": 997725,
     "raw": "BLAZ1R | BLAZ:R | Re",
     "song_margin": 0.0565,
     "chart_conf": 0.194
@@ -1943,6 +2124,9 @@
       "conf": 0.014192
      }
     ],
+    "score": 997725,
+    "score_margin": 0.0122809,
+    "score_digits": "997725",
     "chart_type": "single",
     "chart_conf": 0.194207,
     "level_digits": [
@@ -1983,12 +2167,14 @@
    "gt": {
     "song": "BSPower Explosion",
     "chart_type": "coop",
-    "level": null
+    "level": null,
+    "score": 998405
    },
    "python": {
     "song": null,
     "level": 2,
     "chart_type": "coop",
+    "score": 998405,
     "raw": "W-UzDM | WDSDSPowerExplosdO | :EAAsTFR",
     "song_margin": 0.0046,
     "chart_conf": 0.775
@@ -1997,6 +2183,7 @@
     "song": null,
     "level": 23,
     "chart_type": "coop",
+    "score": 998405,
     "raw": "W-UzDM | WDSDSPowerExplosdO | :EAAsTFR",
     "song_margin": 0.0046,
     "chart_conf": 0.774
@@ -2016,6 +2203,9 @@
       "conf": 0.018995
      }
     ],
+    "score": 998405,
+    "score_margin": 0.0358925,
+    "score_digits": "998405",
     "chart_type": "coop",
     "chart_conf": 0.774142,
     "level_digits": [
@@ -2056,12 +2246,14 @@
    "gt": {
     "song": "Canon D",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": null
    },
    "python": {
     "song": "Canon D",
     "level": 23,
     "chart_type": "double",
+    "score": null,
     "raw": "rJaM | canonD",
     "song_margin": 0.0622,
     "chart_conf": 1.0
@@ -2070,6 +2262,7 @@
     "song": "Canon D",
     "level": 23,
     "chart_type": "double",
+    "score": null,
     "raw": "rJaM | canonD",
     "song_margin": 0.0622,
     "chart_conf": 1.0
@@ -2085,6 +2278,9 @@
       "conf": 0.007231
      }
     ],
+    "score": -1,
+    "score_margin": 0,
+    "score_digits": "",
     "chart_type": "double",
     "chart_conf": 1,
     "level_digits": [
@@ -2125,12 +2321,14 @@
    "gt": {
     "song": "CROSS RAY (feat. 月下Lia)",
     "chart_type": "double",
-    "level": 24
+    "level": 24,
+    "score": 988543
    },
    "python": {
     "song": "CROSS RAY (feat. 月下Lia)",
     "level": 24,
     "chart_type": "double",
+    "score": 988543,
     "raw": "cROssRAY | ,,*",
     "song_margin": 0.0329,
     "chart_conf": 1.0
@@ -2139,6 +2337,7 @@
     "song": "CROSS RAY (feat. 月下Lia)",
     "level": 24,
     "chart_type": "double",
+    "score": 988543,
     "raw": "cROssRAY | ,,*",
     "song_margin": 0.0329,
     "chart_conf": 1.0
@@ -2154,6 +2353,9 @@
       "conf": 0.006543
      }
     ],
+    "score": 988543,
+    "score_margin": 0.0336214,
+    "score_digits": "988543",
     "chart_type": "double",
     "chart_conf": 1,
     "level_digits": [
@@ -2194,12 +2396,14 @@
    "gt": {
     "song": "Ghost Bloody Train",
     "chart_type": "single",
-    "level": 18
+    "level": 18,
+    "score": 1000000
    },
    "python": {
     "song": "Ghost Bloody Train",
     "level": 18,
     "chart_type": "single",
+    "score": 1000000,
     "raw": "GhostBloodyTrain | GhostBloodyTrain | w",
     "song_margin": 0.412,
     "chart_conf": 0.26
@@ -2208,6 +2412,7 @@
     "song": "Ghost Bloody Train",
     "level": 18,
     "chart_type": "halfdouble",
+    "score": 1000000,
     "raw": "GhostBloodyTrain | GhostBloodyTrain | w",
     "song_margin": 0.412,
     "chart_conf": 0.258
@@ -2227,6 +2432,9 @@
       "conf": 0.073398
      }
     ],
+    "score": 1000000,
+    "score_margin": 0.0285743,
+    "score_digits": "1000000",
     "chart_type": "halfdouble",
     "chart_conf": 0.257984,
     "level_digits": [
@@ -2267,12 +2475,14 @@
    "gt": {
     "song": "Paradoxx",
     "chart_type": "single",
-    "level": 21
+    "level": 21,
+    "score": 994958
    },
    "python": {
     "song": "Paradoxx",
     "level": null,
     "chart_type": "halfdouble",
+    "score": 994958,
     "raw": "Paradoxx | \"*mLeBB | PPHeeO",
     "song_margin": 0.2066,
     "chart_conf": 0.35
@@ -2281,6 +2491,7 @@
     "song": "Paradoxx",
     "level": null,
     "chart_type": "halfdouble",
+    "score": 994958,
     "raw": "Paradoxx | \"*mLeBF | PPHeeO",
     "song_margin": 0.2066,
     "chart_conf": 0.351
@@ -2300,6 +2511,9 @@
       "conf": 0.116102
      }
     ],
+    "score": 994958,
+    "score_margin": 0.0341272,
+    "score_digits": "994958",
     "chart_type": "halfdouble",
     "chart_conf": 0.350542,
     "level_digits": [],
@@ -2312,12 +2526,14 @@
    "gt": {
     "song": "Ghost Bloody Train",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": 957908
    },
    "python": {
     "song": "Ghost Bloody Train",
     "level": 20,
     "chart_type": "double",
+    "score": 957908,
     "raw": "BhontBIoddyTraIN | GhostBIoodyTraIN | abontBUoddyTraIN",
     "song_margin": 0.2755,
     "chart_conf": 0.741
@@ -2326,6 +2542,7 @@
     "song": "Ghost Bloody Train",
     "level": 20,
     "chart_type": "double",
+    "score": 957908,
     "raw": "BhontBIoddyTraIN | GhostBloodvTrRln | abontBUoddyTraIN",
     "song_margin": 0.1954,
     "chart_conf": 0.739
@@ -2345,6 +2562,9 @@
       "conf": 0.136084
      }
     ],
+    "score": 957908,
+    "score_margin": 0.0295557,
+    "score_digits": "957908",
     "chart_type": "double",
     "chart_conf": 0.738847,
     "level_digits": [
@@ -2385,12 +2605,14 @@
    "gt": {
     "song": "Extreme Music School 1st period feat. Nanahira",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": 954828
    },
    "python": {
     "song": "Extreme Music School 1st period feat. Nanahira",
     "level": 23,
     "chart_type": "double",
+    "score": 954828,
     "raw": "iliriSirScSmool1stoeriOdfeBt | ExtreTneMusicSchOQlIBtperl | 4AXCotJmD",
     "song_margin": 0.0163,
     "chart_conf": 0.799
@@ -2399,6 +2621,7 @@
     "song": "Extreme Music School 1st period feat. Nanahira",
     "level": 23,
     "chart_type": "double",
+    "score": 954828,
     "raw": "iliriSirScSmool1stoeriOdfeBt | ExtreTneMusicSchOQlIBtperl | 4AXCot8mD",
     "song_margin": 0.0163,
     "chart_conf": 0.799
@@ -2418,6 +2641,9 @@
       "conf": 0.009901
      }
     ],
+    "score": 954828,
+    "score_margin": 0.0250641,
+    "score_digits": "0954828",
     "chart_type": "double",
     "chart_conf": 0.798617,
     "level_digits": [
@@ -2458,12 +2684,14 @@
    "gt": {
     "song": "Enjoy The Show",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": 958560
    },
    "python": {
     "song": "Enjoy The Show",
     "level": 23,
     "chart_type": "double",
+    "score": 958560,
     "raw": "EnjoyTheShow | m\"n? | EnjoyTheShow",
     "song_margin": 0.2792,
     "chart_conf": 0.824
@@ -2472,6 +2700,7 @@
     "song": "Enjoy The Show",
     "level": 23,
     "chart_type": "double",
+    "score": 958560,
     "raw": "EnjoyTheShow | m\"n? | EnjoyTheShow",
     "song_margin": 0.2792,
     "chart_conf": 0.823
@@ -2491,6 +2720,9 @@
       "conf": 0.010778
      }
     ],
+    "score": 958560,
+    "score_margin": 0.0330439,
+    "score_digits": "958560",
     "chart_type": "double",
     "chart_conf": 0.823458,
     "level_digits": [
@@ -2531,12 +2763,14 @@
    "gt": {
     "song": "Blazing",
     "chart_type": "halfdouble",
-    "level": 23
+    "level": 23,
+    "score": 961258
    },
    "python": {
     "song": null,
     "level": 23,
     "chart_type": "halfdouble",
+    "score": 961258,
     "raw": "Blaztmg | BA2V)",
     "song_margin": 0.0136,
     "chart_conf": 1.0
@@ -2545,6 +2779,7 @@
     "song": null,
     "level": 23,
     "chart_type": "halfdouble",
+    "score": 961258,
     "raw": "Blaztmg | BA2V)",
     "song_margin": 0.0136,
     "chart_conf": 1.0
@@ -2560,6 +2795,9 @@
       "conf": 0.041985
      }
     ],
+    "score": 961258,
+    "score_margin": 0.0348199,
+    "score_digits": "961258",
     "chart_type": "halfdouble",
     "chart_conf": 0.999874,
     "level_digits": [
@@ -2600,12 +2838,14 @@
    "gt": {
     "song": "Mission Possible",
     "chart_type": null,
-    "level": null
+    "level": null,
+    "score": 996871
    },
    "python": {
     "song": "Mission Possible",
     "level": null,
     "chart_type": null,
+    "score": 996871,
     "raw": "MnBsnosPossibl | YUMkR | uissionPossibl",
     "song_margin": 0.0202,
     "chart_conf": null
@@ -2614,6 +2854,7 @@
     "song": "Mission Possible",
     "level": null,
     "chart_type": null,
+    "score": 996871,
     "raw": "MnBsnosPossibl | YUMkR | uissionPossibl",
     "song_margin": 0.0202,
     "chart_conf": 0.0
@@ -2633,6 +2874,9 @@
       "conf": 0.012255
      }
     ],
+    "score": 996871,
+    "score_margin": 0.0255882,
+    "score_digits": "996871",
     "chart_type": "",
     "chart_conf": 0,
     "level_digits": [],
@@ -2645,12 +2889,14 @@
    "gt": {
     "song": "BLAZOR",
     "chart_type": "double",
-    "level": 24
+    "level": 24,
+    "score": 962330
    },
    "python": {
     "song": null,
     "level": 24,
     "chart_type": "double",
+    "score": 962330,
     "raw": "gAzQR | bAdUB | DASVGS",
     "song_margin": 0.0011,
     "chart_conf": 0.948
@@ -2659,6 +2905,7 @@
     "song": null,
     "level": 24,
     "chart_type": "double",
+    "score": 962330,
     "raw": "gAzQR | bAAUB | DASVGS",
     "song_margin": 0.0011,
     "chart_conf": 0.948
@@ -2678,6 +2925,9 @@
       "conf": 0.183735
      }
     ],
+    "score": 962330,
+    "score_margin": 0.0354206,
+    "score_digits": "962330",
     "chart_type": "double",
     "chart_conf": 0.947565,
     "level_digits": [
@@ -2718,12 +2968,14 @@
    "gt": {
     "song": "Ghost Bloody Train",
     "chart_type": "single",
-    "level": 21
+    "level": 21,
+    "score": 998010
    },
    "python": {
     "song": "Ghost Bloody Train",
     "level": 21,
     "chart_type": "single",
+    "score": 998010,
     "raw": "Ghos.BloodyTrain | GhostBIoodyTrain | GhCstBloodyTrain",
     "song_margin": 0.397,
     "chart_conf": 0.969
@@ -2732,6 +2984,7 @@
     "song": "Ghost Bloody Train",
     "level": 21,
     "chart_type": "single",
+    "score": 998010,
     "raw": "Ghos.BloodyTrain | GhostBIoodyTrain | GhCs.BloodyTrain",
     "song_margin": 0.3951,
     "chart_conf": 0.969
@@ -2751,6 +3004,9 @@
       "conf": 0.019722
      }
     ],
+    "score": 998010,
+    "score_margin": 0.0465324,
+    "score_digits": "998010",
     "chart_type": "single",
     "chart_conf": 0.968912,
     "level_digits": [
@@ -2791,12 +3047,14 @@
    "gt": {
     "song": "Ghost Bloody Train",
     "chart_type": "single",
-    "level": 21
+    "level": 21,
+    "score": 979534
    },
    "python": {
     "song": "Point Break",
     "level": 13,
     "chart_type": "single",
+    "score": 979534,
     "raw": "P\"\"'!O-Bw | An0StBlon | PPNd\"",
     "song_margin": 0.0154,
     "chart_conf": 0.998
@@ -2805,6 +3063,7 @@
     "song": "Point Break",
     "level": 13,
     "chart_type": "single",
+    "score": 979534,
     "raw": "P\"\"'!O-B' | An0StBlon | PPNd\"",
     "song_margin": 0.0154,
     "chart_conf": 0.998
@@ -2824,6 +3083,9 @@
       "conf": 0.047571
      }
     ],
+    "score": 979534,
+    "score_margin": 0.0410542,
+    "score_digits": "979534",
     "chart_type": "single",
     "chart_conf": 0.998461,
     "level_digits": [
@@ -2864,12 +3126,14 @@
    "gt": {
     "song": "Imaginarized City",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": 991487
    },
    "python": {
     "song": "Imaginarized City",
     "level": 23,
     "chart_type": "double",
+    "score": 991487,
     "raw": "imaginarizedCity | lnnaRlnarIzeGLlt | ImaginZ'izedCity",
     "song_margin": 0.3216,
     "chart_conf": 0.904
@@ -2878,6 +3142,7 @@
     "song": "Imaginarized City",
     "level": 23,
     "chart_type": "double",
+    "score": 991487,
     "raw": "imaginarizedCity | lnnaRlnarIzeGLlt | ImaginZ'izedCity",
     "song_margin": 0.3216,
     "chart_conf": 0.904
@@ -2897,6 +3162,9 @@
       "conf": 0.092443
      }
     ],
+    "score": 991487,
+    "score_margin": 0.0336316,
+    "score_digits": "991487",
     "chart_type": "double",
     "chart_conf": 0.90363,
     "level_digits": [
@@ -2937,12 +3205,14 @@
    "gt": {
     "song": "Rise Up (feat. Miori Celesta)",
     "chart_type": "single",
-    "level": 22
+    "level": 22,
+    "score": 996299
    },
    "python": {
     "song": "N",
     "level": 16,
     "chart_type": "single",
+    "score": 996299,
     "raw": "!e0Pf-B!MlTr!c'iagfN) | fadtulOr!c'ieS\"N | *'!zRrjsPY",
     "song_margin": 0.0226,
     "chart_conf": 0.987
@@ -2951,6 +3221,7 @@
     "song": null,
     "level": 22,
     "chart_type": "single",
+    "score": 996299,
     "raw": "!e0Pf-B!MlTr!c'iagfN) | !oPPfRB2Mlzr!c'IagtN | *'!zRrjsPY",
     "song_margin": 0.0137,
     "chart_conf": 0.987
@@ -2970,6 +3241,9 @@
       "conf": 0.039662
      }
     ],
+    "score": 996299,
+    "score_margin": 0.017214,
+    "score_digits": "996299",
     "chart_type": "single",
     "chart_conf": 0.987273,
     "level_digits": [
@@ -3010,12 +3284,14 @@
    "gt": {
     "song": "Wedding Crashers",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": 974373
    },
    "python": {
     "song": "Wedding Crashers",
     "level": 23,
     "chart_type": "double",
+    "score": 974373,
     "raw": "weddingCrashers | weddtngCrashers | weddingCrashers",
     "song_margin": 0.2261,
     "chart_conf": 0.915
@@ -3024,6 +3300,7 @@
     "song": "Wedding Crashers",
     "level": 23,
     "chart_type": "double",
+    "score": 974373,
     "raw": "weddingCrashers | weddingCrashers | weddingCrashers",
     "song_margin": 0.2325,
     "chart_conf": 0.915
@@ -3043,6 +3320,9 @@
       "conf": 0.099046
      }
     ],
+    "score": 974373,
+    "score_margin": 0.0426694,
+    "score_digits": "974373",
     "chart_type": "double",
     "chart_conf": 0.915082,
     "level_digits": [
@@ -3083,12 +3363,14 @@
    "gt": {
     "song": "The Last Rebellion",
     "chart_type": "single",
-    "level": 21
+    "level": 21,
+    "score": 993930
    },
    "python": {
     "song": "The Last Rebellion",
     "level": 21,
     "chart_type": "single",
+    "score": 993930,
     "raw": "TheLastRebel-ion | TheLastRebeN!zon",
     "song_margin": 0.1821,
     "chart_conf": 0.63
@@ -3097,6 +3379,7 @@
     "song": "The Last Rebellion",
     "level": 21,
     "chart_type": "single",
+    "score": 993930,
     "raw": "TheLastRebel-ion | TheLastRebeN!zon",
     "song_margin": 0.1821,
     "chart_conf": 0.629
@@ -3112,6 +3395,9 @@
       "conf": 0.025026
      }
     ],
+    "score": 993930,
+    "score_margin": 0.04558,
+    "score_digits": "993930",
     "chart_type": "single",
     "chart_conf": 0.629198,
     "level_digits": [
@@ -3152,12 +3438,14 @@
    "gt": {
     "song": "Ghost Bloody Train",
     "chart_type": "single",
-    "level": 21
+    "level": 21,
+    "score": 979534
    },
    "python": {
     "song": "Point Break",
     "level": 13,
     "chart_type": "single",
+    "score": 979534,
     "raw": "P\"\"'!O-Bw | An0StBlon | PPNd\"",
     "song_margin": 0.0154,
     "chart_conf": 0.998
@@ -3166,6 +3454,7 @@
     "song": "Point Break",
     "level": 13,
     "chart_type": "single",
+    "score": 979534,
     "raw": "P\"\"'!O-B' | An0StBlon | PPNd\"",
     "song_margin": 0.0154,
     "chart_conf": 0.998
@@ -3185,6 +3474,9 @@
       "conf": 0.047571
      }
     ],
+    "score": 979534,
+    "score_margin": 0.041043,
+    "score_digits": "979534",
     "chart_type": "single",
     "chart_conf": 0.998463,
     "level_digits": [
@@ -3226,12 +3518,14 @@
    "gt": {
     "song": "Kokugen Kairou Labyrinth",
     "chart_type": "double",
-    "level": 26
+    "level": 26,
+    "score": 886899
    },
    "native": {
     "song": "Keep On!",
     "level": 13,
     "chart_type": "double",
+    "score": 886890,
     "raw": "\"eePkxi(,64OO | \"\"?*GlxJ6N6QO | ]\"\")LPl,,466B",
     "song_margin": 0.0478,
     "chart_conf": 0.639
@@ -3251,6 +3545,9 @@
       "conf": 0.0179572
      }
     ],
+    "score": 886890,
+    "score_margin": 0.0109393,
+    "score_digits": "0886890",
     "chart_type": "double",
     "chart_conf": 0.639473,
     "level_digits": [
@@ -3751,19 +4048,21 @@
      }
     ]
    },
-   "ms": 657.6
+   "ms": 689.8
   },
   {
    "key": "750493418",
    "gt": {
     "song": "Point Break",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": 948384
    },
    "native": {
     "song": "N",
     "level": 16,
     "chart_type": "double",
+    "score": 948384,
     "raw": "P~1Drur'.N | 'bBkTC | RPBDr",
     "song_margin": 0.0591,
     "chart_conf": 0.762
@@ -3783,6 +4082,9 @@
       "conf": 0.0200998
      }
     ],
+    "score": 948384,
+    "score_margin": 0.0277164,
+    "score_digits": "948384",
     "chart_type": "double",
     "chart_conf": 0.761691,
     "level_digits": [
@@ -4120,19 +4422,21 @@
      }
     ]
    },
-   "ms": 655.7
+   "ms": 699.3
   },
   {
    "key": "753298391",
    "gt": {
     "song": "Rise Up (feat. Miori Celesta)",
     "chart_type": "single",
-    "level": 22
+    "level": 22,
+    "score": null
    },
    "native": {
     "song": "Rise Up (feat. Miori Celesta)",
     "level": 22,
     "chart_type": "single",
+    "score": null,
     "raw": "MioriCeSesta | P!BUa | O!,[\"4U?",
     "song_margin": 0.0257,
     "chart_conf": 0.582
@@ -4152,6 +4456,9 @@
       "conf": 0.065128
      }
     ],
+    "score": 90000,
+    "score_margin": 0.00481805,
+    "score_digits": "9090000",
     "chart_type": "single",
     "chart_conf": 0.582128,
     "level_digits": [
@@ -4739,19 +5046,21 @@
      }
     ]
    },
-   "ms": 624.9
+   "ms": 687.0
   },
   {
    "key": "756525554",
    "gt": {
     "song": "INFiNiTE ENERZY -Overdoze-",
     "chart_type": "double",
-    "level": 25
+    "level": 25,
+    "score": 975919
    },
    "native": {
     "song": "INFiNiTE ENERZY -Overdoze-",
     "level": 25,
     "chart_type": "double",
+    "score": 975919,
     "raw": "lNFiNiTEENERZyoveooz | !NFiNiTEENERzyoyerdozo | n",
     "song_margin": 0.1337,
     "chart_conf": 0.518
@@ -4771,6 +5080,9 @@
       "conf": 0.00975178
      }
     ],
+    "score": 975919,
+    "score_margin": 0.035011,
+    "score_digits": "975919",
     "chart_type": "double",
     "chart_conf": 0.518041,
     "level_digits": [
@@ -5077,19 +5389,21 @@
      }
     ]
    },
-   "ms": 628.6
+   "ms": 646.9
   },
   {
    "key": "759642534",
    "gt": {
     "song": "B3",
     "chart_type": "single",
-    "level": 18
+    "level": 18,
+    "score": 1000000
    },
    "native": {
     "song": "B3",
     "level": 16,
     "chart_type": "single",
+    "score": 1000000,
     "raw": "0oDOuOtET | B3 | Um",
     "song_margin": 0.072,
     "chart_conf": 0.307
@@ -5109,6 +5423,9 @@
       "conf": 0.0183394
      }
     ],
+    "score": 1000000,
+    "score_margin": 0.046736,
+    "score_digits": "1000000",
     "chart_type": "single",
     "chart_conf": 0.307477,
     "level_digits": [
@@ -5533,19 +5850,21 @@
      }
     ]
    },
-   "ms": 624.8
+   "ms": 683.6
   },
   {
    "key": "759932387",
    "gt": {
     "song": "The Last Rebellion",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": 993925
    },
    "native": {
     "song": "The Last Rebellion",
     "level": 23,
     "chart_type": "double",
+    "score": 993925,
     "raw": "TheLastRebeIlio- | TheLastRebeIIio- | TheLastRebeIIon",
     "song_margin": 0.1524,
     "chart_conf": 0.888
@@ -5565,6 +5884,9 @@
       "conf": 0.00586348
      }
     ],
+    "score": 993925,
+    "score_margin": 0.0123469,
+    "score_digits": "993925",
     "chart_type": "double",
     "chart_conf": 0.887957,
     "level_digits": [
@@ -5916,19 +6238,21 @@
      }
     ]
    },
-   "ms": 685.8
+   "ms": 705.7
   },
   {
    "key": "760620783",
    "gt": {
     "song": "Anguished Unmaking",
     "chart_type": "double",
-    "level": 22
+    "level": 22,
+    "score": 941655
    },
    "native": {
     "song": "See",
     "level": 23,
     "chart_type": "double",
+    "score": 941655,
     "raw": "AnEu1SEEeFomSEiNN | KPo&uishTdunMNNlN | 2",
     "song_margin": 0.0226,
     "chart_conf": 0.869
@@ -5948,6 +6272,9 @@
       "conf": 0.0287479
      }
     ],
+    "score": 941655,
+    "score_margin": 0.0219461,
+    "score_digits": "941655",
     "chart_type": "double",
     "chart_conf": 0.868802,
     "level_digits": [
@@ -6506,19 +6833,21 @@
      }
     ]
    },
-   "ms": 679.6
+   "ms": 743.9
   },
   {
    "key": "761729756",
    "gt": {
     "song": "Rise Up (feat. Miori Celesta)",
     "chart_type": "double",
-    "level": 24
+    "level": 24,
+    "score": 997520
    },
    "native": {
     "song": "Rise Up (feat. Miori Celesta)",
     "level": 24,
     "chart_type": "double",
+    "score": null,
     "raw": "k0YcU0f0S.uiOriC,lesta | Sq.1 | \".z,4",
     "song_margin": 0.0463,
     "chart_conf": 0.576
@@ -6538,6 +6867,9 @@
       "conf": 0.0393577
      }
     ],
+    "score": 996928,
+    "score_margin": 2.03848e-05,
+    "score_digits": "996928",
     "chart_type": "double",
     "chart_conf": 0.576452,
     "level_digits": [
@@ -7128,19 +7460,24 @@
      }
     ]
    },
-   "ms": 614.3
+   "ms": 668.8
   },
   {
    "key": "763137594",
    "gt": {
     "song": "B3",
     "chart_type": "single",
-    "level": 18
+    "level": 18,
+    "score": [
+     998743,
+     1000000
+    ]
    },
    "native": {
     "song": null,
     "level": 12,
     "chart_type": "halfdouble",
+    "score": null,
     "raw": "PieeHk | Z\"mz | mEGIlU",
     "song_margin": 0.0052,
     "chart_conf": 0.179
@@ -7160,6 +7497,9 @@
       "conf": 0.0368579
      }
     ],
+    "score": 228143,
+    "score_margin": 0.00416994,
+    "score_digits": "228143",
     "chart_type": "halfdouble",
     "chart_conf": 0.178508,
     "level_digits": [
@@ -7869,19 +8209,21 @@
      }
     ]
    },
-   "ms": 619.9
+   "ms": 642.0
   },
   {
    "key": "763762395",
    "gt": {
     "song": "Extreme Music School 2nd period feat. Nanahira",
     "chart_type": null,
-    "level": null
+    "level": null,
+    "score": 991450
    },
    "native": {
     "song": null,
     "level": null,
     "chart_type": "halfdouble",
+    "score": 991450,
     "raw": "\"O5A | ,~Nfa\"\" | ExtremeMusicSchooI2nd",
     "song_margin": 0.0051,
     "chart_conf": 0.91
@@ -7901,6 +8243,9 @@
       "conf": 0.100802
      }
     ],
+    "score": 991450,
+    "score_margin": 0.0172741,
+    "score_digits": "991450",
     "chart_type": "halfdouble",
     "chart_conf": 0.910133,
     "level_digits": [],
@@ -8699,19 +9044,21 @@
      }
     ]
    },
-   "ms": 635.5
+   "ms": 647.7
   },
   {
    "key": "766241603",
    "gt": {
     "song": "The Last Rebellion",
     "chart_type": "single",
-    "level": 21
+    "level": 21,
+    "score": 995030
    },
    "native": {
     "song": null,
     "level": null,
     "chart_type": "halfdouble",
+    "score": 995030,
     "raw": "ThRLBstRBbebbion | .Q2*. | GdssBs",
     "song_margin": 0.0133,
     "chart_conf": 0.525
@@ -8731,6 +9078,9 @@
       "conf": 0.0184697
      }
     ],
+    "score": 995030,
+    "score_margin": 0.0269907,
+    "score_digits": "995030",
     "chart_type": "halfdouble",
     "chart_conf": 0.525309,
     "level_digits": [],
@@ -9073,19 +9423,21 @@
      }
     ]
    },
-   "ms": 610.3
+   "ms": 727.8
   },
   {
    "key": "768962990",
    "gt": {
     "song": "The Last Rebellion",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": 957683
    },
    "native": {
     "song": "The Last Rebellion",
     "level": 23,
     "chart_type": "double",
+    "score": 957683,
     "raw": "TheLas.RebRiitdo | PPP1eM",
     "song_margin": 0.0509,
     "chart_conf": 0.609
@@ -9101,6 +9453,9 @@
       "conf": 0.00615969
      }
     ],
+    "score": 957683,
+    "score_margin": 0.024812,
+    "score_digits": "957683",
     "chart_type": "double",
     "chart_conf": 0.608982,
     "level_digits": [
@@ -9468,19 +9823,21 @@
      }
     ]
    },
-   "ms": 655.3
+   "ms": 714.1
   },
   {
    "key": "768963130",
    "gt": {
     "song": "Freedom Dive",
     "chart_type": "single",
-    "level": 22
+    "level": 22,
+    "score": 993171
    },
    "native": {
     "song": "Freedom Dive",
     "level": 22,
     "chart_type": "single",
+    "score": 993171,
     "raw": "FREEDOMDiVE | .bN?o\"\" | FREEDOMDiVE",
     "song_margin": 0.2565,
     "chart_conf": 0.521
@@ -9500,6 +9857,9 @@
       "conf": 0.0910475
      }
     ],
+    "score": 993171,
+    "score_margin": 0.0326168,
+    "score_digits": "993171",
     "chart_type": "single",
     "chart_conf": 0.521266,
     "level_digits": [
@@ -9926,19 +10286,21 @@
      }
     ]
    },
-   "ms": 660.6
+   "ms": 670.3
   },
   {
    "key": "769131804",
    "gt": {
     "song": "Digitalis",
     "chart_type": "double",
-    "level": 21
+    "level": 21,
+    "score": 990525
    },
    "native": {
     "song": "Digitalis",
     "level": 21,
     "chart_type": "double",
+    "score": 990525,
     "raw": "Digitalis | s* | \"n*S'wM",
     "song_margin": 0.2193,
     "chart_conf": 0.721
@@ -9958,6 +10320,9 @@
       "conf": 0.0202491
      }
     ],
+    "score": 990525,
+    "score_margin": 0.0417411,
+    "score_digits": "990525",
     "chart_type": "double",
     "chart_conf": 0.720704,
     "level_digits": [
@@ -10426,19 +10791,21 @@
      }
     ]
    },
-   "ms": 620.4
+   "ms": 649.0
   },
   {
    "key": "769313055",
    "gt": {
     "song": "Legendary Dominion",
     "chart_type": "single",
-    "level": 20
+    "level": 20,
+    "score": 997467
    },
    "native": {
     "song": "Legendary Dominion",
     "level": 20,
     "chart_type": "halfdouble",
+    "score": 997467,
     "raw": "LegeadZnBomihioh | I)I.Bu | 'FbtiV(((hie",
     "song_margin": 0.0687,
     "chart_conf": 0.37
@@ -10458,6 +10825,9 @@
       "conf": 0.0120809
      }
     ],
+    "score": 997467,
+    "score_margin": 0.0176401,
+    "score_digits": "997467",
     "chart_type": "halfdouble",
     "chart_conf": 0.370482,
     "level_digits": [
@@ -10783,19 +11153,21 @@
      }
     ]
    },
-   "ms": 645.3
+   "ms": 694.0
   },
   {
    "key": "782890740",
    "gt": {
     "song": "CHAOS AGAIN",
     "chart_type": "single",
-    "level": 24
+    "level": 24,
+    "score": 945370
    },
    "native": {
     "song": "CHAOS AGAIN",
     "level": 24,
     "chart_type": "single",
+    "score": 945370,
     "raw": "CHAOSAGA!N | CHAOSAGAN | gCC",
     "song_margin": 0.1854,
     "chart_conf": 0.393
@@ -10815,6 +11187,9 @@
       "conf": 0.0526087
      }
     ],
+    "score": 945370,
+    "score_margin": 0.0429679,
+    "score_digits": "945370",
     "chart_type": "single",
     "chart_conf": 0.392989,
     "level_digits": [
@@ -11218,19 +11593,21 @@
      }
     ]
    },
-   "ms": 694.7
+   "ms": 640.3
   },
   {
    "key": "783857709",
    "gt": {
     "song": "QUATTUORUX",
     "chart_type": "single",
-    "level": 24
+    "level": 24,
+    "score": 944127
    },
    "native": {
     "song": "QUATTUORUX",
     "level": 24,
     "chart_type": "halfdouble",
+    "score": 944127,
     "raw": "QUATTu1Rux | QUATTuDRux | S>f",
     "song_margin": 0.1934,
     "chart_conf": 0.409
@@ -11250,6 +11627,9 @@
       "conf": 0.077693
      }
     ],
+    "score": 944127,
+    "score_margin": 0.046856,
+    "score_digits": "944127",
     "chart_type": "halfdouble",
     "chart_conf": 0.408673,
     "level_digits": [
@@ -11777,19 +12157,21 @@
      }
     ]
    },
-   "ms": 643.0
+   "ms": 624.4
   },
   {
    "key": "784003336",
    "gt": {
     "song": "Broken Karma (PIU EDIT)",
     "chart_type": "single",
-    "level": 19
+    "level": 19,
+    "score": 1000000
    },
    "native": {
     "song": "Broken Karma (PIU EDIT)",
     "level": 19,
     "chart_type": "single",
+    "score": 1000000,
     "raw": "B.OkBnKarma(Pli!EDlT)",
     "song_margin": 0.1329,
     "chart_conf": 0.257
@@ -11801,6 +12183,9 @@
       "conf": 0.468515
      }
     ],
+    "score": 1000000,
+    "score_margin": 0.0409995,
+    "score_digits": "1000000",
     "chart_type": "single",
     "chart_conf": 0.256704,
     "level_digits": [
@@ -12210,19 +12595,21 @@
      }
     ]
    },
-   "ms": 662.0
+   "ms": 745.2
   },
   {
    "key": "784233147",
    "gt": {
     "song": "We Love Your Step",
     "chart_type": "single",
-    "level": 22
+    "level": 22,
+    "score": 972340
    },
    "native": {
     "song": "We Love Your Step",
     "level": 22,
     "chart_type": "single",
+    "score": null,
     "raw": "thcLoveYourSteP | \"'Q'\"'w | t)cUoveYourSteP",
     "song_margin": 0.0913,
     "chart_conf": 0.987
@@ -12242,6 +12629,9 @@
       "conf": 0.0112137
      }
     ],
+    "score": 972340,
+    "score_margin": 0.00522667,
+    "score_digits": "972340",
     "chart_type": "single",
     "chart_conf": 0.98684,
     "level_digits": [
@@ -12662,19 +13052,21 @@
      }
     ]
    },
-   "ms": 683.1
+   "ms": 696.3
   },
   {
    "key": "784242732",
    "gt": {
     "song": "Dement ~After Legend~",
     "chart_type": "single",
-    "level": 23
+    "level": 23,
+    "score": 948002
    },
    "native": {
     "song": "Dement ~After Legend~",
     "level": 23,
     "chart_type": "halfdouble",
+    "score": 948002,
     "raw": "Af.erLegend | r.A | AfterLegend",
     "song_margin": 0.0579,
     "chart_conf": 0.415
@@ -12694,6 +13086,9 @@
       "conf": 0.0125173
      }
     ],
+    "score": 948002,
+    "score_margin": 0.0353556,
+    "score_digits": "948002",
     "chart_type": "halfdouble",
     "chart_conf": 0.414844,
     "level_digits": [
@@ -13194,19 +13589,21 @@
      }
     ]
    },
-   "ms": 625.7
+   "ms": 663.7
   },
   {
    "key": "785282278",
    "gt": {
     "song": "BLAZOR",
     "chart_type": "single",
-    "level": 18
+    "level": 18,
+    "score": 1000000
    },
    "native": {
     "song": "BLAZOR",
     "level": 11,
     "chart_type": "halfdouble",
+    "score": 1000000,
     "raw": "BUOR | ZOR | EGlN",
     "song_margin": 0.0531,
     "chart_conf": 0.151
@@ -13226,6 +13623,9 @@
       "conf": 0.0209165
      }
     ],
+    "score": 1000000,
+    "score_margin": 0.0569109,
+    "score_digits": "1000000",
     "chart_type": "halfdouble",
     "chart_conf": 0.150804,
     "level_digits": [
@@ -13665,19 +14065,21 @@
      }
     ]
    },
-   "ms": 663.8
+   "ms": 678.5
   },
   {
    "key": "787574282",
    "gt": {
     "song": "Ultimatum",
     "chart_type": "single",
-    "level": 21
+    "level": 21,
+    "score": 994183
    },
    "native": {
     "song": "Ultimatum",
     "level": 21,
     "chart_type": null,
+    "score": 994183,
     "raw": "Ultimatum | Ultimatum | L*O*",
     "song_margin": 0.1833,
     "chart_conf": 0.067
@@ -13697,6 +14099,9 @@
       "conf": 0.00760026
      }
     ],
+    "score": 994183,
+    "score_margin": 0.0316184,
+    "score_digits": "994183",
     "chart_type": "halfdouble",
     "chart_conf": 0.0667453,
     "level_digits": [
@@ -14110,19 +14515,21 @@
      }
     ]
    },
-   "ms": 631.2
+   "ms": 703.0
   },
   {
    "key": "788562783",
    "gt": {
     "song": "OVERNIGHT FLOWER",
     "chart_type": "single",
-    "level": 19
+    "level": 19,
+    "score": 997252
    },
    "native": {
     "song": "OVERNIGHT FLOWER",
     "level": 19,
     "chart_type": "single",
+    "score": 997252,
     "raw": "OVERNisHTFLDW88 | U\" | OVEkNisHTFLDW:8",
     "song_margin": 0.0562,
     "chart_conf": 0.405
@@ -14142,6 +14549,9 @@
       "conf": 0.0429418
      }
     ],
+    "score": 997252,
+    "score_margin": 0.0395907,
+    "score_digits": "997252",
     "chart_type": "single",
     "chart_conf": 0.404784,
     "level_digits": [
@@ -14647,19 +15057,21 @@
      }
     ]
    },
-   "ms": 638.9
+   "ms": 689.8
   },
   {
    "key": "790434555",
    "gt": {
     "song": "Appassionata",
     "chart_type": "single",
-    "level": 22
+    "level": 22,
+    "score": 952208
    },
    "native": {
     "song": "N",
     "level": null,
     "chart_type": "single",
+    "score": 952208,
     "raw": "NO*'*** | iassiofaS | \"*Nz",
     "song_margin": 0.0266,
     "chart_conf": 0.98
@@ -14679,6 +15091,9 @@
       "conf": 0.00692803
      }
     ],
+    "score": 952208,
+    "score_margin": 0.0177464,
+    "score_digits": "0952208",
     "chart_type": "single",
     "chart_conf": 0.979886,
     "level_digits": [],
@@ -14949,19 +15364,21 @@
      }
     ]
    },
-   "ms": 648.6
+   "ms": 667.8
   },
   {
    "key": "791465596",
    "gt": {
     "song": "Imaginarized City",
     "chart_type": "single",
-    "level": 19
+    "level": 19,
+    "score": 970350
    },
    "native": {
     "song": "Imaginarized City",
     "level": 19,
     "chart_type": "halfdouble",
+    "score": 970350,
     "raw": "!m-OinSrlzedci\"v | jC)PN!Bi | F>s.-",
     "song_margin": 0.0388,
     "chart_conf": 0.54
@@ -14981,6 +15398,9 @@
       "conf": 0.0569362
      }
     ],
+    "score": 970350,
+    "score_margin": 0.0312286,
+    "score_digits": "970350",
     "chart_type": "halfdouble",
     "chart_conf": 0.539933,
     "level_digits": [
@@ -15625,19 +16045,21 @@
      }
     ]
    },
-   "ms": 596.9
+   "ms": 677.9
   },
   {
    "key": "791942785",
    "gt": {
     "song": "Dead End",
     "chart_type": "single",
-    "level": 21
+    "level": 21,
+    "score": null
    },
    "native": {
     "song": "Dead End",
     "level": null,
     "chart_type": "single",
+    "score": null,
     "raw": ":RadEnd | MIEAmUi | r6.*1\"*",
     "song_margin": 0.0907,
     "chart_conf": 0.328
@@ -15657,6 +16079,9 @@
       "conf": 0.00672533
      }
     ],
+    "score": 96,
+    "score_margin": 0.00218356,
+    "score_digits": "0096",
     "chart_type": "single",
     "chart_conf": 0.328114,
     "level_digits": [],
@@ -16156,19 +16581,21 @@
      }
     ]
    },
-   "ms": 684.8
+   "ms": 964.4
   },
   {
    "key": "791974941",
    "gt": {
     "song": "BLAZOR",
     "chart_type": "single",
-    "level": 20
+    "level": 20,
+    "score": 997725
    },
    "native": {
     "song": null,
     "level": 20,
     "chart_type": "single",
+    "score": 997725,
     "raw": "'''\"NwN | BLAZ:R | z",
     "song_margin": 0.0077,
     "chart_conf": 0.191
@@ -16188,6 +16615,9 @@
       "conf": 0.00564283
      }
     ],
+    "score": 997725,
+    "score_margin": 0.0124679,
+    "score_digits": "997725",
     "chart_type": "single",
     "chart_conf": 0.190749,
     "level_digits": [
@@ -16523,19 +16953,21 @@
      }
     ]
    },
-   "ms": 632.8
+   "ms": 759.4
   },
   {
    "key": "792441257",
    "gt": {
     "song": "BSPower Explosion",
     "chart_type": "coop",
-    "level": null
+    "level": null,
+    "score": 998405
    },
    "native": {
     "song": null,
     "level": 21,
     "chart_type": "coop",
+    "score": 998405,
     "raw": "W-UzDM | IBooHB0 | UoPowerEuiCCIo8nr)CG",
     "song_margin": 0.0054,
     "chart_conf": 0.776
@@ -16555,6 +16987,9 @@
       "conf": 0.00882421
      }
     ],
+    "score": 998405,
+    "score_margin": 0.0361409,
+    "score_digits": "998405",
     "chart_type": "coop",
     "chart_conf": 0.776062,
     "level_digits": [
@@ -16821,19 +17256,21 @@
      }
     ]
    },
-   "ms": 649.4
+   "ms": 677.3
   },
   {
    "key": "793212531",
    "gt": {
     "song": "Canon D",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": null
    },
    "native": {
     "song": "Canon D",
     "level": 23,
     "chart_type": "double",
+    "score": 99017,
     "raw": "cN | CanonD",
     "song_margin": 0.0689,
     "chart_conf": 1.0
@@ -16849,6 +17286,9 @@
       "conf": 0.0054525
      }
     ],
+    "score": 99017,
+    "score_margin": 0.0847194,
+    "score_digits": "99017",
     "chart_type": "double",
     "chart_conf": 1,
     "level_digits": [
@@ -17098,19 +17538,21 @@
      }
     ]
    },
-   "ms": 624.2
+   "ms": 669.7
   },
   {
    "key": "793212617",
    "gt": {
     "song": "CROSS RAY (feat. 月下Lia)",
     "chart_type": "double",
-    "level": 24
+    "level": 24,
+    "score": 988543
    },
    "native": {
     "song": "CROSS RAY (feat. 月下Lia)",
     "level": 24,
     "chart_type": "double",
+    "score": 988543,
     "raw": "cROssRAY",
     "song_margin": 0.0511,
     "chart_conf": 1.0
@@ -17122,6 +17564,9 @@
       "conf": 0.100256
      }
     ],
+    "score": 988543,
+    "score_margin": 0.0336066,
+    "score_digits": "988543",
     "chart_type": "double",
     "chart_conf": 1,
     "level_digits": [
@@ -17322,19 +17767,21 @@
      }
     ]
    },
-   "ms": 597.0
+   "ms": 619.4
   },
   {
    "key": "793867723",
    "gt": {
     "song": "Ghost Bloody Train",
     "chart_type": "single",
-    "level": 18
+    "level": 18,
+    "score": 1000000
    },
    "native": {
     "song": "Ghost Bloody Train",
     "level": 18,
     "chart_type": "single",
+    "score": 1000000,
     "raw": "GhostBloodyTrain | Glho8tBloodyCrain",
     "song_margin": 0.4477,
     "chart_conf": 0.321
@@ -17350,6 +17797,9 @@
       "conf": 0.0144818
      }
     ],
+    "score": 1000000,
+    "score_margin": 0.0395466,
+    "score_digits": "1000000",
     "chart_type": "single",
     "chart_conf": 0.320552,
     "level_digits": [
@@ -17858,19 +18308,21 @@
      }
     ]
    },
-   "ms": 699.5
+   "ms": 718.0
   },
   {
    "key": "794385429",
    "gt": {
     "song": "Paradoxx",
     "chart_type": "single",
-    "level": 21
+    "level": 21,
+    "score": 994958
    },
    "native": {
     "song": "Paradoxx",
     "level": null,
     "chart_type": "halfdouble",
+    "score": 994958,
     "raw": "\"*mLeBF | Paradoxx | \"'B,",
     "song_margin": 0.1603,
     "chart_conf": 0.307
@@ -17890,6 +18342,9 @@
       "conf": 0.0761242
      }
     ],
+    "score": 994958,
+    "score_margin": 0.0304578,
+    "score_digits": "994958",
     "chart_type": "halfdouble",
     "chart_conf": 0.3071,
     "level_digits": [],
@@ -18377,19 +18832,21 @@
      }
     ]
    },
-   "ms": 627.0
+   "ms": 602.8
   },
   {
    "key": "798263716",
    "gt": {
     "song": "Ghost Bloody Train",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": 957908
    },
    "native": {
     "song": "Ghost Bloody Train",
     "level": 23,
     "chart_type": "double",
+    "score": 957908,
     "raw": "BhontBlCodyTraIB | GhostBloodyTraln",
     "song_margin": 0.1345,
     "chart_conf": 0.827
@@ -18405,6 +18862,9 @@
       "conf": 0.006125
      }
     ],
+    "score": 957908,
+    "score_margin": 0.0186754,
+    "score_digits": "957908",
     "chart_type": "double",
     "chart_conf": 0.827204,
     "level_digits": [
@@ -18733,19 +19193,21 @@
      }
     ]
    },
-   "ms": 617.5
+   "ms": 669.7
   },
   {
    "key": "798894701",
    "gt": {
     "song": "Extreme Music School 1st period feat. Nanahira",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": 954828
    },
    "native": {
     "song": null,
     "level": 23,
     "chart_type": "double",
+    "score": 954828,
     "raw": "oXtret,teMusirSchoolIstper!aa | MAXnnIsn | BxtromeMp8nEsEhooIzstperiodfeat",
     "song_margin": 0.0117,
     "chart_conf": 0.871
@@ -18765,6 +19227,9 @@
       "conf": 0.023513
      }
     ],
+    "score": 954828,
+    "score_margin": 0.0251075,
+    "score_digits": "0954828",
     "chart_type": "double",
     "chart_conf": 0.870795,
     "level_digits": [
@@ -19168,19 +19633,21 @@
      }
     ]
    },
-   "ms": 660.5
+   "ms": 742.5
   },
   {
    "key": "799143935",
    "gt": {
     "song": "Enjoy The Show",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": 958560
    },
    "native": {
     "song": "Enjoy The Show",
     "level": 23,
     "chart_type": "double",
+    "score": 958560,
     "raw": "EnjoyTheShow | GaNO",
     "song_margin": 0.1314,
     "chart_conf": 0.868
@@ -19196,6 +19663,9 @@
       "conf": 0.0051142
      }
     ],
+    "score": 958560,
+    "score_margin": 0.0330439,
+    "score_digits": "958560",
     "chart_type": "double",
     "chart_conf": 0.867732,
     "level_digits": [
@@ -19463,19 +19933,21 @@
      }
     ]
    },
-   "ms": 676.1
+   "ms": 661.2
   },
   {
    "key": "799202570",
    "gt": {
     "song": "Blazing",
     "chart_type": "halfdouble",
-    "level": 23
+    "level": 23,
+    "score": 961258
    },
    "native": {
     "song": "Blazing",
     "level": 17,
     "chart_type": "single",
+    "score": 961258,
     "raw": "O2-S | Blazing",
     "song_margin": 0.0725,
     "chart_conf": 0.775
@@ -19491,6 +19963,9 @@
       "conf": 0.00593962
      }
     ],
+    "score": 961258,
+    "score_margin": 0.0383112,
+    "score_digits": "961258",
     "chart_type": "single",
     "chart_conf": 0.774611,
     "level_digits": [
@@ -20020,19 +20495,21 @@
      }
     ]
    },
-   "ms": 597.6
+   "ms": 637.6
   },
   {
    "key": "799264471",
    "gt": {
     "song": "Mission Possible",
     "chart_type": null,
-    "level": null
+    "level": null,
+    "score": 996871
    },
    "native": {
     "song": "Mission Possible",
     "level": 20,
     "chart_type": "single",
+    "score": 996871,
     "raw": "unssionPossibl | Dpeea21",
     "song_margin": 0.0158,
     "chart_conf": 0.637
@@ -20048,6 +20525,9 @@
       "conf": 0.00781672
      }
     ],
+    "score": 996871,
+    "score_margin": 0.0244822,
+    "score_digits": "996871",
     "chart_type": "single",
     "chart_conf": 0.636659,
     "level_digits": [
@@ -20432,19 +20912,21 @@
      }
     ]
    },
-   "ms": 632.9
+   "ms": 648.1
   },
   {
    "key": "799603098",
    "gt": {
     "song": "BLAZOR",
     "chart_type": "double",
-    "level": 24
+    "level": 24,
+    "score": 962330
    },
    "native": {
     "song": "BLAZOR",
     "level": 24,
     "chart_type": "double",
+    "score": 962330,
     "raw": "*gMzoR | Od | S)B[",
     "song_margin": 0.073,
     "chart_conf": 0.949
@@ -20464,6 +20946,9 @@
       "conf": 0.0167665
      }
     ],
+    "score": 962330,
+    "score_margin": 0.0354206,
+    "score_digits": "962330",
     "chart_type": "double",
     "chart_conf": 0.949112,
     "level_digits": [
@@ -21224,19 +21709,21 @@
      }
     ]
    },
-   "ms": 617.4
+   "ms": 698.3
   },
   {
    "key": "799676852",
    "gt": {
     "song": "Ghost Bloody Train",
     "chart_type": "single",
-    "level": 21
+    "level": 21,
+    "score": 998010
    },
    "native": {
     "song": "Ghost Bloody Train",
     "level": 21,
     "chart_type": "single",
+    "score": 998010,
     "raw": "GhCstBloodyTrain | .zX | cAX-S-XUUh",
     "song_margin": 0.2725,
     "chart_conf": 0.963
@@ -21256,6 +21743,9 @@
       "conf": 0.00632684
      }
     ],
+    "score": 998010,
+    "score_margin": 0.0452927,
+    "score_digits": "998010",
     "chart_type": "single",
     "chart_conf": 0.962659,
     "level_digits": [
@@ -21734,19 +22224,21 @@
      }
     ]
    },
-   "ms": 603.7
+   "ms": 673.8
   },
   {
    "key": "799724591",
    "gt": {
     "song": "Ghost Bloody Train",
     "chart_type": "single",
-    "level": 21
+    "level": 21,
+    "score": 979534
    },
    "native": {
     "song": null,
     "level": 21,
     "chart_type": "single",
+    "score": 979534,
     "raw": "ueostBIo | '\"\"w,B! | GhostSO",
     "song_margin": 0.0137,
     "chart_conf": 0.998
@@ -21766,6 +22258,9 @@
       "conf": 0.0120555
      }
     ],
+    "score": 979534,
+    "score_margin": 0.0398405,
+    "score_digits": "979534",
     "chart_type": "single",
     "chart_conf": 0.998453,
     "level_digits": [
@@ -22306,19 +22801,21 @@
      }
     ]
    },
-   "ms": 634.4
+   "ms": 676.0
   },
   {
    "key": "799770527",
    "gt": {
     "song": "Imaginarized City",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": 991487
    },
    "native": {
     "song": "Imaginarized City",
     "level": 23,
     "chart_type": "double",
+    "score": 991487,
     "raw": "lm.ginerizedCity | .oSE | N'3XQA",
     "song_margin": 0.1686,
     "chart_conf": 0.801
@@ -22338,6 +22835,9 @@
       "conf": 0.0110979
      }
     ],
+    "score": 991487,
+    "score_margin": 0.0335004,
+    "score_digits": "991487",
     "chart_type": "double",
     "chart_conf": 0.800916,
     "level_digits": [
@@ -22981,19 +23481,21 @@
      }
     ]
    },
-   "ms": 607.4
+   "ms": 628.4
   },
   {
    "key": "799972293",
    "gt": {
     "song": "Rise Up (feat. Miori Celesta)",
     "chart_type": "single",
-    "level": 22
+    "level": 22,
+    "score": 996299
    },
    "native": {
     "song": null,
     "level": 21,
     "chart_type": "single",
+    "score": 996299,
     "raw": "*'!zRrjsPY | S!eTupi:yrMLcrpEeibStN | z5\"l",
     "song_margin": 0.0094,
     "chart_conf": 0.988
@@ -23013,6 +23515,9 @@
       "conf": 0.0160652
      }
     ],
+    "score": 996299,
+    "score_margin": 0.0161075,
+    "score_digits": "996299",
     "chart_type": "single",
     "chart_conf": 0.988238,
     "level_digits": [
@@ -23841,19 +24346,21 @@
      }
     ]
    },
-   "ms": 645.7
+   "ms": 763.0
   },
   {
    "key": "800259601",
    "gt": {
     "song": "Wedding Crashers",
     "chart_type": "double",
-    "level": 23
+    "level": 23,
+    "score": 974373
    },
    "native": {
     "song": "Wedding Crashers",
     "level": 23,
     "chart_type": "double",
+    "score": 974373,
     "raw": "weddingCrashers | OZ1S- | \"0,L",
     "song_margin": 0.227,
     "chart_conf": 0.905
@@ -23873,6 +24380,9 @@
       "conf": 0.0220296
      }
     ],
+    "score": 974373,
+    "score_margin": 0.0425634,
+    "score_digits": "974373",
     "chart_type": "double",
     "chart_conf": 0.905487,
     "level_digits": [
@@ -24484,19 +24994,21 @@
      }
     ]
    },
-   "ms": 597.7
+   "ms": 638.7
   },
   {
    "key": "800945526",
    "gt": {
     "song": "The Last Rebellion",
     "chart_type": "single",
-    "level": 21
+    "level": 21,
+    "score": 993930
    },
    "native": {
     "song": "The Last Rebellion",
     "level": 21,
     "chart_type": "single",
+    "score": 993930,
     "raw": "TheLastRebellion | *za",
     "song_margin": 0.1559,
     "chart_conf": 0.698
@@ -24512,6 +25024,9 @@
       "conf": 0.00869468
      }
     ],
+    "score": 993930,
+    "score_margin": 0.0370996,
+    "score_digits": "993930",
     "chart_type": "single",
     "chart_conf": 0.698374,
     "level_digits": [
@@ -24800,19 +25315,21 @@
      }
     ]
    },
-   "ms": 622.0
+   "ms": 650.7
   },
   {
    "key": "image",
    "gt": {
     "song": "Ghost Bloody Train",
     "chart_type": "single",
-    "level": 21
+    "level": 21,
+    "score": 979534
    },
    "native": {
     "song": "Ghost Bloody Train",
     "level": 21,
     "chart_type": "single",
+    "score": 979534,
     "raw": "ueostBIo | '\"\"w,B! | GhostBO",
     "song_margin": 0.0155,
     "chart_conf": 0.998
@@ -24832,6 +25349,9 @@
       "conf": 0.0119152
      }
     ],
+    "score": 979534,
+    "score_margin": 0.039851,
+    "score_digits": "979534",
     "chart_type": "single",
     "chart_conf": 0.998467,
     "level_digits": [
@@ -25352,7 +25872,7 @@
      }
     ]
    },
-   "ms": 624.6
+   "ms": 675.7
   }
  ]
 }

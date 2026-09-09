@@ -56,6 +56,7 @@ CLS_NAME = {v: k for k, v in CLS.items()}
 # test JVM (ParityTest) es el que lo detecta.
 MIN_SONG_MARGIN = 0.015
 MIN_BADGE_CONF = 0.15
+MIN_SCORE_MARGIN = 0.010
 MAX_SONG_BOXES = 3
 
 
@@ -154,7 +155,10 @@ def interpret(native, catalog):
                 level = v if 1 <= v <= 28 else None
             except ValueError:
                 level = None
-    return {"song": song, "level": level, "chart_type": chart,
+    sv = native.get("score", -1)
+    score = sv if (sv >= 0 and float(native.get("score_margin", 0.0)) >= MIN_SCORE_MARGIN) else None
+
+    return {"song": song, "level": level, "chart_type": chart, "score": score,
             "raw": " | ".join(raws), "song_margin": round(margin, 4),
             "chart_conf": round(ct_conf, 3)}
 
@@ -165,6 +169,8 @@ def make_reader():
     """ResultReader con LAS MISMAS plantillas que viajan en el .so."""
     r = ResultReader(catalog=os.path.join(D2, "catalog.json"))
     r.chars = TemplateDigits.load_packed(os.path.join(MOBILE, "chars.npz"))
+    # `digits` ya sale de build_mobile/digits.npz por el default de
+    # ResultReader, que es el mismo atlas int8 que digits.bin.
     r.level = TemplateDigits.load_packed(os.path.join(MOBILE, "level.npz"))
     # level.npz guarda los dígitos como str; scores() indexa por int(c).
     r.level.classes = np.array([int(c) for c in r.level.classes])
@@ -175,6 +181,7 @@ def run_python(reader, img, boxes):
     out = reader.read(img, boxes)
     return {"song": out["song"]["value"], "level": out["level"]["value"],
             "chart_type": out["chart_type"]["value"],
+            "score": out["score"]["value"],
             "raw": out["song"].get("raw", ""),
             "song_margin": out["song"].get("confidence"),
             "chart_conf": out["chart_type"].get("confidence")}
@@ -213,8 +220,11 @@ def agreement(rows, field):
 def summarize(rows, detect_rows):
     eq_song = lambda v, g: normalize(v) == normalize(g)
     eq = lambda v, g: v == g
+    # Una pantalla 2P tiene dos scores y el lector devuelve el de la caja con
+    # más confianza, así que el GT de esas trae los dos y cualquiera vale.
+    eq_score = lambda v, g: v in g if isinstance(g, list) else v == g
     fields = [("song", "song", eq_song), ("level", "level", eq),
-              ("chart_type", "chart_type", eq)]
+              ("chart_type", "chart_type", eq), ("score", "score", eq_score)]
     m = {}
     for side in ("python", "native"):
         m[side] = {f: field_metrics(rows, side, f, g, e) for f, g, e in fields}
@@ -245,7 +255,7 @@ def print_table(m):
         return f"  {label:12s} n={d['n']:3d}  cob {d['coverage']:.3f}  prec {d['precision']:.3f}  acierto {d['accuracy']:.3f}"
     for side in ("python", "native"):
         print(f"{side} (cajas de boxes.json):")
-        for f in ("song", "level", "chart_type"):
+        for f in ("song", "level", "chart_type", "score"):
             print(row(f, m[side][f]))
     print("acuerdo nativo == python:  " +
           "  ".join(f"{k} {v:.3f}" for k, v in m["agreement"].items()))
@@ -253,7 +263,7 @@ def print_table(m):
         print("detector NCNN vs PyTorch+TTA (recall IoU>=0.5 de la mejor caja):")
         print("  " + "  ".join(f"{k} {v['recall@0.5']:.3f}" for k, v in m["detector"].items()))
         print("nativo end-to-end (detector + OCR + gates):")
-        for f in ("song", "level", "chart_type"):
+        for f in ("song", "level", "chart_type", "score"):
             print(row(f, m["native_e2e"][f]))
         print(f"  latencia nativa (host): media {m['native_ms']['mean']:.0f} ms, "
               f"max {m['native_ms']['max']:.0f} ms")
@@ -300,6 +310,7 @@ def from_device(path, tol):
     boxes = {b["key"]: b for b in json.load(open(os.path.join(D2, "boxes.json")))}
     gt_song = json.load(open(os.path.join(D2, "gt_song.json")))
     gt_lvl = json.load(open(os.path.join(D2, "gt_level.json")))
+    gt_score = json.load(open(os.path.join(D2, "gt_score.json")))
     catalog = Catalog(os.path.join(D2, "catalog.json"))
     build_cli()
     print(f"device: {res.get('device')} [{res.get('abi')}]  carga {res.get('load_ms', 0):.0f} ms")
@@ -310,23 +321,30 @@ def from_device(path, tol):
         if key not in boxes or not gt_song.get(key):
             continue
         ct, lvl = (gt_lvl.get(key) or [None, None])
-        gt = {"song": gt_song[key], "chart_type": ct, "level": lvl}
+        gt = {"song": gt_song[key], "chart_type": ct, "level": lvl,
+              "score": gt_score.get(key)}
         replica = interpret(r["native"], catalog)
         rows.append({"key": key, "gt": gt, "native": replica})
         ms.append(r["ms"])
-        for f in ("song", "level", "chart_type", "raw"):
+        for f in ("song", "level", "chart_type", "score", "raw"):
             if r.get(f) != replica.get(f):
                 kt_diff.append(f"  {key} {f}: device={r.get(f)!r} replica={replica.get(f)!r}")
         host = run_native(os.path.join(PHOTOS, boxes[key]["file"]), None)["result"]
         hr = interpret(host, catalog)
-        d = [f for f in ("song", "level", "chart_type", "raw") if hr.get(f) != replica.get(f)]
+        d = [f for f in ("song", "level", "chart_type", "score", "raw") if hr.get(f) != replica.get(f)]
         if d:
             host_diff.append(f"  {key}: " + "; ".join(
                 f"{f} device={replica.get(f)!r} host={hr.get(f)!r}" for f in d))
 
     eq_song = lambda v, g: normalize(v) == normalize(g)
-    m = {f: field_metrics(rows, "native", f, f, eq_song if f == "song" else (lambda v, g: v == g))
-         for f in ("song", "level", "chart_type")}
+    def _eq(f):
+        if f == "song":
+            return lambda v, g: normalize(v) == normalize(g)
+        if f == "score":
+            return lambda v, g: v in g if isinstance(g, list) else v == g
+        return lambda v, g: v == g
+    m = {f: field_metrics(rows, "native", f, f, _eq(f))
+         for f in ("song", "level", "chart_type", "score")}
     print(f"{len(rows)} fotos, latencia device media {sum(ms) / len(ms):.0f} ms, max {max(ms):.0f} ms")
     print("device end-to-end contra GT:")
     for f, d in m.items():
@@ -378,6 +396,7 @@ def main():
     boxes = {b["key"]: b for b in json.load(open(os.path.join(D2, "boxes.json")))}
     gt_song = json.load(open(os.path.join(D2, "gt_song.json")))
     gt_lvl = json.load(open(os.path.join(D2, "gt_level.json")))
+    gt_score = json.load(open(os.path.join(D2, "gt_score.json")))
     catalog = Catalog(os.path.join(D2, "catalog.json"))
     reader = make_reader()
 
@@ -393,7 +412,8 @@ def main():
         if img is None:
             continue
         ct, lvl = (gt_lvl.get(key) or [None, None])
-        gt = {"song": gt_song[key], "chart_type": ct, "level": lvl}
+        gt = {"song": gt_song[key], "chart_type": ct, "level": lvl,
+              "score": gt_score.get(key)}
 
         nat = run_native(path, rec["boxes"])
         row = {"key": key, "file": rec["file"], "gt": gt,
@@ -418,7 +438,7 @@ def main():
     if a.diff:
         print("\nfotos donde nativo != python:")
         for r in rows:
-            d = [f for f in ("song", "level", "chart_type", "raw")
+            d = [f for f in ("song", "level", "chart_type", "score", "raw")
                  if r["python"].get(f) != r["native"].get(f)]
             if d:
                 print(f"  {r['key']}: {', '.join(d)}")
@@ -435,7 +455,7 @@ def main():
             "_note": "generado por tools/parity/parity.py --fixture. 'expected' es la "
                      "réplica Python de PiuOcr.interpret; ParityTest.kt exige igualdad.",
             "rows": [{"key": r["key"], "native": r["native_json"], "gt": r["gt"],
-                      "expected": {k: r["native"][k] for k in ("song", "level", "chart_type", "raw")}}
+                      "expected": {k: r["native"][k] for k in ("song", "level", "chart_type", "score", "raw")}}
                      for r in rows + detect_rows],
         }, open(fx, "w"), indent=1, ensure_ascii=False)
         print(f"fixture: {fx} ({len(rows) + len(detect_rows)} filas)")

@@ -21,12 +21,14 @@ data class Reading(
     val song: Field<String>,
     val level: Field<Int>,
     val chartType: Field<String>,
+    val score: Field<Int>,
     val rawTitle: String,
 ) {
     val needsLlm: List<String> get() = buildList {
         if (song.reason != null || song.value == null) add("song")
         if (level.reason != null || level.value == null) add("level")
         if (chartType.reason != null || chartType.value == null) add("chart_type")
+        if (score.reason != null || score.value == null) add("score")
     }
     /** Una llamada al VLM devuelve todos los campos: el costo es por pantalla,
      *  no por campo. Alcanza con que uno no pase para pagarla entera. */
@@ -113,7 +115,18 @@ class PiuOcr private constructor(
         // Con la canción resuelta el catálogo dice qué niveles son legales, y
         // eso reordena los dígitos leídos en vez de solo aceptar el argmax.
         val level = readLevel(j, song.value, chart.value, matcher)
-        return Reading(song, level, chart, raws.joinToString(" | "))
+        return Reading(song, level, chart, readScore(j), raws.joinToString(" | "))
+    }
+
+    /**
+     * Score, ya validado contra el dominio en C++ (0..1000000, y el "cero"
+     * gris de la izquierda descartado). Acá solo queda el gate por margen.
+     */
+    private fun readScore(j: JSONObject): Field<Int> {
+        val v = j.optInt("score", -1)
+        if (v < 0) return Field(null, 0f, "sin_glifos")
+        val m = j.optDouble("score_margin", 0.0).toFloat()
+        return if (m >= MIN_SCORE_MARGIN) Field(v, m, null) else Field(null, m, "margen_bajo")
     }
 
     private fun readLevel(j: JSONObject, song: String?, chartType: String?,
@@ -173,6 +186,13 @@ class PiuOcr private constructor(
         //            0.015 -> cob 0.800 / prec 0.972   <- este
         //            0.030 -> cob 0.756 / prec 0.971
         const val MIN_SONG_MARGIN = 0.015
+        // Gate del score, medido con LOSO sobre 52 fotos con score leído a mano
+        // (ver pipeline.py MIN_SCORE_MARGIN_SAFE):
+        //   0.020 -> cob 0.79 / prec 1.00
+        //   0.010 -> cob 0.94 / prec 0.98   <- este
+        //   0.000 -> cob 1.00 / prec 0.94
+        // 0.010 compra 15 pts de cobertura por 2 de precisión.
+        const val MIN_SCORE_MARGIN = 0.010f
         // 0.35 no compraba precisión, solo la tiraba: sobre 55 bolitas 0.15 da
         // 0.873 y 0.35 da 0.655, porque convierte lecturas buenas en null.
         const val MIN_BADGE_CONF = 0.15f

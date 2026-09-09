@@ -27,14 +27,16 @@ std::string esc(const std::string& s) {
 }  // namespace
 
 const char* Engine::emptyJson() {
-  return "{\"titles\":[],\"chart_type\":\"\",\"chart_conf\":0,"
+  return "{\"titles\":[],\"score\":-1,\"score_margin\":0,\"score_digits\":\"\","
+         "\"chart_type\":\"\",\"chart_conf\":0,"
          "\"level_digits\":[],\"level_scores\":[]}";
 }
 
 bool Engine::load(const std::string& base) {
   chars_ = Templates::load(base + "/chars.bin");
   level_ = Templates::load(base + "/level.bin");
-  return !chars_.empty() && !level_.empty() &&
+  digits_ = Templates::load(base + "/digits.bin");
+  return !chars_.empty() && !level_.empty() && !digits_.empty() &&
          det_.load(base + "/piu_yolo.param", base + "/piu_yolo.bin");
 }
 
@@ -98,7 +100,21 @@ std::string Engine::read(const cv::Mat& img, const std::vector<Box>* given,
     }
   }
 
-  js << "],\"chart_type\":\"" << esc(chartType) << "\",\"chart_conf\":"
+  // score: la caja de mayor confianza, como _first() en pipeline.py. Devuelve
+  // el margen MÍNIMO entre los dígitos; el gate vive en Kotlin.
+  const Box* scoreBox = nullptr;
+  for (const Box& b : boxes)
+    if (b.cls == 3 && (!scoreBox || b.conf > scoreBox->conf)) scoreBox = &b;
+  int scoreVal = -1;
+  float scoreMargin = 0.f;
+  std::string scoreDigits;
+  if (scoreBox)
+    readScore(cropBox(img, *scoreBox, 0.06f), digits_, &scoreVal, &scoreMargin,
+              &scoreDigits);
+
+  js << "],\"score\":" << scoreVal << ",\"score_margin\":" << scoreMargin
+     << ",\"score_digits\":\"" << esc(scoreDigits) << "\"";
+  js << ",\"chart_type\":\"" << esc(chartType) << "\",\"chart_conf\":"
      << chartConf << ",\"level_digits\":[";
   for (size_t i = 0; i < lvlDigits.size(); ++i) js << (i ? "," : "") << lvlDigits[i];
   js << "],\"level_scores\":[";

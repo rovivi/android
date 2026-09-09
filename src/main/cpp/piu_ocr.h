@@ -100,6 +100,15 @@ class Templates {
   std::vector<int> clsIdx_;   // índice en uniq_ por plantilla (precalculado)
 };
 
+// --- score.cpp ---------------------------------------------------------
+// Dígitos de una franja de una sola línea. Necesita el clasificador para
+// elegir el umbral: la regularidad sola no distingue un dígito de un borrón.
+std::vector<Glyph> segmentDigits(const cv::Mat& roi, const Templates& digits,
+                                 int scale = 4);
+// Score de PIU Phoenix, 0..1000000. false si no se pudo leer.
+bool readScore(const cv::Mat& roi, const Templates& digits, int* value,
+               float* margin, std::string* rawDigits);
+
 // --- pipeline.cpp ------------------------------------------------------
 // Lo que corre nativeRead, sin JNI: lo comparten el .so y el CLI de host
 // (tools/host) que alimenta el test de paridad contra el pipeline Python.
@@ -113,7 +122,7 @@ class Engine {
   static const char* emptyJson();
   std::vector<Aug> augs = defaultAugs();     // el CLI las cambia para medir
  private:
-  Templates chars_, level_;
+  Templates chars_, level_, digits_;
   Detector det_;
 };
 

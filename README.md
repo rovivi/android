@@ -6,7 +6,7 @@ Un AAR de 9.4 MB, `arm64-v8a`, sin dependencias en la app.
 
 ```kotlin
 val ocr = PiuOcr.create(context)
-val r = ocr.read(bitmap)          // r.song / r.level / r.chartType: Field(value, confidence, reason)
+val r = ocr.read(bitmap)          // r.song / r.level / r.chartType / r.score: Field(value, confidence, reason)
 if (r.needsVlmCall) escalar(r)    // reason != null => "no confío, preguntá al VLM"
 ```
 
@@ -14,9 +14,10 @@ if (r.needsVlmCall) escalar(r)    // reason != null => "no confío, preguntá al
 
 | campo | acierto end-to-end | precisión cuando responde |
 |---|---|---|
-| canción | **0.733** | 0.89 |
-| nivel | 0.714 | 0.79 |
+| **score** | **0.905** | 0.97 |
 | chart type | 0.767 | 0.79 |
+| canción | 0.733 | 0.89 |
+| nivel | 0.714 | 0.79 |
 
 45 fotos de cabina con ground truth. Detalle, gráficas y qué falta:
 **[docs/INFORME.md](docs/INFORME.md)**. Decisiones de diseño y constantes
@@ -43,9 +44,9 @@ tools/parity/device.sh                                # lo mismo en un teléfono
 ## Estructura
 
 ```
-src/main/cpp/        detector (NCNN + TTA a mano), segment, text, badge, recognize, pipeline, jni_bridge
+src/main/cpp/        detector (NCNN + TTA a mano), segment, text, badge, score, recognize, pipeline, jni_bridge
 src/main/kotlin/     PiuOcr (gates, cruce con catálogo), SongMatcher (difflib porteado)
-src/main/assets/     piu_yolo fp16, chars.bin / level.bin (int8), catalog.json
+src/main/assets/     piu_yolo fp16, chars/level/digits .bin (int8), catalog.json
 tools/host/          el mismo C++ como binario Linux
 tools/parity/        comparador, baseline, gráficas
 src/test/            ParityTest.kt (JVM)      src/androidTest/   DeviceParityTest.kt

@@ -18,6 +18,7 @@ piu-ocr.aar                                        ~9 MB
 │   └── libopencv_java4.so         opencv-mobile, core+imgproc   ~2 MB
 └── assets/piu_ocr/
     ├── chars.bin                  2346 plantillas int8         0.41 MB
+    ├── digits.bin                 296 ejemplares int8          0.23 MB
     ├── level.bin                  105 plantillas int8          0.01 MB
     ├── catalog.json               675 canciones + charts       0.08 MB
     └── piu_yolo.ncnn.{param,bin}  detector int8                ~3 MB
@@ -35,6 +36,7 @@ por un parque de dispositivos que ya no importa.
 | `segment.py` | 330 | **C++** | por píxel, es el cuello de latencia |
 | `text.py` | 287 | **C++** | idem |
 | `recognize.py` | 175 | **C++** | producto punto contra 2346 plantillas |
+| `read_score` | — | **C++** (`score.cpp`) | barrido de umbrales guiado por el clasificador |
 | `badge.py` | 105 | **C++** | voto de color en HSV |
 | `song_match.py` | 107 | **Kotlin** | strings, no es cuello, y evita reescribir `SequenceMatcher` |
 | `pipeline.py` | 379 | **Kotlin** | orquestación y gates |
