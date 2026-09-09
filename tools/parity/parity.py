@@ -95,9 +95,14 @@ def build_cli():
     subprocess.check_call(["cmake", "--build", bd, "-j"])
 
 
+AUGS = None   # --augs: pasadas del TTA para el detector nativo
+
+
 def run_native(image, boxes=None):
     """boxes: {clase: [{"box":[...], "conf":f}]} o None para usar el detector."""
     cmd = [CLI, "--assets", ASSETS, image]
+    if AUGS and boxes is None:
+        cmd += ["--augs", AUGS]
     if boxes is not None:
         for name, lst in boxes.items():
             if name not in CLS:
@@ -298,7 +303,10 @@ def main():
     ap.add_argument("--tol", type=float, default=0.0)
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--diff", action="store_true", help="listar fotos donde difieren")
+    ap.add_argument("--augs", help='pasadas TTA del detector, ej. "1,0.83,1f" (default del .so)')
     a = ap.parse_args()
+    global AUGS
+    AUGS = a.augs
 
     build_cli()
     boxes = {b["key"]: b for b in json.load(open(os.path.join(D2, "boxes.json")))}

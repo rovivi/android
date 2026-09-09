@@ -43,7 +43,7 @@ std::string Engine::read(const cv::Mat& img, const std::vector<Box>* given,
   // imgsz 1280 con TTA: es la única configuración que da cajas usables. Bajar a
   // 768 detecta MÁS cajas pero peor puestas, y el OCR consume el recorte —
   // medido, cuesta canción 0.800 -> 0.633.
-  const std::vector<Box> boxes = given ? *given : det_.detect(img, 1280, /*tta=*/true);
+  const std::vector<Box> boxes = given ? *given : det_.detect(img, 1280, augs);
   if (usedBoxes) *usedBoxes = boxes;
 
   std::ostringstream js;

@@ -1,7 +1,8 @@
 // CLI de host: corre piu::Engine sobre una imagen y escribe JSON en stdout.
 //
-//   piuocr_cli --assets DIR IMG [--box cls,x1,y1,x2,y2,conf ...]
+//   piuocr_cli --assets DIR IMG [--box cls,x1,y1,x2,y2,conf ...] [--augs 1,0.83,1f]
 //
+// --augs: pasadas del TTA, "escala" o "escalaf" (flip), separadas por coma.
 // Sin --box corre el detector YOLO (con TTA, como el teléfono). Con --box usa
 // esas cajas y saltea el detector, para aislar el OCR de la detección.
 // Salida: {"result": <mismo JSON que nativeRead>, "boxes": [...], "ms": {...}}
@@ -25,6 +26,7 @@ int main(int argc, char** argv) {
   std::string assets, image;
   std::vector<Box> given;
   bool useGiven = false;
+  std::vector<Aug> augs;
   for (int i = 1; i < argc; ++i) {
     if (!std::strcmp(argv[i], "--assets") && i + 1 < argc) assets = argv[++i];
     else if (!std::strcmp(argv[i], "--box") && i + 1 < argc) {
@@ -36,6 +38,18 @@ int main(int argc, char** argv) {
       }
       given.push_back(b);
       useGiven = true;
+    } else if (!std::strcmp(argv[i], "--augs") && i + 1 < argc) {
+      std::string spec = argv[++i];
+      for (size_t p = 0; p < spec.size();) {
+        size_t q = spec.find(',', p);
+        if (q == std::string::npos) q = spec.size();
+        std::string tok = spec.substr(p, q - p);
+        Aug a{1.f, false};
+        if (!tok.empty() && tok.back() == 'f') { a.flip = true; tok.pop_back(); }
+        a.scale = std::strtof(tok.c_str(), nullptr);
+        if (a.scale > 0.f) augs.push_back(a);
+        p = q + 1;
+      }
     } else if (argv[i][0] != '-') image = argv[i];
   }
   if (assets.empty() || image.empty()) {
@@ -50,6 +64,7 @@ int main(int argc, char** argv) {
     return 1;
   }
   const double loadMs = ms(t0);
+  if (!augs.empty()) eng.augs = augs;
 
   cv::Mat img = cv::imread(image, cv::IMREAD_COLOR);
   if (img.empty()) {

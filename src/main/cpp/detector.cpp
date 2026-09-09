@@ -32,8 +32,17 @@ namespace {
 // host, 0 de 58 song_name. Por eso la reducción se hace ADENTRO del lienzo de
 // 1280 (la imagen ocupa el 83 % y el resto es relleno 114), que para una red
 // convolucional es la misma augmentación sin cambiar la forma de entrada.
-struct Aug { float scale; bool flip; };
-const Aug kAugs[] = {{1.00f, false}, {0.83f, false}, {1.00f, true}};
+//
+// Medido con tools/parity (--detect --augs), 45 fotos, recall de song_name y
+// acierto de canción end-to-end:
+//   1                 0.733  0.444   276 ms
+//   1,1f              0.756  0.489   481
+//   1,0.83,1f         0.844  0.644   661   <- lo que había
+//   1,0.83f           0.933  0.733   486
+//   1,0.83,0.83f      0.956  0.733   653   <- este: mismo costo, +9 pts
+//   1,0.83,1f,0.83f   0.933  0.733   844
+// El flip sin reducir casi no suma; el flip DE la reducida sí.
+const std::vector<Aug> kAugs = {{1.00f, false}, {0.83f, false}, {0.83f, true}};
 
 float iou(const Box& a, const Box& b) {
   const int x1 = std::max(a.x1, b.x1), y1 = std::max(a.y1, b.y1);
@@ -46,6 +55,8 @@ float iou(const Box& a, const Box& b) {
 }
 
 }  // namespace
+
+const std::vector<Aug>& defaultAugs() { return kAugs; }
 
 Detector::~Detector() { delete net_; }
 
@@ -122,13 +133,13 @@ std::vector<Box> Detector::detectOnce(const cv::Mat& bgr, int imgsz,
   return boxes;
 }
 
-std::vector<Box> Detector::detect(const cv::Mat& bgr, int imgsz, bool tta) const {
+std::vector<Box> Detector::detect(const cv::Mat& bgr, int imgsz,
+                                  const std::vector<Aug>& augs) const {
   std::vector<Box> all;
   if (!net_ || bgr.empty()) return all;
-  for (const Aug& a : kAugs) {
+  for (const Aug& a : augs) {
     auto v = detectOnce(bgr, imgsz, a.scale, a.flip);
     all.insert(all.end(), v.begin(), v.end());
-    if (!tta) break;
   }
   // NMS por clase sobre la unión de las pasadas. Con umbral 0.005 las tres
   // pasadas juntan cientos de cajas: ordenar por (clase, conf) deja cada clase

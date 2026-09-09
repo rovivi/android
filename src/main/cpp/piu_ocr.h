@@ -43,14 +43,19 @@ struct Glyph { unsigned char px[GLYPH_H * GLYPH_W]; };
 
 // --- detector.cpp ------------------------------------------------------
 // clases: 0 difficulty, 1 fullscore, 2 rank, 3 score, 4 song_name
+// Una pasada del TTA: escala relativa dentro del lienzo y flip horizontal.
+struct Aug { float scale; bool flip; };
+// Las 3 pasadas por defecto (original, 0.83, flip). Ver detector.cpp.
+const std::vector<Aug>& defaultAugs();
+
 class Detector {
  public:
   ~Detector();
   bool load(const std::string& param, const std::string& bin);
-  // tta=true corre 3 pasadas y las une con NMS. Sin TTA se pierde un tercio de
-  // los song_name (43 -> 29 de 58, medido); ncnn no lo trae, va a mano.
+  // Corre una pasada por Aug y las une con NMS. Sin TTA se pierde un tercio
+  // de los song_name (43 -> 29 de 58, medido); ncnn no lo trae, va a mano.
   std::vector<Box> detect(const cv::Mat& bgr, int imgsz = 1280,
-                          bool tta = true) const;
+                          const std::vector<Aug>& augs = defaultAugs()) const;
  private:
   std::vector<Box> detectOnce(const cv::Mat&, int, float, bool) const;
   ncnn::Net* net_ = nullptr;
@@ -106,6 +111,7 @@ class Engine {
   std::string read(const cv::Mat& bgr, const std::vector<Box>* boxes = nullptr,
                    std::vector<Box>* usedBoxes = nullptr) const;
   static const char* emptyJson();
+  std::vector<Aug> augs = defaultAugs();     // el CLI las cambia para medir
  private:
   Templates chars_, level_;
   Detector det_;
